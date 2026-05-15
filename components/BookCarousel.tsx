@@ -99,7 +99,7 @@ export default function BookCarousel() {
     const track = trackRef.current;
     if (!track) return;
     const halfWidth = track.scrollWidth / 2;
-    const delta = dir === 'right' ? 150 : -150;
+    const delta = dir === 'right' ? -150 : 150;
     posRef.current = ((posRef.current + delta) % halfWidth + halfWidth) % halfWidth;
   };
 
