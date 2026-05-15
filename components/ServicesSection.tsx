@@ -80,7 +80,7 @@ export default function ServicesSection() {
                 חזרה
               </button>
             </div>
-            <p className="text-text-muted text-lg leading-relaxed text-center mb-6 max-w-2xl mx-auto">
+            <p className="text-text-muted text-lg font-bold leading-relaxed text-center mb-6 max-w-2xl mx-auto">
               ליווי אישי אחד על אחד כדי לגלות ולבנות מי אתה באמת, מהי טביעת האצבע שלך בעולם ואיך נוכל לעצב לך יחד חיים מלאי משמעות ועשייה מימוש הייחודיות שלך
             </p>
             <FingerprintInteractive />
