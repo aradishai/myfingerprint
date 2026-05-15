@@ -120,7 +120,7 @@ export default function ServicesSection() {
                         className="w-14 h-14 rounded-full flex items-center justify-center font-black text-base shadow-lg flex-shrink-0"
                         style={{
                           backgroundColor: `rgba(82, 196, 122, ${(s.num / 6).toFixed(2)})`,
-                          color: '#FFFEF5',
+                          color: '#1A1A1A',
                         }}
                       >
                         {s.num}
@@ -148,7 +148,7 @@ export default function ServicesSection() {
                       className="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm shadow-md"
                       style={{
                         backgroundColor: `rgba(82, 196, 122, ${(s.num / 6).toFixed(2)})`,
-                        color: '#FFFEF5',
+                        color: '#1A1A1A',
                       }}
                     >
                       {s.num}
