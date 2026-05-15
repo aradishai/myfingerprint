@@ -61,7 +61,7 @@ export default function TestimonialCarousel() {
   const t = testimonials[current];
 
   return (
-    <div className="text-center bg-primary/65 backdrop-blur-sm rounded-2xl px-10 py-10">
+    <div className="text-center bg-primary/65 backdrop-blur-sm px-10 py-10" style={{ borderRadius: '60% 40% 55% 45% / 45% 55% 45% 55%' }}>
       {/* Quote */}
       <div className="transition-opacity duration-400" style={{ opacity: visible ? 1 : 0, minHeight: '200px' }}>
         <blockquote className="text-xl md:text-2xl text-white leading-relaxed font-medium mb-6 italic">
