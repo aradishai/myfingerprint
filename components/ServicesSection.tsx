@@ -25,12 +25,14 @@ export default function ServicesSection() {
   return (
     <section className="py-24 bg-cream">
       <div className="max-w-5xl mx-auto px-6">
-        <div className="text-center mb-14">
-          <h2 className="section-title transition-all duration-300">{title}</h2>
-          {openLeft && (
-            <p className="text-text-muted mt-2">ניתן להזמין בנפרד או כקורס שלם</p>
-          )}
-        </div>
+        {!openRight && (
+          <div className="text-center mb-14">
+            <h2 className="section-title transition-all duration-300">{title}</h2>
+            {openLeft && (
+              <p className="text-text-muted mt-2">ניתן להזמין בנפרד או כקורס שלם</p>
+            )}
+          </div>
+        )}
 
         <div className="grid md:grid-cols-2 gap-10">
           {/* Right card — fingerprint / personal coaching */}
