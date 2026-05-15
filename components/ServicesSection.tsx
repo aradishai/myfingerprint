@@ -70,7 +70,7 @@ export default function ServicesSection() {
             className={`md:col-span-2 bg-cream rounded-2xl p-10 shadow-sm border border-border transition-all duration-500 ${openRight ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
             style={!openRight ? { visibility: 'hidden' } : {}}
           >
-            <div className="flex justify-start mb-6">
+            <div className="flex justify-start mb-4">
               <button
                 onClick={() => setOpenRight(false)}
                 className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all"
@@ -78,6 +78,9 @@ export default function ServicesSection() {
                 חזרה
               </button>
             </div>
+            <p className="text-text-muted text-sm leading-relaxed text-center mb-6 max-w-xl mx-auto">
+              ליווי אישי אחד על אחד כדי לגלות ולבנות מי אתה באמת, מהי טביעת האצבע שלך בעולם ואיך נוכל לעצב לך יחד חיים מלאי משמעות ועשייה מימוש הייחודיות שלך
+            </p>
             <FingerprintInteractive />
             <div className="text-center mt-8">
               <Link href="#contact" className="btn-primary">
