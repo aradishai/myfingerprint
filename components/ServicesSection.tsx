@@ -80,7 +80,7 @@ export default function ServicesSection() {
                 חזרה
               </button>
             </div>
-            <div className="bg-primary/10 rounded-xl px-6 py-3 max-w-xl mx-auto mb-6 text-center">
+            <div className="bg-primary/10 rounded-2xl px-8 py-5 max-w-2xl mx-auto mb-6 text-center">
               <p className="text-text-main text-lg font-bold leading-relaxed">
                 ליווי אישי אחד על אחד כדי לגלות ולבנות מי אתה באמת, מהי טביעת האצבע שלך בעולם ואיך נוכל לעצב לך יחד חיים מלאי משמעות ועשייה מימוש הייחודיות שלך
               </p>
