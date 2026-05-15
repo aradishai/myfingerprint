@@ -46,7 +46,7 @@ export default function ServicesSection() {
                 תהליך אישי אחד על אחד בו נחקור מה נועדתם לעשות? מה היא הייחודיות האישית שלכם ואיך תוכלו לייצר שינוי בעולם ובכך להביא את עצמכם לחיים בעלי משמעות ועשייה.
               </p>
             </div>
-            <span className="text-primary font-semibold text-sm mt-6 inline-block">לחץ לגילוי ←</span>
+            <span className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 mt-6 inline-block w-fit">לחץ לגילוי</span>
           </div>
 
           {/* Left card — workshops */}
