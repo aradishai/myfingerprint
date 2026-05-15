@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const books = [
   '11 אליפויות.jpg',
@@ -54,7 +54,7 @@ const books = [
   'נעליים גדולות.webp',
   'נקודת מפנה.webp',
   'סדר את המיטה שלך.jpg',
-  'סטיב ג\'ובס.jpg',
+  "סטיב ג'ובס.jpg",
   'עיצוב התודעה.jpg',
   'עכשיו גלה את חוזקותייך.jpg',
   'פורחים מאוחר.jpg',
@@ -64,41 +64,50 @@ const books = [
   'תן וקח.jpg',
 ];
 
+const doubled = [...books, ...books];
+
 export default function BookCarousel() {
-  const ref = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
 
   const scroll = (dir: 'right' | 'left') => {
-    if (ref.current) {
-      ref.current.scrollBy({ left: dir === 'left' ? -300 : 300, behavior: 'smooth' });
-    }
+    scrollRef.current?.scrollBy({ left: dir === 'right' ? 300 : -300, behavior: 'smooth' });
   };
 
   return (
-    <section className="py-16 bg-cream overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6">
-        <h2 className="section-title text-center mb-10">ספרים שהשפיעו עליי</h2>
+    <section className="py-16 bg-cream">
+      <div className="max-w-5xl mx-auto px-6 mb-10">
+        <h2 className="section-title text-center">ספרים מומלצים</h2>
+      </div>
 
-        <div className="relative">
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 transition-all"
-          >
-            ›
-          </button>
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 transition-all"
-          >
-            ‹
-          </button>
+      <div className="relative px-10">
+        <button
+          onClick={() => scroll('right')}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 transition-all text-lg"
+        >
+          ›
+        </button>
+        <button
+          onClick={() => scroll('left')}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 transition-all text-lg"
+        >
+          ‹
+        </button>
 
+        <div className="overflow-hidden">
           <div
-            ref={ref}
-            className="flex gap-4 overflow-x-auto scroll-smooth px-10 pb-2"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            ref={scrollRef}
+            className="flex gap-4"
+            style={{
+              width: 'max-content',
+              animation: `scroll-books-right 90s linear infinite`,
+              animationPlayState: paused ? 'paused' : 'running',
+            }}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
           >
-            {books.map((book) => (
-              <div key={book} className="flex-shrink-0">
+            {doubled.map((book, i) => (
+              <div key={i} className="flex-shrink-0">
                 <img
                   src={`/books/${encodeURIComponent(book)}`}
                   alt={book.replace(/\.[^.]+$/, '')}

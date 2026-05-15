@@ -21,6 +21,15 @@ body {
   direction: rtl;
 }
 
+.letter-font {
+  font-family: 'Varela Round', sans-serif;
+}
+
+@keyframes scroll-books-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0%); }
+}
+
 @layer components {
   .btn-primary {
     @apply bg-primary text-white px-7 py-3 rounded-full font-semibold text-base transition-all duration-200 hover:opacity-90 hover:shadow-lg active:scale-95;
@@ -30,6 +39,7 @@ body {
   }
   .section-title {
     @apply text-3xl md:text-4xl font-bold text-text-main mb-4;
+    font-family: 'Secular One', sans-serif;
   }
   .section-subtitle {
     @apply text-lg text-text-muted mb-10 leading-relaxed;
