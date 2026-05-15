@@ -96,7 +96,11 @@ export default function BookCarousel() {
   }, []);
 
   const scroll = (dir: 'right' | 'left') => {
-    posRef.current += dir === 'right' ? -150 : 150;
+    const track = trackRef.current;
+    if (!track) return;
+    const halfWidth = track.scrollWidth / 2;
+    const delta = dir === 'right' ? 150 : -150;
+    posRef.current = ((posRef.current + delta) % halfWidth + halfWidth) % halfWidth;
   };
 
   return (
@@ -110,13 +114,13 @@ export default function BookCarousel() {
           onClick={() => scroll('right')}
           className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 text-xl leading-none"
         >
-          ›
+          ‹
         </button>
         <button
           onClick={() => scroll('left')}
           className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 text-xl leading-none"
         >
-          ‹
+          ›
         </button>
 
         <div
