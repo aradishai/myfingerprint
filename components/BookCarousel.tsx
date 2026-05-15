@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 const books = [
   '11 אליפויות.jpg',
@@ -67,11 +67,36 @@ const books = [
 const doubled = [...books, ...books];
 
 export default function BookCarousel() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const posRef = useRef(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const halfWidth = track.scrollWidth / 2;
+    posRef.current = 0;
+
+    let last: number | null = null;
+    let animId: number;
+
+    const step = (now: number) => {
+      if (last !== null && !pausedRef.current) {
+        posRef.current += (now - last) * 0.04;
+        if (posRef.current >= halfWidth) posRef.current -= halfWidth;
+        track.style.transform = `translateX(${posRef.current}px)`;
+      }
+      last = now;
+      animId = requestAnimationFrame(step);
+    };
+
+    animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, []);
 
   const scroll = (dir: 'right' | 'left') => {
-    scrollRef.current?.scrollBy({ left: dir === 'right' ? 300 : -300, behavior: 'smooth' });
+    posRef.current += dir === 'right' ? -150 : 150;
   };
 
   return (
@@ -80,36 +105,30 @@ export default function BookCarousel() {
         <h2 className="section-title text-center">ספרים מומלצים</h2>
       </div>
 
-      <div className="relative px-10">
+      <div className="relative px-12">
         <button
           onClick={() => scroll('right')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 transition-all text-lg"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 text-xl leading-none"
         >
           ›
         </button>
         <button
           onClick={() => scroll('left')}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 transition-all text-lg"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-primary text-white w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:opacity-90 text-xl leading-none"
         >
           ‹
         </button>
 
-        <div className="overflow-hidden">
-          <div
-            ref={scrollRef}
-            className="flex gap-4"
-            style={{
-              width: 'max-content',
-              animation: `scroll-books-right 90s linear infinite`,
-              animationPlayState: paused ? 'paused' : 'running',
-            }}
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-          >
+        <div
+          className="overflow-hidden"
+          onMouseEnter={() => { pausedRef.current = true; }}
+          onMouseLeave={() => { pausedRef.current = false; }}
+        >
+          <div ref={trackRef} className="flex gap-4" style={{ width: 'max-content' }}>
             {doubled.map((book, i) => (
               <div key={i} className="flex-shrink-0">
                 <img
-                  src={`/books/${encodeURIComponent(book)}`}
+                  src={'/books/' + book}
                   alt={book.replace(/\.[^.]+$/, '')}
                   className="h-48 w-32 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-200"
                 />
