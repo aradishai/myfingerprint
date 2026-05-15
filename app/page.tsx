@@ -7,14 +7,11 @@ export default function Home() {
   return (
     <>
       {/* Hero — ירוק */}
-      <section className="min-h-screen flex items-center justify-center pt-16 bg-primary">
+      <section className="min-h-screen flex items-center justify-center pt-24 bg-primary">
         <div className="max-w-3xl mx-auto px-6 py-24 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-cream leading-tight mb-4 tracking-wide" style={{fontFamily:"'Secular One', sans-serif"}}>
             מה תרצו להיות כשתהיו גדולים?
           </h1>
-          <p className="text-white/80 text-base md:text-lg font-semibold mb-10 tracking-wide">
-            "החלום שלי הוא שכל אדם יידע מה היא טביעת האצבע שלו בבניית העולם שלנו"
-          </p>
           <p className="text-xl text-white/90 leading-loose mb-10 letter-font">
             אני מאמין שלכל אדם יש ייחודיות משלו, ערכים משלו וסט חוזקות איתם הוא צועד במסלול חייו. לכל אדם יש ייעוד אותו הוא יכול וצריך לממש. לאורך שנים של חקר מעמיק ועבודת שטח, פיתחתי כלים פרקטיים שייסעו לכל אחד ואחת להצליח למצוא את הדרך הייחודיות שלו להפוך את העולם שלנו לטוב יותר.
           </p>
