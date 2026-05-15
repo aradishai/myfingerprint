@@ -61,7 +61,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-cream">
         <div className="max-w-5xl mx-auto px-6 space-y-12">
           {services.map((s, i) => (
             <div key={s.tag} className={`grid md:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>

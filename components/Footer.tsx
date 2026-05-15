@@ -5,7 +5,10 @@ export default function Footer() {
     <footer className="bg-primary text-white mt-24">
       <div className="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-10">
         <div>
-          <h3 className="text-xl font-bold mb-1">חותם בעולם</h3>
+          <div className="flex items-center gap-3 mb-2">
+            <img src="/logo.svg" alt="לוגו" className="h-8 w-8 brightness-0 invert opacity-80" />
+            <h3 className="text-xl font-bold">חותם בעולם</h3>
+          </div>
           <p className="text-white/50 text-sm mb-3">ערד ישי</p>
           <p className="text-white/60 text-sm leading-relaxed">
             "החלום שלי הוא שכל אדם יידע מה היא טביעת האצבע שלו בבניית העולם שלנו"

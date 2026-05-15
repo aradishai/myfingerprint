@@ -6,9 +6,7 @@ import { HiMenu, HiX } from 'react-icons/hi';
 const links = [
   { href: '/', label: 'בית' },
   { href: '/about', label: 'אודות' },
-  { href: '/services', label: 'שירותים' },
-  { href: '/blog', label: 'בלוג' },
-  { href: '/contact', label: 'צור קשר' },
+  { href: '/#contact', label: 'צור קשר' },
 ];
 
 export default function Header() {
@@ -51,7 +49,7 @@ export default function Header() {
               {l.label}
             </Link>
           ))}
-          <Link href="/contact" className="btn-primary text-center mt-2" onClick={() => setOpen(false)}>
+          <Link href="/#contact" className="btn-primary text-center mt-2" onClick={() => setOpen(false)}>
             קביעת פגישה
           </Link>
         </div>

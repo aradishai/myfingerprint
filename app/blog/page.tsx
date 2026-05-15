@@ -55,7 +55,7 @@ export default function BlogPage() {
       </section>
 
       {/* Posts */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-cream">
         <div className="max-w-4xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-8">
             {posts.map((post) => (

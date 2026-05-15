@@ -20,7 +20,7 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-cream">
         <div className="max-w-3xl mx-auto px-6 space-y-10">
           <div>
             <h2 className="text-2xl font-bold text-primary mb-4">איך התחיל המסע</h2>
@@ -71,7 +71,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-white text-center">
+      <section className="py-20 bg-cream text-center">
         <h2 className="section-title">רוצה להכיר אותי קצת יותר?</h2>
         <p className="section-subtitle">בואו נדבר. פגישת היכרות ללא עלות.</p>
         <Link href="/contact" className="btn-primary text-lg px-10 py-4">
