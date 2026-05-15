@@ -15,11 +15,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50">
-      <div className="bg-primary text-cream text-xs font-semibold text-center py-1.5 tracking-wide">
-        "החלום שלי הוא שכל אדם יידע מה היא טביעת האצבע שלו בבניית העולם שלנו"
-      </div>
-      <div className="bg-cream border-b border-border">
+    <header className="fixed top-0 right-0 left-0 z-50 bg-cream border-b border-border">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <img src="/logo.svg" alt="לוגו" className="h-10 w-10" />
@@ -45,8 +41,6 @@ export default function Header() {
         <button className="md:hidden text-primary" onClick={() => setOpen(!open)}>
           {open ? <HiX size={24} /> : <HiMenu size={24} />}
         </button>
-      </div>
-
       </div>
 
       {/* Mobile nav */}
