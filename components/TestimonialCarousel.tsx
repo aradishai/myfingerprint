@@ -60,8 +60,15 @@ export default function TestimonialCarousel() {
 
   const t = testimonials[current];
 
+  const len = t.quote.length;
+  const blob =
+    len < 120 ? '55% 45% 50% 50% / 50% 55% 45% 50%' :
+    len < 220 ? '40% 60% 45% 55% / 45% 40% 60% 55%' :
+    len < 320 ? '35% 65% 40% 60% / 40% 35% 65% 60%' :
+                '30% 70% 38% 62% / 38% 30% 70% 62%';
+
   return (
-    <div className="text-center bg-primary/65 backdrop-blur-sm px-12 py-12" style={{ borderRadius: '30% 70% 40% 60% / 40% 30% 70% 60%' }}>
+    <div className="text-center bg-primary/65 backdrop-blur-sm px-12 py-12" style={{ borderRadius: blob, transition: 'border-radius 0.8s ease' }}>
       {/* Quote */}
       <div className="transition-opacity duration-400" style={{ opacity: visible ? 1 : 0, minHeight: '200px' }}>
         <blockquote className="text-xl md:text-2xl text-white leading-relaxed font-medium mb-6 italic">
