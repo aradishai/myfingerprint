@@ -62,7 +62,7 @@ export default function ServicesSection() {
                 הרצאה / סדנה לקבוצה בה נעבור תהליך בן שישה שלבים בו נגלה את הסיפור האישי שלנו, הייחודיות והשינוי שנרצה להוביל בעולם.
               </p>
             </div>
-            <span className="btn-primary mt-6 inline-block">לתיאום סדנה</span>
+            <span className="bg-primary text-white px-4 py-1.5 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 mt-6 inline-block">לתיאום סדנה</span>
           </div>
 
           {/* Expanded: fingerprint */}
