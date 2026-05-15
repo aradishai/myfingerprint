@@ -13,7 +13,7 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl font-extrabold text-cream leading-tight mb-4 tracking-wide" style={{fontFamily:"'Secular One', sans-serif"}}>
             מה תרצו להיות כשתהיו גדולים?
           </h1>
-          <p className="text-xl text-white/90 leading-loose mb-10 letter-font mt-8">
+          <p className="text-xl text-white/90 leading-loose mb-10 letter-font mt-20">
             אני מאמין שלכל אדם יש ייחודיות משלו, ערכים משלו וסט חוזקות איתם הוא צועד במסלול חייו. לכל אדם יש ייעוד אותו הוא יכול וצריך לממש. לאורך שנים של חקר מעמיק ועבודת שטח, פיתחתי כלים פרקטיים שייסעו לכל אחד ואחת להצליח למצוא את הדרך הייחודיות שלו להפוך את העולם שלנו לטוב יותר.
           </p>
           <div className="flex justify-center mb-10">
