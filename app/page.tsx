@@ -9,7 +9,7 @@ export default function Home() {
       {/* Hero — ירוק */}
       <section className="min-h-screen flex items-center justify-center pt-16 bg-primary">
         <div className="max-w-3xl mx-auto px-6 py-24 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-cream leading-tight mb-4 tracking-wide" style={{fontFamily:"'Secular One', sans-serif"}}>
+          <h1 className="text-5xl md:text-7xl font-extrabold text-cream leading-tight mb-4 tracking-wide" style={{fontFamily:"'Secular One', sans-serif"}}>
             מה תרצו להיות כשתהיו גדולים?
           </h1>
           <p className="text-xl text-white/90 leading-loose mb-10 letter-font">
