@@ -88,7 +88,7 @@ export default function ServicesSection() {
             <FingerprintInteractive />
             <div className="text-center mt-8">
               <Link href="#contact" className="btn-primary">
-                לתיאום פגישה ופרטים נוספים
+                לתיאום פגישת היכרות
               </Link>
             </div>
           </div>
