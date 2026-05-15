@@ -2,6 +2,7 @@ import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import ServicesSection from '@/components/ServicesSection';
+import BookCarousel from '@/components/BookCarousel';
 
 export default function Home() {
   return (
@@ -32,6 +33,8 @@ export default function Home() {
           <TestimonialCarousel />
         </div>
       </section>
+
+      <BookCarousel />
 
       {/* About — שמנת */}
       <section className="py-24 bg-cream">
