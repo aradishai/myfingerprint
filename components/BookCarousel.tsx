@@ -85,7 +85,7 @@ export default function BookCarousel() {
       if (last !== null && !pausedRef.current) {
         posRef.current += (now - last) * 0.04;
         if (posRef.current >= halfWidth) posRef.current -= halfWidth;
-        track.style.transform = `translateX(${posRef.current}px)`;
+        track.style.transform = `translateX(${Math.round(posRef.current)}px)`;
       }
       last = now;
       animId = requestAnimationFrame(step);
@@ -128,13 +128,13 @@ export default function BookCarousel() {
           onMouseEnter={() => { pausedRef.current = true; }}
           onMouseLeave={() => { pausedRef.current = false; }}
         >
-          <div ref={trackRef} className="flex gap-4" style={{ width: 'max-content' }}>
+          <div ref={trackRef} className="flex gap-4" style={{ width: 'max-content', willChange: 'transform', backfaceVisibility: 'hidden' }}>
             {doubled.map((book, i) => (
               <div key={i} className="flex-shrink-0">
                 <img
                   src={'/books/' + book}
                   alt={book.replace(/\.[^.]+$/, '')}
-                  className="h-48 w-32 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-200"
+                  className="h-48 w-32 object-cover rounded-lg shadow-md"
                 />
               </div>
             ))}
