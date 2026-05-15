@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const testimonials = [
   {
@@ -59,16 +59,32 @@ export default function TestimonialCarousel() {
   }, [current, goTo]);
 
   const t = testimonials[current];
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [ratio, setRatio] = useState(0.6);
 
-  const len = t.quote.length;
+  useEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
+    const obs = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      if (width > 0) setRatio(height / width);
+    });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   const blob =
-    len < 120 ? '55% 45% 50% 50% / 50% 55% 45% 50%' :
-    len < 220 ? '40% 60% 45% 55% / 45% 40% 60% 55%' :
-    len < 320 ? '35% 65% 40% 60% / 40% 35% 65% 60%' :
-                '30% 70% 38% 62% / 38% 30% 70% 62%';
+    ratio < 0.45 ? '45% 55% 50% 50% / 40% 50% 50% 45%' :
+    ratio < 0.65 ? '38% 62% 44% 56% / 42% 38% 58% 50%' :
+    ratio < 0.85 ? '30% 70% 38% 62% / 38% 30% 65% 55%' :
+                   '25% 75% 32% 68% / 35% 25% 60% 55%';
 
   return (
-    <div className="text-center bg-primary/65 backdrop-blur-sm px-12 py-12" style={{ borderRadius: blob, transition: 'border-radius 0.8s ease' }}>
+    <div
+      ref={innerRef}
+      className="text-center bg-primary/65 backdrop-blur-sm px-14 py-12"
+      style={{ borderRadius: blob, transition: 'border-radius 0.8s ease' }}
+    >
       {/* Quote */}
       <div className="transition-opacity duration-400" style={{ opacity: visible ? 1 : 0, minHeight: '200px' }}>
         <blockquote className="text-xl md:text-2xl text-white leading-relaxed font-medium mb-6 italic">
