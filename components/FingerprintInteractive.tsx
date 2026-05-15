@@ -85,7 +85,7 @@ export default function FingerprintInteractive() {
         {active ? (
           <>
             <p className="text-primary font-bold text-sm uppercase tracking-widest mb-1">{active.label}</p>
-            <p className="text-text-main font-semibold text-lg">{active.question}</p>
+            <p className="text-text-main font-semibold text-lg whitespace-pre-line">{active.question}</p>
           </>
         ) : (
           <p className="text-text-muted text-sm">העבר את העכבר על הטביעה לגילוי</p>
