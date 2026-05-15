@@ -28,8 +28,15 @@ export default function Home() {
       <ServicesSection />
 
       {/* Testimonials — ירוק */}
-      <section className="py-24 bg-primary">
-        <div className="max-w-3xl mx-auto px-6">
+      <section
+        className="py-24 relative"
+        style={{
+          backgroundImage: 'url(/testimonials-bg.avif)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="max-w-3xl mx-auto px-6 relative z-10">
           <TestimonialCarousel />
         </div>
       </section>
