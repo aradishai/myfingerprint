@@ -116,7 +116,13 @@ export default function ServicesSection() {
                           </>
                         )}
                       </div>
-                      <div className="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center font-bold text-base shadow-lg flex-shrink-0">
+                      <div
+                        className="w-14 h-14 rounded-full flex items-center justify-center font-bold text-base shadow-lg flex-shrink-0"
+                        style={{
+                          backgroundColor: `rgba(82, 196, 122, ${(s.num / 6).toFixed(2)})`,
+                          color: s.num <= 3 ? '#1A1A1A' : 'white',
+                        }}
+                      >
                         {s.num}
                       </div>
                       <div className="h-24 flex flex-col justify-start items-center pt-4 px-3 text-center">
@@ -138,7 +144,13 @@ export default function ServicesSection() {
               {stations.map((s, i) => (
                 <div key={s.num} className="flex items-start gap-4">
                   <div className="flex flex-col items-center flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-md">
+                    <div
+                      className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm shadow-md"
+                      style={{
+                        backgroundColor: `rgba(82, 196, 122, ${(s.num / 6).toFixed(2)})`,
+                        color: s.num <= 3 ? '#1A1A1A' : 'white',
+                      }}
+                    >
                       {s.num}
                     </div>
                     {i < stations.length - 1 && <div className="w-0.5 h-6 bg-primary/30 mt-1" />}
