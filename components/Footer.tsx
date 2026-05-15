@@ -39,7 +39,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-4 text-center text-xs text-white/40">
-        © {new Date().getFullYear()} ערד ישי — My True Story. כל הזכויות שמורות.
+        © {new Date().getFullYear()} ערד ישי — חותם בעולם. כל הזכויות שמורות.
       </div>
     </footer>
   );
