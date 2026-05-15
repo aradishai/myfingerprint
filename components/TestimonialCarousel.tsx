@@ -82,7 +82,7 @@ export default function TestimonialCarousel() {
   return (
     <div
       ref={innerRef}
-      className="text-center bg-primary/65 backdrop-blur-sm px-14 py-12"
+      className="text-center bg-primary/65 backdrop-blur-sm px-14 pt-24 pb-12"
       style={{ borderRadius: blob, transition: 'border-radius 0.8s ease' }}
     >
       {/* Quote */}
