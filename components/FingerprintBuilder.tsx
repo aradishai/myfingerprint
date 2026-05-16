@@ -39,6 +39,18 @@ export default function FingerprintBuilder() {
       scale: 2,
       useCORS: true,
     });
+
+    // Add watermark to top-right corner
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      const pad = 24;
+      ctx.font = 'bold 28px Arial';
+      ctx.fillStyle = 'rgba(82, 196, 122, 0.55)';
+      ctx.textAlign = 'right';
+      ctx.direction = 'rtl';
+      ctx.fillText('חותם בעולם | ערד ישי', canvas.width - pad, pad + 20);
+    }
+
     const link = document.createElement('a');
     link.download = 'טביעת-האצבע-שלי.png';
     link.href = canvas.toDataURL('image/png');
@@ -79,15 +91,6 @@ export default function FingerprintBuilder() {
   return (
     <>
       <div ref={printRef} className="bg-cream rounded-3xl p-8">
-        {/* Header */}
-        <div className="flex items-center gap-3 justify-center mb-8">
-          <img src="/logo.svg" alt="לוגו" className="h-8 w-8" />
-          <div className="text-center">
-            <p className="font-extrabold text-primary text-lg leading-tight">חותם בעולם</p>
-            <p className="text-xs text-text-muted">ערד ישי</p>
-          </div>
-        </div>
-
         <h2 className="text-2xl font-extrabold text-text-main text-center mb-10">טביעת האצבע שלי</h2>
 
         {/* Diagram */}
