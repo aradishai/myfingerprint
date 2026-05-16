@@ -79,16 +79,16 @@ export default function FingerprintBuilder() {
   return (
     <>
       <div ref={printRef} className="bg-cream rounded-3xl p-8">
-        {/* Header */}
-        <div className="flex items-center gap-3 justify-center mb-8">
-          <img src="/logo.svg" alt="לוגו" className="h-8 w-8" />
-          <div className="text-center">
-            <p className="font-extrabold text-primary text-lg leading-tight">חותם בעולם</p>
-            <p className="text-xs text-text-muted">ערד ישי</p>
+        <div className="flex items-center justify-between mb-10">
+          <h2 className="text-2xl font-extrabold text-text-main">טביעת האצבע שלי</h2>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="text-right">
+              <p className="font-extrabold text-primary text-sm leading-tight">חותם בעולם</p>
+              <p className="text-xs text-text-muted">ערד ישי</p>
+            </div>
+            <img src="/logo.svg" alt="לוגו" className="h-6 w-6" />
           </div>
         </div>
-
-        <h2 className="text-2xl font-extrabold text-text-main text-center mb-10">טביעת האצבע שלי</h2>
 
         {/* Diagram */}
         <div className="flex items-center gap-4">
