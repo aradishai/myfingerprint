@@ -154,7 +154,7 @@ export default function FingerprintBuilder() {
           disabled={saving}
           className="bg-primary text-white px-10 py-3 rounded-full font-bold text-base hover:opacity-90 transition-all disabled:opacity-60 shadow-md"
         >
-          {saving ? 'מוריד...' : '⬇ הורד את טביעת האצבע שלך לטלפון/למחשב'}
+          {saving ? 'מוריד...' : 'הורד את טביעת האצבע שלך לטלפון/למחשב ⬇'}
         </button>
         <Link href="/#contact" className="text-primary font-semibold text-sm underline underline-offset-4 hover:opacity-80">
           לתיאום פגישת היכרות עם ערד
