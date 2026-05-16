@@ -51,8 +51,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-primary mb-1">מועד מועדף לפגישת היכרות</label>
-        <p className="text-xs text-text-muted mb-3">בחר תאריך ושעה שנוחים לך — ערד יאשר בהתאם לזמינותו</p>
+        <label className="block text-sm font-semibold text-primary mb-3">מועד מועדף לפגישת היכרות</label>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="block text-xs text-text-muted mb-1">תאריך</label>
