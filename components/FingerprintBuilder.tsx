@@ -17,6 +17,7 @@ const leftIds  = [4, 5, 6];
 
 export default function FingerprintBuilder() {
   const [answers, setAnswers]   = useState<Record<number, string>>({});
+  const [name, setName]         = useState('');
   const [hovered, setHovered]   = useState<number | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
@@ -91,7 +92,16 @@ export default function FingerprintBuilder() {
   return (
     <>
       <div ref={printRef} className="bg-cream rounded-3xl p-8">
-        <h2 className="text-2xl font-extrabold text-text-main text-center mb-10">טביעת האצבע שלי</h2>
+        <div className="flex items-baseline justify-center gap-2 mb-10">
+          <h2 className="text-2xl font-extrabold text-text-main">טביעת האצבע של</h2>
+          <input
+            type="text"
+            placeholder="שמך"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            className="text-2xl font-extrabold text-primary bg-transparent border-b-2 border-primary focus:outline-none w-32 text-center"
+          />
+        </div>
 
         {/* Diagram */}
         <div className="flex items-center gap-4">
