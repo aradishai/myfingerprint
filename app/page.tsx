@@ -10,7 +10,7 @@ export default function Home() {
       {/* Hero — ירוק */}
       <section className="min-h-screen flex items-center justify-center pt-16 bg-primary">
         <div className="max-w-5xl mx-auto px-6 py-24">
-          <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+          <div className="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16">
             {/* Profile image */}
             <div className="flex-shrink-0 hero-fade-1">
               <img
