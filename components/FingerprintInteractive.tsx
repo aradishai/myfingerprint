@@ -55,9 +55,14 @@ const regions = [
   },
 ];
 
-export default function FingerprintInteractive() {
-  const [hovered, setHovered] = useState<number | null>(null);
+export { regions };
 
+interface Props {
+  hovered: number | null;
+  onHover: (id: number | null) => void;
+}
+
+export default function FingerprintInteractive({ hovered, onHover }: Props) {
   return (
     <svg
       viewBox="40 15 170 220"
@@ -71,8 +76,8 @@ export default function FingerprintInteractive() {
             d={d}
             fill={hovered === region.id ? '#52C47A' : '#1A1A1A'}
             className="cursor-pointer transition-colors duration-300"
-            onMouseEnter={() => setHovered(region.id)}
-            onMouseLeave={() => setHovered(null)}
+            onMouseEnter={() => onHover(region.id)}
+            onMouseLeave={() => onHover(null)}
           />
         ))
       )}

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import FingerprintInteractive from './FingerprintInteractive';
+import FingerprintInteractive, { regions } from './FingerprintInteractive';
 
 const fingerprintItems = [
   { id: 1, label: 'אני הכי טוב ואוהב...', question: 'מה התחומים שאתה סקרן לגבייהם?' },
@@ -24,6 +24,7 @@ const stations = [
 export default function ServicesSection() {
   const [openRight, setOpenRight] = useState(false); // fingerprint card
   const [openLeft, setOpenLeft]   = useState(false); // workshops timeline
+  const [hoveredRegion, setHoveredRegion] = useState<number | null>(null);
 
   const isOpen = openRight || openLeft;
 
@@ -93,24 +94,31 @@ export default function ServicesSection() {
             <div className="flex flex-col md:flex-row gap-10 items-start">
               {/* Fingerprint — right side in RTL */}
               <div className="flex-shrink-0 flex justify-center w-full md:w-auto">
-                <FingerprintInteractive />
+                <FingerprintInteractive hovered={hoveredRegion} onHover={setHoveredRegion} />
               </div>
 
               {/* Content — left side in RTL */}
               <div className="flex-1 flex flex-col">
-                <div className="bg-primary/10 rounded-2xl px-6 py-4 mb-6">
+                <div className="bg-primary/10 rounded-2xl px-6 py-4 mb-8">
                   <p className="text-text-main text-base font-bold leading-relaxed">
                     ליווי אישי אחד על אחד כדי לגלות ולבנות מי אתה באמת, מהי טביעת האצבע שלך בעולם ואיך נוכל לעצב לך יחד חיים מלאי משמעות ועשייה תוך מימוש הייחודיות שלך
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-5 mb-8">
-                  {fingerprintItems.map((item) => (
-                    <div key={item.id}>
-                      <p className="text-primary font-bold text-sm tracking-wide mb-0.5">{item.label}</p>
-                      <p className="text-text-main font-semibold text-xl leading-snug">{item.question}</p>
-                    </div>
-                  ))}
+                <div className="min-h-32 mb-8 flex flex-col justify-center">
+                  {hoveredRegion ? (
+                    (() => {
+                      const active = regions.find(r => r.id === hoveredRegion);
+                      return active ? (
+                        <>
+                          <p className="text-primary font-bold text-sm tracking-wide mb-1">{active.label}</p>
+                          <p className="text-text-main font-semibold text-2xl leading-snug">{active.question}</p>
+                        </>
+                      ) : null;
+                    })()
+                  ) : (
+                    <p className="text-text-muted text-base">העבר את העכבר על הטביעה לגילוי</p>
+                  )}
                 </div>
 
                 <Link href="#contact" className="btn-primary w-fit">
