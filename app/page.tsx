@@ -9,27 +9,40 @@ export default function Home() {
     <>
       {/* Hero — ירוק */}
       <section className="min-h-screen flex items-center justify-center pt-16 bg-primary">
-        <div className="max-w-3xl mx-auto px-6 py-24 text-center">
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-cream leading-tight mb-4 tracking-wide" style={{fontFamily:"'Varela Round', sans-serif"}}>
-            מה תרצו להיות כשתהיו גדולים?
-          </h1>
-          <p className="text-base md:text-xl text-white/90 leading-loose mb-10 mt-8 md:mt-20">
-            אני מאמין שלכל אדם יש ייחודיות משלו, ערכים משלו וסט חוזקות איתם הוא צועד במסלול חייו. לכל אדם יש ייעוד אותו הוא יכול וצריך לממש. לאורך שנים של חקר מעמיק ועבודת שטח, פיתחתי כלים פרקטיים שייסעו לכל אחד ואחת להצליח למצוא את הדרך הייחודיות שלו להפוך את העולם שלנו לטוב יותר.
-          </p>
-          <div className="flex justify-center mb-10">
-            <Link href="/builder">
-              <img src="/logo.svg" alt="לוגו" className="w-16 h-16 md:w-24 md:h-24 brightness-0 invert hover:opacity-80 transition-opacity" />
-            </Link>
+        <div className="max-w-5xl mx-auto px-6 py-24">
+          <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+            {/* Profile image */}
+            <div className="flex-shrink-0 hero-fade-1">
+              <img
+                src="/profile.jpg"
+                alt="ערד ישי"
+                className="w-48 h-48 md:w-72 md:h-72 rounded-full object-cover object-top shadow-2xl border-4 border-white/20"
+              />
+            </div>
+            {/* Text */}
+            <div className="text-center md:text-right">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-cream leading-tight mb-4 tracking-wide hero-fade-2" style={{fontFamily:"'Varela Round', sans-serif"}}>
+                מה תרצו להיות כשתהיו גדולים?
+              </h1>
+              <p className="text-base md:text-xl text-white/90 leading-loose mb-8 mt-6 hero-fade-3">
+                אני מאמין שלכל אדם יש ייחודיות משלו, ערכים משלו וסט חוזקות איתם הוא צועד במסלול חייו. לכל אדם יש ייעוד אותו הוא יכול וצריך לממש. לאורך שנים של חקר מעמיק ועבודת שטח, פיתחתי כלים פרקטיים שייסעו לכל אחד ואחת להצליח למצוא את הדרך הייחודיות שלו להפוך את העולם שלנו לטוב יותר.
+              </p>
+              <div className="flex items-center gap-4 justify-center md:justify-end hero-fade-4">
+                <Link href="#contact" className="bg-cream text-primary px-6 py-3 md:px-10 md:py-4 rounded-full font-extrabold text-base md:text-lg hover:opacity-90 transition-all shadow-lg">
+                  צרו איתי קשר
+                </Link>
+                <Link href="/builder">
+                  <img src="/logo.svg" alt="לוגו" className="w-12 h-12 md:w-16 md:h-16 brightness-0 invert hover:opacity-80 transition-opacity" />
+                </Link>
+              </div>
+              <p
+                style={{ WebkitBoxReflect: 'below 4px linear-gradient(transparent 40%, rgba(255,255,255,0.15))' }}
+                className="text-white/70 text-sm md:text-base italic mt-8 hero-fade-4"
+              >
+                "החלום שלי הוא שכל אדם יגלה מהי טביעת האצבע שלו בבניית העולם שלנו"
+              </p>
+            </div>
           </div>
-          <Link href="#contact" className="bg-cream text-primary px-6 py-3 md:px-10 md:py-4 rounded-full font-extrabold text-base md:text-lg hover:bg-cream transition-all shadow-lg">
-            צרו איתי קשר
-          </Link>
-          <p
-            style={{ WebkitBoxReflect: 'below 4px linear-gradient(transparent 40%, rgba(255,255,255,0.15))' }}
-            className="text-white/70 text-sm md:text-base italic mt-10 md:mt-20"
-          >
-            "החלום שלי הוא שכל אדם יגלה מהי טביעת האצבע שלו בבניית העולם שלנו"
-          </p>
         </div>
       </section>
 
