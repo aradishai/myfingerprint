@@ -3,6 +3,21 @@ import { useState } from 'react';
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    await fetch('https://formspree.io/f/xnjwekjp', {
+      method: 'POST',
+      body: data,
+      headers: { Accept: 'application/json' },
+    });
+    setLoading(false);
+    setSent(true);
+  }
 
   if (sent) {
     return (
@@ -15,26 +30,28 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="card space-y-6" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+    <form className="card space-y-6" onSubmit={handleSubmit}>
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-semibold text-primary mb-2">שם פרטי</label>
-          <input type="text" className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors" />
+          <input name="שם פרטי" type="text" required className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors" />
         </div>
         <div>
           <label className="block text-sm font-semibold text-primary mb-2">שם משפחה</label>
-          <input type="text" className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors" />
+          <input name="שם משפחה" type="text" className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors" />
         </div>
       </div>
       <div>
         <label className="block text-sm font-semibold text-primary mb-2">אימייל</label>
-        <input type="email" className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors" />
+        <input name="אימייל" type="email" required className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors" />
       </div>
       <div>
         <label className="block text-sm font-semibold text-primary mb-2">משהו שהייתם רוצים להגיד לנו?</label>
-        <textarea rows={5} className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors resize-none" />
+        <textarea name="הודעה" rows={5} className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors resize-none" />
       </div>
-      <button type="submit" className="btn-primary w-full py-4 text-base">שלח</button>
+      <button type="submit" disabled={loading} className="btn-primary w-full py-4 text-base disabled:opacity-60">
+        {loading ? 'שולח...' : 'שלח'}
+      </button>
     </form>
   );
 }
