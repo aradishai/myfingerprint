@@ -107,7 +107,7 @@ export default function FingerprintBuilder() {
         {/* Diagram */}
         <div className="flex items-center gap-4">
           {/* Right labels */}
-          <div className="flex flex-col gap-10 flex-1 items-end">
+          <div className="flex flex-col gap-10 flex-1 items-start">
             {rightIds.map(id => <LabelRow key={id} id={id} side="right" />)}
           </div>
 
