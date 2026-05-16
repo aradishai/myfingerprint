@@ -105,9 +105,9 @@ export default function FingerprintBuilder() {
         </div>
 
         {/* Diagram */}
-        <div className="flex items-center gap-4">
+        <div className="grid items-center gap-4" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
           {/* Right labels */}
-          <div className="flex flex-col gap-10 flex-1 items-start">
+          <div className="flex flex-col gap-10 items-start">
             {rightIds.map(id => <LabelRow key={id} id={id} side="right" />)}
           </div>
 
@@ -131,7 +131,7 @@ export default function FingerprintBuilder() {
           </div>
 
           {/* Left labels */}
-          <div className="flex flex-col gap-10 flex-1 items-start">
+          <div className="flex flex-col gap-10 items-start">
             {leftIds.map(id => <LabelRow key={id} id={id} side="left" />)}
           </div>
         </div>
