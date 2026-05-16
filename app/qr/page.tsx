@@ -9,12 +9,29 @@ export default function QRPage() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
-    QRCode.toCanvas(canvasRef.current, SITE_URL, {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    QRCode.toCanvas(canvas, SITE_URL, {
       width: 800,
       margin: 3,
       color: { dark: '#52C47A', light: '#FFFEF5' },
-    }, () => setReady(true));
+    }, () => {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) { setReady(true); return; }
+      const logo = new Image();
+      logo.src = '/logo.svg';
+      logo.onload = () => {
+        const size = canvas.width * 0.2;
+        const x = (canvas.width - size) / 2;
+        const y = (canvas.height - size) / 2;
+        ctx.fillStyle = '#FFFEF5';
+        ctx.beginPath();
+        ctx.roundRect(x - 10, y - 10, size + 20, size + 20, 12);
+        ctx.fill();
+        ctx.drawImage(logo, x, y, size, size);
+        setReady(true);
+      };
+    });
   }, []);
 
   function handleDownload() {
