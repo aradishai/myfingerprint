@@ -10,7 +10,7 @@ export default function Home() {
       {/* Hero — ירוק */}
       <section className="min-h-screen flex items-center justify-center pt-16 bg-primary">
         <div className="max-w-3xl mx-auto px-6 py-24 text-center">
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-cream leading-tight mb-4 tracking-wide" style={{fontFamily:"'Varela Round', sans-serif"}}>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-cream leading-tight mb-4 tracking-wide" style={{fontFamily:"'Varela Round', sans-serif"}}>
             מה תרצו להיות כשתהיו גדולים?
           </h1>
           <p className="text-base md:text-xl text-white/90 leading-loose mb-10 mt-8 md:mt-20">
@@ -21,7 +21,7 @@ export default function Home() {
               <img src="/logo.svg" alt="לוגו" className="w-16 h-16 md:w-24 md:h-24 brightness-0 invert hover:opacity-80 transition-opacity" />
             </Link>
           </div>
-          <Link href="#contact" className="bg-cream text-primary px-6 py-3 md:px-10 md:py-4 rounded-full font-bold text-base md:text-lg hover:bg-cream transition-all shadow-lg">
+          <Link href="#contact" className="bg-cream text-primary px-6 py-3 md:px-10 md:py-4 rounded-full font-extrabold text-base md:text-lg hover:bg-cream transition-all shadow-lg">
             צרו איתי קשר
           </Link>
           <p

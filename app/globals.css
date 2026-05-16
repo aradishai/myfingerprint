@@ -38,7 +38,7 @@ body {
     @apply border-2 border-primary text-primary px-7 py-3 rounded-full font-semibold text-base transition-all duration-200 hover:bg-primary hover:text-white active:scale-95;
   }
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-text-main mb-4;
+    @apply text-4xl md:text-5xl font-bold text-text-main mb-4;
     font-family: 'Varela Round', sans-serif;
   }
   .section-subtitle {
