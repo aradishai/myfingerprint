@@ -70,11 +70,6 @@ export default function Home() {
                 alt="ערד ישי"
                 className="w-56 h-56 rounded-full object-cover object-top shadow-lg"
               />
-              <img
-                src="/logo-small.png"
-                alt="לוגו"
-                className="h-40 object-contain"
-              />
             </div>
           </div>
         </div>
