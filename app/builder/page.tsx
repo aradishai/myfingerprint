@@ -12,9 +12,6 @@ export default function BuildPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
             <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-4">בנה את טביעת האצבע שלך</h1>
-            <p className="text-text-muted text-lg max-w-xl mx-auto">
-              ענה על השאלות בסדר שבא לך — גם חלקית. הטביעה שלך תיבנה בזמן אמת.
-            </p>
           </div>
           <FingerprintBuilder />
         </div>
