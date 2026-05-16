@@ -3,6 +3,15 @@ import { useState } from 'react';
 import Link from 'next/link';
 import FingerprintInteractive from './FingerprintInteractive';
 
+const fingerprintItems = [
+  { id: 1, label: 'אני הכי טוב ואוהב...', question: 'מה התחומים שאתה סקרן לגבייהם?' },
+  { id: 2, label: 'בחירות בחיים', question: 'אתה במסגרת שלך כי אתה צריך או כי אתה רוצה?' },
+  { id: 3, label: 'המטרות שלי', question: 'מה החלום שלך?' },
+  { id: 4, label: 'איזה אוכלוסיה הכי צריכה אותי?', question: 'מה השינוי שהיית רוצה לעשות בעולם?' },
+  { id: 5, label: 'במה אני מאמין?', question: 'מהם שלושת הערכים שמובילים אותך?' },
+  { id: 6, label: 'במה אני מומחה?', question: 'אם מישהו רוצה להתייעץ איתך על משהו, על מה זה יהיה?' },
+];
+
 const stations = [
   { num: 1, title: 'נרטיב',               desc: 'איך נוצרת זהות?' },
   { num: 2, title: 'בחירות בחיים',         desc: 'איך אנחנו מקבלים החלטות?' },
@@ -72,7 +81,7 @@ export default function ServicesSection() {
             className={`md:col-span-2 bg-cream rounded-2xl p-10 shadow-sm border border-border transition-all duration-500 ${openRight ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
             style={!openRight ? { visibility: 'hidden' } : {}}
           >
-            <div className="flex justify-start mb-4">
+            <div className="flex justify-start mb-6">
               <button
                 onClick={() => setOpenRight(false)}
                 className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all"
@@ -80,16 +89,34 @@ export default function ServicesSection() {
                 חזרה
               </button>
             </div>
-            <div className="bg-primary/10 rounded-2xl px-8 py-5 max-w-2xl mx-auto mb-6 text-center">
-              <p className="text-text-main text-lg font-bold leading-relaxed">
-                ליווי אישי אחד על אחד כדי לגלות ולבנות מי אתה באמת, מהי טביעת האצבע שלך בעולם ואיך נוכל לעצב לך יחד חיים מלאי משמעות ועשייה תוך מימוש הייחודיות שלך
-              </p>
-            </div>
-            <FingerprintInteractive />
-            <div className="text-center mt-8">
-              <Link href="#contact" className="btn-primary">
-                לתיאום פגישת היכרות
-              </Link>
+
+            <div className="flex flex-col md:flex-row gap-10 items-start">
+              {/* Fingerprint — right side in RTL */}
+              <div className="flex-shrink-0 flex justify-center w-full md:w-auto">
+                <FingerprintInteractive />
+              </div>
+
+              {/* Content — left side in RTL */}
+              <div className="flex-1 flex flex-col">
+                <div className="bg-primary/10 rounded-2xl px-6 py-4 mb-6">
+                  <p className="text-text-main text-base font-bold leading-relaxed">
+                    ליווי אישי אחד על אחד כדי לגלות ולבנות מי אתה באמת, מהי טביעת האצבע שלך בעולם ואיך נוכל לעצב לך יחד חיים מלאי משמעות ועשייה תוך מימוש הייחודיות שלך
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-5 mb-8">
+                  {fingerprintItems.map((item) => (
+                    <div key={item.id}>
+                      <p className="text-primary font-bold text-sm tracking-wide mb-0.5">{item.label}</p>
+                      <p className="text-text-main font-semibold text-xl leading-snug">{item.question}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <Link href="#contact" className="btn-primary w-fit">
+                  לתיאום פגישת היכרות
+                </Link>
+              </div>
             </div>
           </div>
 

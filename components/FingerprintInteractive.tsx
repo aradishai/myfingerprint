@@ -58,39 +58,24 @@ const regions = [
 export default function FingerprintInteractive() {
   const [hovered, setHovered] = useState<number | null>(null);
 
-  const active = regions.find(r => r.id === hovered);
-
   return (
-    <div className="flex flex-col items-center">
-      <svg
-        viewBox="40 15 170 220"
-        className="w-72 h-72 md:w-96 md:h-96"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {regions.map((region) =>
-          region.paths.map((d, i) => (
-            <path
-              key={`${region.id}-${i}`}
-              d={d}
-              fill={hovered === region.id ? '#52C47A' : '#1A1A1A'}
-              className="cursor-pointer transition-colors duration-300"
-              onMouseEnter={() => setHovered(region.id)}
-              onMouseLeave={() => setHovered(null)}
-            />
-          ))
-        )}
-      </svg>
-
-      <div className="h-20 flex flex-col items-center justify-center text-center mt-2">
-        {active ? (
-          <>
-            <p className="text-primary font-bold text-sm uppercase tracking-widest mb-1">{active.label}</p>
-            <p className="text-text-main font-semibold text-lg whitespace-pre-line">{active.question}</p>
-          </>
-        ) : (
-          <p className="text-text-muted text-sm">העבר את העכבר על הטביעה לגילוי</p>
-        )}
-      </div>
-    </div>
+    <svg
+      viewBox="40 15 170 220"
+      className="w-52 h-52 md:w-64 md:h-64"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {regions.map((region) =>
+        region.paths.map((d, i) => (
+          <path
+            key={`${region.id}-${i}`}
+            d={d}
+            fill={hovered === region.id ? '#52C47A' : '#1A1A1A'}
+            className="cursor-pointer transition-colors duration-300"
+            onMouseEnter={() => setHovered(region.id)}
+            onMouseLeave={() => setHovered(null)}
+          />
+        ))
+      )}
+    </svg>
   );
 }
