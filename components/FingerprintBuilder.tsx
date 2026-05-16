@@ -65,7 +65,7 @@ export default function FingerprintBuilder() {
     const isActive = hovered === id || selected === id;
     const answered = !!answers[id];
 
-    const dot  = <div className={`w-3 h-3 rounded-full flex-shrink-0 mt-[13px] transition-all duration-200 ${isActive || answered ? 'bg-primary' : 'bg-primary/30'}`} />;
+    const dot  = <div className={`w-3 h-3 rounded-full flex-shrink-0 mt-[7px] transition-all duration-200 ${isActive || answered ? 'bg-primary' : 'bg-primary/30'}`} />;
     const line = <div className={`w-10 flex-shrink-0 h-px mt-[13px] transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
     const text = (
       <div className={`cursor-pointer select-none transition-colors duration-200 ${side === 'right' ? 'text-right' : 'text-left'}`}>
