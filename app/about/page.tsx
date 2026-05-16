@@ -9,7 +9,7 @@ export default function AboutPage() {
   return (
     <div className="pt-24">
       {/* Hero */}
-      <section className="py-10 md:py-20 bg-cream">
+      <section className="py-10 md:py-20 bg-cream scroll-fade">
         <div className="max-w-4xl mx-auto px-6">
           <h1 className="text-3xl md:text-5xl font-extrabold text-primary mb-6 md:mb-10">הסיפור שלי</h1>
           <p className="text-text-muted leading-relaxed text-base md:text-lg mb-4 md:mb-6">

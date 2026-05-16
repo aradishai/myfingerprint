@@ -49,7 +49,7 @@ export default function ServicesSection() {
     : 'מה אפשר לעשות יחד';
 
   return (
-    <section className="py-24 bg-cream">
+    <section className="py-24 bg-cream scroll-fade">
       <div className="max-w-5xl mx-auto px-6">
         {!openRight && (
           <div className="text-center mb-14">

@@ -47,7 +47,7 @@ export default function Home() {
 
       {/* Testimonials — ירוק */}
       <section
-        className="py-24 relative"
+        className="py-24 relative scroll-fade"
         style={{
           backgroundImage: 'url(/testimonials-bg.avif)',
           backgroundSize: 'cover',
@@ -62,7 +62,7 @@ export default function Home() {
       <BookCarousel />
 
       {/* About — שמנת */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-cream scroll-fade">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="section-title mb-10">הסיפור שלי</h2>
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
@@ -89,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* Contact — ירוק */}
-      <section className="py-24 bg-primary" id="contact">
+      <section className="py-24 bg-primary scroll-fade" id="contact">
         <div className="max-w-2xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">צרו איתי קשר</h2>
           <p className="text-center text-white/70 mb-10">סקרנים לשמוע עוד?</p>
