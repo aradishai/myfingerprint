@@ -65,13 +65,12 @@ export default function FingerprintBuilder() {
     const isActive = hovered === id || selected === id;
     const answered = !!answers[id];
 
-    const dot  = <div className={`w-3 h-3 rounded-full flex-shrink-0 transition-all duration-200 ${isActive || answered ? 'bg-primary scale-110' : 'bg-primary/30'}`} />;
-    const line = <div className={`w-10 flex-shrink-0 h-px transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
+    const dot  = <div className={`w-3 h-3 rounded-full flex-shrink-0 mt-[10px] transition-all duration-200 ${isActive || answered ? 'bg-primary' : 'bg-primary/30'}`} />;
+    const line = <div className={`w-10 flex-shrink-0 h-px mt-[16px] transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
     const text = (
       <div className={`cursor-pointer select-none transition-colors duration-200 ${side === 'right' ? 'text-right' : 'text-left'}`}>
-        <p className={`font-bold text-lg leading-tight whitespace-nowrap ${isActive ? 'text-primary' : answered ? 'text-text-main' : 'text-text-muted'}`}>
+        <p className={`font-bold text-lg leading-tight ${isActive ? 'text-primary' : answered ? 'text-text-main' : 'text-text-muted'}`}>
           {q.label}
-          {answered && <span className="text-primary text-sm mr-1">✓</span>}
         </p>
         {answers[id] && (
           <p className="text-text-muted text-xs leading-snug mt-0.5 max-w-[160px] whitespace-pre-line">{answers[id]}</p>
@@ -81,7 +80,7 @@ export default function FingerprintBuilder() {
 
     return (
       <div
-        className="flex items-center gap-1"
+        className="flex items-start gap-1"
         onMouseEnter={() => setHovered(id)}
         onMouseLeave={() => setHovered(null)}
         onClick={() => handleSelect(id)}
