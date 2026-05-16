@@ -9,7 +9,6 @@ export default function Footer() {
             <img src="/logo.svg" alt="לוגו" className="h-8 w-8 brightness-0 invert opacity-80" />
             <h3 className="text-xl font-bold">חותם בעולם</h3>
           </div>
-          <p className="text-white/50 text-sm mb-3">ערד ישי</p>
           <p className="text-white/60 text-sm leading-relaxed">
             "החלום שלי הוא שכל אדם יידע מה היא טביעת האצבע שלו בבניית העולם שלנו"
           </p>
@@ -29,11 +28,9 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold mb-4">יצירת קשר</h4>
           <div className="space-y-2 text-sm text-white/70">
-            <p>ערד ישי</p>
-            <p>מאמן אישי ויועץ ארגוני</p>
-            <Link href="/#contact" className="inline-block mt-3 text-accent-light hover:underline font-medium">
-              השאר פרטים ←
-            </Link>
+            <p>מאמן אישי</p>
+            <p>מנחה ומרצה בחברה לייעוץ ארגוני</p>
+            <p>מרצה ומנחה למשמעות זהות ואחריות</p>
           </div>
         </div>
       </div>
