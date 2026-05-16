@@ -21,13 +21,13 @@ function LabelRow({ id, title, hovered, side, onEnter, onLeave }: {
   side: 'right' | 'left'; onEnter: () => void; onLeave: () => void;
 }) {
   const active = hovered === id;
-  const line = <div className={`w-10 flex-shrink-0 h-px transition-all duration-200 ${active  'bg-primary' : 'bg-primary/30'}`} />;
-  const dot = <div className={`w-3 h-3 rounded-full flex-shrink-0 transition-all duration-200 ${active  'bg-primary scale-125' : 'bg-primary/40'}`} />;
-  const text = <p className={`font-bold text-lg transition-colors duration-200 whitespace-nowrap ${active  'text-primary' : 'text-text-main'}`}>{title}</p>;
+  const line = <div className={`w-10 flex-shrink-0 h-px transition-all duration-200 ${active ? 'bg-primary' : 'bg-primary/30'}`} />;
+  const dot = <div className={`w-3 h-3 rounded-full flex-shrink-0 transition-all duration-200 ${active ? 'bg-primary scale-125' : 'bg-primary/40'}`} />;
+  const text = <p className={`font-bold text-lg transition-colors duration-200 whitespace-nowrap ${active ? 'text-primary' : 'text-text-main'}`}>{title}</p>;
 
   return (
     <div className="flex items-center gap-1 cursor-default" onMouseEnter={onEnter} onMouseLeave={onLeave}>
-      {side === 'right'  <>{text}{line}{dot}</> : <>{dot}{line}{text}</>}
+      {side === 'right' ? <>{text}{line}{dot}</> : <>{dot}{line}{text}</>}
     </div>
   );
 }
@@ -64,7 +64,7 @@ export default function FingerprintDiagram() {
 
       {/* Reveal area */}
       <div className="mt-8 text-center min-h-28 flex flex-col items-center justify-center">
-        {active  (
+        {active ? (
           <div className="transition-opacity duration-300 opacity-100">
             <p className="font-bold text-primary text-xl mb-2">{active.title}</p>
             <p className="text-text-main text-lg leading-relaxed whitespace-pre-line">{active.answer}</p>
