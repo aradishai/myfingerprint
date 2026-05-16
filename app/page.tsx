@@ -17,7 +17,9 @@ export default function Home() {
             אני מאמין שלכל אדם יש ייחודיות משלו, ערכים משלו וסט חוזקות איתם הוא צועד במסלול חייו. לכל אדם יש ייעוד אותו הוא יכול וצריך לממש. לאורך שנים של חקר מעמיק ועבודת שטח, פיתחתי כלים פרקטיים שייסעו לכל אחד ואחת להצליח למצוא את הדרך הייחודיות שלו להפוך את העולם שלנו לטוב יותר.
           </p>
           <div className="flex justify-center mb-10">
-            <img src="/logo.svg" alt="לוגו" className="w-24 h-24 brightness-0 invert" />
+            <Link href="/builder">
+              <img src="/logo.svg" alt="לוגו" className="w-24 h-24 brightness-0 invert hover:opacity-80 transition-opacity" />
+            </Link>
           </div>
           <Link href="#contact" className="bg-cream text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-cream transition-all shadow-lg">
             צרו איתי קשר
