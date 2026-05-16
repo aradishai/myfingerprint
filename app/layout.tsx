@@ -18,6 +18,15 @@ export const metadata: Metadata = {
   },
 };
 
+const schemaOrg = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'חותם בעולם',
+  url: 'https://myfingerprint-production.up.railway.app',
+  logo: 'https://myfingerprint-production.up.railway.app/logo.svg',
+  founder: { '@type': 'Person', name: 'ערד ישי' },
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="he" dir="rtl">
@@ -25,6 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
+        />
       </head>
       <body className="bg-bg text-text-main">
         <Header />
