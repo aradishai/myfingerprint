@@ -1,7 +1,7 @@
 import FingerprintBuilder from '@/components/FingerprintBuilder';
 
 export const metadata = {
-  title: 'בנה את טביעת האצבע שלך | חותם בעולם',
+  title: 'חותם בעולם | ערד ישי',
   description: 'גלה מהי הייחודיות שלך בעולם',
 };
 

@@ -1,7 +1,7 @@
 import FingerprintDiagram from '@/components/FingerprintDiagram';
 
 export const metadata = {
-  title: 'אודות | ערד ישי',
+  title: 'חותם בעולם | ערד ישי',
   description: 'הסיפור שלי — ערד ישי, מאמן אישי ויועץ ארגוני',
 };
 
