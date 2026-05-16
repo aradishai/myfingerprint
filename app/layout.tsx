@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  verification: { google: 'AWW5Ta_W2Mwp' },
+  verification: { google: 'AWW5Ta_W2Mwpy7_q8V_63MgHO0l8HPSv52yuxrRXfo4' },
   title: 'חותם בעולם | ערד ישי',
   description: 'ערד ישי — מאמן אישי, מרצה ומנחה סדנאות בנושאי זהות, אחריות ומשמעות. תהליכים אישיים וסדנאות קבוצתיות לגילוי הייחודיות שלך.',
   keywords: 'ערד ישי, אימון אישי, סדנאות, הרצאות, חותם בעולם, זהות, משמעות, פיתוח אישי, מאמן אישי',
