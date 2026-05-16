@@ -17,7 +17,7 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold mb-4">ניווט</h4>
           <ul className="space-y-2 text-sm text-white/70">
-            {[['/', 'בית'], ['/about', 'אודות'], ['/#contact', 'צור קשר']].map(([href, label]) => (
+            {[['/', 'בית'], ['/about', 'אודות'], ['/builder', 'כלים'], ['/#contact', 'צור קשר']].map(([href, label]) => (
               <li key={href}>
                 <Link href={href} className="hover:text-accent-light transition-colors">{label}</Link>
               </li>
