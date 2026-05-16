@@ -49,9 +49,39 @@ export default function ContactForm() {
         <label className="block text-sm font-semibold text-primary mb-2">משהו שהייתם רוצים להגיד לנו?</label>
         <textarea name="הודעה" rows={5} className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors resize-none" />
       </div>
+
+      <div>
+        <label className="block text-sm font-semibold text-primary mb-1">מועד מועדף לפגישת היכרות</label>
+        <p className="text-xs text-text-muted mb-3">בחר תאריך ושעה שנוחים לך — ערד יאשר בהתאם לזמינותו</p>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs text-text-muted mb-1">תאריך</label>
+            <input
+              name="תאריך מועדף"
+              type="date"
+              min={new Date().toISOString().split('T')[0]}
+              className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors text-right"
+            />
+          </div>
+          <div>
+            <label className="block text-xs text-text-muted mb-1">שעה</label>
+            <select
+              name="שעה מועדפת"
+              className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors text-right"
+            >
+              <option value="">בחר שעה</option>
+              {['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'].map(t => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+
       <button type="submit" disabled={loading} className="btn-primary w-full py-4 text-base disabled:opacity-60">
         {loading ? 'שולח...' : 'שלח'}
       </button>
+      <p className="text-center text-text-muted text-sm">יד לבנים 23, תל אביב</p>
     </form>
   );
 }
