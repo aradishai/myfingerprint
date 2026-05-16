@@ -98,53 +98,41 @@ export default function ServicesSection() {
             className={`md:col-span-2 bg-cream rounded-2xl p-4 md:p-10 border-2 border-primary transition-all duration-500 ${openRight ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
             style={!openRight ? { visibility: 'hidden' } : {}}
           >
-            <div className="flex justify-end mb-6">
-              <button
-                onClick={() => setOpenRight(false)}
-                className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all"
-              >
-                חזרה
-              </button>
+            {/* Description */}
+            <div className="border-r-4 border-primary bg-primary/5 rounded-lg px-6 py-4 mb-6">
+              <p className="font-extrabold text-text-main text-lg mb-2 underline decoration-primary decoration-2">ליווי אישי אחד על אחד</p>
+              <p className="text-text-main text-base font-medium leading-relaxed">
+                במפגשים אישיים אחד על אחד נצא יחד לגילוי ובנייה של מי אתה באמת, נבין מהי טביעת האצבע הייחודית שלך בעולם, נחקור את השאלה &quot;מה תרצה להיות כשתהיה גדול?&quot; לא רק כמקצוע אלא כדרך חיים, ונעצב יחד כיוון לחיים מלאי משמעות, עשייה ומימוש כלל היכולות, הערכים והייחודיות שלך.
+              </p>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              {/* Content */}
-              <div className="flex-1">
-                <div className="border-r-4 border-primary bg-primary/5 rounded-lg px-6 py-4 mb-4">
-                  <p className="font-extrabold text-text-main text-lg mb-2 underline decoration-primary decoration-2">ליווי אישי אחד על אחד</p>
-                  <p className="text-text-main text-base font-medium leading-relaxed">
-                    במפגשים אישיים אחד על אחד נצא יחד לגילוי ובנייה של מי אתה באמת, נבין מהי טביעת האצבע הייחודית שלך בעולם, נחקור את השאלה &quot;מה תרצה להיות כשתהיה גדול?&quot; לא רק כמקצוע אלא כדרך חיים, ונעצב יחד כיוון לחיים מלאי משמעות, עשייה ומימוש כלל היכולות, הערכים והייחודיות שלך.
-                  </p>
-                </div>
-
-                {/* Floating question */}
-                <div className="min-h-16 mb-4">
-                  {(() => {
-                    const active = regions.find(r => r.id === displayRegion);
-                    return active ? (
-                      <div key={displayRegion} className="animate-fade-in">
-                        <p className="text-primary font-bold text-base mb-1">{active.label}</p>
-                        <p className="text-text-main font-semibold text-xl leading-snug">{active.question}</p>
-                      </div>
-                    ) : null;
-                  })()}
-                </div>
-              </div>
-
-              {/* Fingerprint */}
-              <div className="flex-shrink-0 w-full md:w-auto flex justify-center">
-                <FingerprintInteractive hovered={hoveredRegion} onHover={setHoveredRegion} />
+            {/* Fingerprint + question */}
+            <div className="flex flex-col items-center gap-4 mb-6">
+              <FingerprintInteractive hovered={hoveredRegion} onHover={setHoveredRegion} />
+              <div className="min-h-14 text-center">
+                {(() => {
+                  const active = regions.find(r => r.id === displayRegion);
+                  return active ? (
+                    <div key={displayRegion} className="animate-fade-in">
+                      <p className="text-primary font-bold text-base mb-1">{active.label}</p>
+                      <p className="text-text-main font-semibold text-lg leading-snug">{active.question}</p>
+                    </div>
+                  ) : null;
+                })()}
               </div>
             </div>
 
             {/* Buttons */}
-            <div className="flex gap-3 flex-wrap mt-6">
+            <div className="flex gap-3 flex-wrap justify-center">
               <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם פגישת היכרות" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
                 לתיאום פגישת היכרות
               </a>
               <Link href="/builder" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
                 בנה בעצמך את טביעת האצבע שלך!
               </Link>
+              <button onClick={() => setOpenRight(false)} className="bg-white border border-primary text-primary px-5 py-2 rounded-full text-sm font-semibold hover:bg-primary/10 transition-all">
+                חזרה
+              </button>
             </div>
           </div>
 
