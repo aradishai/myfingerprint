@@ -17,7 +17,6 @@ const leftIds  = [4, 5, 6];
 
 export default function FingerprintBuilder() {
   const [answers, setAnswers]   = useState<Record<number, string>>({});
-  const [name, setName]         = useState('');
   const [hovered, setHovered]   = useState<number | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
@@ -90,20 +89,8 @@ export default function FingerprintBuilder() {
   return (
     <>
       <div ref={printRef} className="relative bg-cream rounded-3xl p-8">
-        {showWatermark && (
-          <div className="absolute top-4 left-4 text-primary/50 font-bold text-base" dir="rtl">
-            חותם בעולם | ערד ישי
-          </div>
-        )}
         <div className="flex items-baseline justify-center gap-2 mb-10">
-          <h2 className="text-2xl font-extrabold text-text-main">טביעת האצבע של</h2>
-          <input
-            type="text"
-            placeholder="שמך"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            className="text-2xl font-extrabold text-primary bg-transparent border-b-2 border-primary focus:outline-none w-32 text-center"
-          />
+          <h2 className="text-2xl font-extrabold text-text-main">טביעת האצבע שלי</h2>
         </div>
 
         {/* Diagram */}
@@ -139,8 +126,16 @@ export default function FingerprintBuilder() {
         </div>
 
         {/* Reveal / input area */}
-        <div className="mt-8 min-h-36 flex flex-col items-center justify-start text-center">
-          {activeQ ? (
+        <div className="mt-8 flex flex-col items-center justify-start text-center">
+          {showWatermark ? (
+            <div className="flex items-center gap-6 justify-center py-4" dir="rtl">
+              <img src="/logo.svg" alt="" className="w-16 h-16" />
+              <div className="flex flex-col items-center gap-1">
+                <p className="font-bold text-primary text-base">ערד ישי | חותם בעולם</p>
+                <img src="/logo-small.png" alt="" className="h-12 object-contain" />
+              </div>
+            </div>
+          ) : activeQ ? (
             <div className="w-full max-w-lg">
               <p className="font-bold text-primary text-lg mb-1">{activeQ.label}</p>
               <p className="text-text-muted text-sm mb-3">{activeQ.prompt}</p>
