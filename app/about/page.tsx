@@ -22,7 +22,7 @@ export default function AboutPage() {
             אם גם אתה נמצא בצומת הזו, אני כאן, זה תפקידי בעולם.
           </p>
 
-          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 md:mb-10">טביעת האצבע שלי</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 md:mb-10">טביעת האצבע של ערד</h2>
           <FingerprintDiagram />
         </div>
       </section>

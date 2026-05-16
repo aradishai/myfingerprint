@@ -43,7 +43,7 @@ export default function FingerprintDiagram() {
       return next;
     };
     setAutoRegion(pick(null));
-    intervalRef.current = setInterval(() => setAutoRegion(prev => pick(prev)), 4000);
+    intervalRef.current = setInterval(() => setAutoRegion(prev => pick(prev)), 8000);
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, []);
 
