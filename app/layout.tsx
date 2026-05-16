@@ -5,11 +5,13 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'חותם בעולם | ערד ישי',
-  description: 'מאמן מנטלי ומנחה — תהליכים אישיים וסדנאות קבוצתיות לגילוי הייחודיות שלך והחותם שלך בעולם.',
-  keywords: 'אימון אישי, סדנאות, חותם בעולם, ערד ישי, פיתוח אישי',
+  description: 'ערד ישי — מאמן אישי, מרצה ומנחה סדנאות בנושאי זהות, אחריות ומשמעות. תהליכים אישיים וסדנאות קבוצתיות לגילוי הייחודיות שלך.',
+  keywords: 'ערד ישי, אימון אישי, סדנאות, הרצאות, חותם בעולם, זהות, משמעות, פיתוח אישי, מאמן אישי',
   openGraph: {
     title: 'חותם בעולם | ערד ישי',
     description: 'סדנאות | הרצאות | ליווי אישי',
+    url: 'https://myfingerprint-production.up.railway.app',
+    siteName: 'חותם בעולם',
     locale: 'he_IL',
     type: 'website',
   },
