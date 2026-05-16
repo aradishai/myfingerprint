@@ -4,7 +4,7 @@ import FingerprintInteractive from './FingerprintInteractive';
 
 const rightItems = [
   { id: 5, title: 'במה אני מאמין?', answer: 'הקשבה, אותנטיות, יוזמה' },
-  { id: 1, title: 'אני הכי טוב ואוהב...', answer: 'לוגותרפיה, ייחודיות, מוטיבציה, מדעי ההתנהגות, הרגלים, כדורסל' },
+  { id: 1, title: 'התחומים שלי', answer: 'לוגותרפיה, ייחודיות, מוטיבציה, מדעי ההתנהגות, הרגלים, כדורסל' },
   { id: 2, title: 'שמות הפועל שלי', answer: 'לפתח, להקשיב, לגלות, לשחק, להרצות, ליזום' },
 ];
 
@@ -28,8 +28,8 @@ function Label({ id, title, answer, hovered, side, onEnter, onLeave }: {
   );
   const text = (
     <div className={`transition-opacity duration-200 ${active ? 'opacity-100' : 'opacity-70'} ${side === 'right' ? 'text-right' : 'text-left'}`}>
-      <p className="font-bold text-primary text-sm leading-tight">{title}</p>
-      <p className="text-text-muted text-xs leading-snug mt-0.5 max-w-[160px]">{answer}</p>
+      <p className="font-bold text-primary text-base leading-tight">{title}</p>
+      <p className="text-text-muted text-sm leading-snug mt-0.5 max-w-[180px]">{answer}</p>
     </div>
   );
 
