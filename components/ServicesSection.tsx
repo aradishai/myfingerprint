@@ -79,7 +79,7 @@ export default function ServicesSection() {
 
           {/* Expanded: fingerprint */}
           <div
-            className={`md:col-span-2 bg-cream rounded-2xl p-10 shadow-sm border border-border transition-all duration-500 ${openRight ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
+            className={`md:col-span-2 bg-cream rounded-2xl p-10 border-2 border-primary transition-all duration-500 ${openRight ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
             style={!openRight ? { visibility: 'hidden' } : {}}
           >
             <div className="flex justify-start mb-6">
