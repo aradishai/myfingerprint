@@ -24,12 +24,12 @@ function Label({ id, title, answer, hovered, side, onEnter, onLeave }: {
     <div className={`flex-1 h-px transition-all duration-200 ${active ? 'bg-primary' : 'bg-primary/30'}`} />
   );
   const dot = (
-    <div className={`w-2 h-2 rounded-full flex-shrink-0 transition-all duration-200 ${active ? 'bg-primary scale-125' : 'bg-primary/40'}`} />
+    <div className={`w-4 h-4 rounded-full flex-shrink-0 transition-all duration-200 ${active ? 'bg-primary scale-125' : 'bg-primary/50'}`} />
   );
   const text = (
     <div className={`transition-opacity duration-200 ${active ? 'opacity-100' : 'opacity-70'} ${side === 'right' ? 'text-right' : 'text-left'}`}>
-      <p className="font-bold text-primary text-base leading-tight">{title}</p>
-      <p className="text-text-muted text-sm leading-snug mt-0.5 max-w-[180px] whitespace-pre-line">{answer}</p>
+      <p className="font-bold text-primary text-lg leading-tight">{title}</p>
+      <p className="text-text-muted text-base leading-snug mt-1 max-w-[200px] whitespace-pre-line">{answer}</p>
     </div>
   );
 
