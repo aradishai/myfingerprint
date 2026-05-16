@@ -128,12 +128,8 @@ export default function FingerprintBuilder() {
         {/* Reveal / input area */}
         <div className="mt-8 flex flex-col items-center justify-start text-center">
           {showWatermark ? (
-            <div className="flex items-center gap-6 justify-center py-4" dir="rtl">
-              <img src="/logo.svg" alt="" className="w-16 h-16" />
-              <div className="flex flex-col items-center gap-1">
-                <p className="font-bold text-primary text-base">ערד ישי | חותם בעולם</p>
-                <img src="/logo-small.png" alt="" className="h-12 object-contain" />
-              </div>
+            <div className="py-4">
+              <p className="font-bold text-primary text-base">ערד ישי | חותם בעולם</p>
             </div>
           ) : activeQ ? (
             <div className="w-full max-w-lg">
