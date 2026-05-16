@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   description: 'מאמן מנטלי ומנחה — תהליכים אישיים וסדנאות קבוצתיות לגילוי הייחודיות שלך והחותם שלך בעולם.',
   keywords: 'אימון אישי, סדנאות, חותם בעולם, ערד ישי, פיתוח אישי',
   openGraph: {
-    title: 'ערד ישי | My True Story',
-    description: 'גלה את הסיפור האמיתי שלך',
+    title: 'חותם בעולם | ערד ישי',
+    description: 'סדנאות | הרצאות | ליווי אישי',
     locale: 'he_IL',
     type: 'website',
   },
