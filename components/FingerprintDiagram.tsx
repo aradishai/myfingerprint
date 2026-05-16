@@ -29,7 +29,7 @@ function Label({ id, title, answer, hovered, side, onEnter, onLeave }: {
   const text = (
     <div className={`transition-opacity duration-200 ${active ? 'opacity-100' : 'opacity-70'} ${side === 'right' ? 'text-right' : 'text-left'}`}>
       <p className="font-bold text-primary text-lg leading-tight">{title}</p>
-      <p className="text-text-muted text-base leading-snug mt-1 max-w-[200px] whitespace-pre-line">{answer}</p>
+      <p className="text-text-muted text-base leading-snug mt-1 whitespace-pre-line">{answer}</p>
     </div>
   );
 
@@ -48,7 +48,7 @@ export default function FingerprintDiagram() {
       {/* Desktop */}
       <div className="hidden md:flex items-center gap-2">
         {/* Right labels */}
-        <div className="flex flex-col justify-around flex-1 gap-12">
+        <div className="flex flex-col justify-around flex-[2] gap-12">
           {rightItems.map(item => (
             <Label key={item.id} {...item} hovered={hovered} side="right"
               onEnter={() => setHovered(item.id)} onLeave={() => setHovered(null)} />
