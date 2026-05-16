@@ -62,7 +62,7 @@ export default function FingerprintBuilder() {
 
   function LabelRow({ id, side }: { id: number; side: 'right' | 'left' }) {
     const q       = questions.find(q => q.id === id)!;
-    const isActive = hovered === id || selected === id;
+    const isActive = selected !== null ? selected === id : hovered === id;
     const answered = !!answers[id];
 
     const dot  = <div className={`w-3 h-3 rounded-full flex-shrink-0 mt-[7px] transition-all duration-200 ${isActive || answered ? 'bg-primary' : 'bg-primary/30'}`} />;
@@ -81,8 +81,8 @@ export default function FingerprintBuilder() {
     return (
       <div
         className="flex items-start gap-1"
-        onMouseEnter={() => setHovered(id)}
-        onMouseLeave={() => setHovered(null)}
+        onMouseEnter={() => { if (selected === null) setHovered(id); }}
+        onMouseLeave={() => { if (selected === null) setHovered(null); }}
         onClick={() => handleSelect(id)}
       >
         {side === 'right' ? <>{text}{line}{dot}</> : <>{dot}{line}{text}</>}
@@ -121,8 +121,8 @@ export default function FingerprintBuilder() {
                     d={d}
                     fill={hovered === region.id || selected === region.id || answers[region.id] ? '#52C47A' : '#1A1A1A'}
                     className="cursor-pointer transition-colors duration-300"
-                    onMouseEnter={() => setHovered(region.id)}
-                    onMouseLeave={() => setHovered(null)}
+                    onMouseEnter={() => { if (selected === null) setHovered(region.id); }}
+                    onMouseLeave={() => { if (selected === null) setHovered(null); }}
                     onClick={() => handleSelect(region.id)}
                   />
                 ))
