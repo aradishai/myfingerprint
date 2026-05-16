@@ -16,13 +16,15 @@ export default function Header() {
   return (
     <header className="fixed top-0 right-0 left-0 z-50 bg-cream border-b border-border">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <img src="/logo.svg" alt="לוגו" className="h-10 w-10" />
-          <div className="flex flex-col leading-tight">
+        <div className="flex items-center gap-3">
+          <Link href="/builder">
+            <img src="/logo.svg" alt="לוגו" className="h-10 w-10" />
+          </Link>
+          <Link href="/" className="flex flex-col leading-tight">
             <span className="text-lg font-extrabold text-primary tracking-wide">חותם בעולם</span>
             <span className="text-xs text-primary font-medium">ערד ישי</span>
-          </div>
-        </Link>
+          </Link>
+        </div>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
