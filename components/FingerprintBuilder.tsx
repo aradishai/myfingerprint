@@ -168,9 +168,6 @@ export default function FingerprintBuilder() {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-6" onClick={() => setShowModal(false)}>
           <div className="bg-cream rounded-3xl p-10 max-w-md w-full text-center shadow-2xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-2xl font-extrabold text-primary mb-3">טביעת האצבע שלך נשמרה!</h2>
-            <p className="text-text-muted text-base leading-relaxed mb-8">
-              עכשיו שאתה יודע מהי הטביעה שלך — הצעד הבא הוא לממש אותה. ערד יעזור לך לעשות בדיוק את זה.
-            </p>
             <Link
               href="/#contact"
               className="bg-primary text-white px-8 py-3 rounded-full font-bold text-base hover:opacity-90 transition-all inline-block"
