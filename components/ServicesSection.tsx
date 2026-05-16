@@ -82,7 +82,7 @@ export default function ServicesSection() {
             className={`md:col-span-2 bg-cream rounded-2xl p-10 border-2 border-primary transition-all duration-500 ${openRight ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
             style={!openRight ? { visibility: 'hidden' } : {}}
           >
-            <div className="flex justify-start mb-6">
+            <div className="flex justify-end mb-6">
               <button
                 onClick={() => setOpenRight(false)}
                 className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all"
