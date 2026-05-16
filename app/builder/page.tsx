@@ -11,7 +11,7 @@ export default function BuildPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-4">בנה את טביעת האצבע שלך</h1>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-4">בנה את טביעת האצבע שלך</h1>
           </div>
           <FingerprintBuilder />
         </div>

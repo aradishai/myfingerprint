@@ -47,7 +47,7 @@ export default function ServicesSection() {
         <div className="grid md:grid-cols-2 gap-10">
           {/* Right card — fingerprint / personal coaching */}
           <div
-            className={`transition-all duration-500 ${isOpen ? 'opacity-0 scale-95 pointer-events-none absolute' : 'opacity-100 scale-100'} bg-cream rounded-2xl p-12 shadow-sm border border-border hover:shadow-md cursor-pointer min-h-72 flex flex-col justify-between`}
+            className={`transition-all duration-500 ${isOpen ? 'opacity-0 scale-95 pointer-events-none absolute' : 'opacity-100 scale-100'} bg-cream rounded-2xl p-6 md:p-12 shadow-sm border border-border hover:shadow-md cursor-pointer min-h-52 md:min-h-72 flex flex-col justify-between`}
             style={isOpen ? { visibility: 'hidden' } : {}}
             onClick={() => setOpenRight(true)}
           >
@@ -63,7 +63,7 @@ export default function ServicesSection() {
 
           {/* Left card — workshops */}
           <div
-            className={`transition-all duration-500 ${isOpen ? 'opacity-0 scale-95 pointer-events-none absolute' : 'opacity-100 scale-100'} bg-cream rounded-2xl p-12 shadow-sm border border-border hover:shadow-md cursor-pointer min-h-72 flex flex-col justify-between`}
+            className={`transition-all duration-500 ${isOpen ? 'opacity-0 scale-95 pointer-events-none absolute' : 'opacity-100 scale-100'} bg-cream rounded-2xl p-6 md:p-12 shadow-sm border border-border hover:shadow-md cursor-pointer min-h-52 md:min-h-72 flex flex-col justify-between`}
             style={isOpen ? { visibility: 'hidden' } : {}}
             onClick={() => setOpenLeft(true)}
           >
@@ -79,7 +79,7 @@ export default function ServicesSection() {
 
           {/* Expanded: fingerprint */}
           <div
-            className={`md:col-span-2 bg-cream rounded-2xl p-10 border-2 border-primary transition-all duration-500 ${openRight ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
+            className={`md:col-span-2 bg-cream rounded-2xl p-4 md:p-10 border-2 border-primary transition-all duration-500 ${openRight ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
             style={!openRight ? { visibility: 'hidden' } : {}}
           >
             <div className="flex justify-end mb-6">
@@ -123,7 +123,7 @@ export default function ServicesSection() {
               </div>
 
               {/* Fingerprint — right side */}
-              <div className="flex-shrink-0 flex flex-col items-center justify-between w-full md:w-auto mt-16 self-stretch">
+              <div className="flex-shrink-0 flex flex-col items-center justify-between w-full md:w-auto mt-6 md:mt-16 self-stretch">
                 <FingerprintInteractive hovered={hoveredRegion} onHover={setHoveredRegion} />
                 <Link href="/builder" className="btn-primary mt-6 text-center">
                   בנה בעצמך את טביעת האצבע שלך!

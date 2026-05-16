@@ -61,15 +61,15 @@ export default function FingerprintBuilder() {
     const isActive = selected !== null ? selected === id : hovered === id;
     const answered = !!answers[id];
 
-    const dot  = <div className={`w-3 h-3 rounded-full flex-shrink-0 mt-[7px] transition-all duration-200 ${isActive || answered ? 'bg-primary' : 'bg-primary/30'}`} />;
-    const line = <div className={`w-10 flex-shrink-0 h-px mt-[13px] transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
+    const dot  = <div className={`w-2 h-2 md:w-3 md:h-3 rounded-full flex-shrink-0 mt-[8px] md:mt-[7px] transition-all duration-200 ${isActive || answered ? 'bg-primary' : 'bg-primary/30'}`} />;
+    const line = <div className={`w-4 md:w-10 flex-shrink-0 h-px mt-[13px] transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
     const text = (
       <div className={`cursor-pointer select-none transition-colors duration-200 ${side === 'right' ? 'text-right' : 'text-left'}`}>
-        <p className={`font-bold text-lg leading-tight ${isActive ? 'text-primary' : answered ? 'text-text-main' : 'text-text-muted'}`}>
+        <p className={`font-bold text-xs md:text-lg leading-tight ${isActive ? 'text-primary' : answered ? 'text-text-main' : 'text-text-muted'}`}>
           {q.label}
         </p>
         {answers[id] && (
-          <p className="text-text-muted text-xs leading-snug mt-0.5 max-w-[160px] whitespace-pre-line">{answers[id]}</p>
+          <p className="text-text-muted text-[10px] md:text-xs leading-snug mt-0.5 max-w-[70px] md:max-w-[160px] whitespace-pre-line">{answers[id]}</p>
         )}
       </div>
     );
@@ -88,21 +88,21 @@ export default function FingerprintBuilder() {
 
   return (
     <>
-      <div ref={printRef} className="relative bg-cream rounded-3xl p-8">
+      <div ref={printRef} className="relative bg-cream rounded-3xl p-3 md:p-8">
         <div className="flex items-baseline justify-center gap-2 mb-10">
           <h2 className="text-2xl font-extrabold text-text-main">טביעת האצבע שלי</h2>
         </div>
 
         {/* Diagram */}
-        <div className="w-full grid items-center gap-4" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
+        <div className="w-full grid items-center gap-1 md:gap-4" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
           {/* Right labels */}
-          <div className="flex flex-col gap-10 items-start">
+          <div className="flex flex-col gap-4 md:gap-10 items-start">
             {rightIds.map(id => <LabelRow key={id} id={id} side="right" />)}
           </div>
 
           {/* Fingerprint */}
           <div className="flex-shrink-0">
-            <svg viewBox="40 15 170 220" className="w-52 h-52 md:w-64 md:h-64" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="40 15 170 220" className="w-28 h-28 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-64 lg:h-64" xmlns="http://www.w3.org/2000/svg">
               {regions.map(region =>
                 region.paths.map((d, i) => (
                   <path
@@ -120,7 +120,7 @@ export default function FingerprintBuilder() {
           </div>
 
           {/* Left labels */}
-          <div className="flex flex-col gap-10 items-start">
+          <div className="flex flex-col gap-4 md:gap-10 items-start">
             {leftIds.map(id => <LabelRow key={id} id={id} side="left" />)}
           </div>
         </div>
