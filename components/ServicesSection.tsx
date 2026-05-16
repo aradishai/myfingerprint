@@ -134,10 +134,10 @@ export default function ServicesSection() {
 
           {/* Expanded: workshops timeline */}
           <div
-            className={`md:col-span-2 bg-cream rounded-2xl p-10 shadow-sm border border-border transition-all duration-500 ${openLeft ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
+            className={`md:col-span-2 bg-cream rounded-2xl p-4 md:p-10 shadow-sm border border-border transition-all duration-500 ${openLeft ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}
             style={!openLeft ? { visibility: 'hidden' } : {}}
           >
-            <div className="flex justify-start mb-10">
+            <div className="flex justify-start mb-6">
               <button
                 onClick={() => setOpenLeft(false)}
                 className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all"

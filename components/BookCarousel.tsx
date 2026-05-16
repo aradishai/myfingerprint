@@ -134,7 +134,7 @@ export default function BookCarousel() {
                 <img
                   src={'/books/' + book}
                   alt={book.replace(/\.[^.]+$/, '')}
-                  className="h-48 w-32 object-cover rounded-lg shadow-md"
+                  className="h-32 w-24 md:h-48 md:w-32 object-cover rounded-lg shadow-md"
                 />
               </div>
             ))}

@@ -82,12 +82,12 @@ export default function TestimonialCarousel() {
   return (
     <div
       ref={innerRef}
-      className="text-center bg-primary/65 backdrop-blur-sm px-14 pt-24 pb-12"
+      className="text-center bg-primary/65 backdrop-blur-sm px-5 md:px-14 pt-10 md:pt-24 pb-8 md:pb-12"
       style={{ borderRadius: blob, transition: 'border-radius 0.8s ease' }}
     >
       {/* Quote */}
-      <div className="transition-opacity duration-400" style={{ opacity: visible ? 1 : 0, minHeight: '200px' }}>
-        <blockquote className="text-xl md:text-2xl text-white leading-relaxed font-medium mb-6 italic">
+      <div className="transition-opacity duration-400" style={{ opacity: visible ? 1 : 0, minHeight: '120px' }}>
+        <blockquote className="text-base md:text-xl text-white leading-relaxed font-medium mb-6 italic">
           "{t.quote}"
         </blockquote>
         <p className="text-white/90 font-bold text-lg">{t.name}</p>

@@ -55,9 +55,9 @@ export default function Home() {
       <section className="py-24 bg-cream">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="section-title mb-10">קצת עליי</h2>
-          <div className="flex flex-col md:flex-row items-center gap-10">
+          <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
             <div>
-              <p className="text-text-muted leading-relaxed text-lg mb-6">
+              <p className="text-text-muted leading-relaxed text-base md:text-lg mb-6">
                 אני מאמין שלכל אחד מאיתנו יש תפקיד ייחודי בתיקון העולם המופלא שלנו. לאחר 4 שנים של שירות קרבי ושנתיים נוספות בתפקידים בכירים בחיל החינוך בהן חקרתי, העמקתי והתנסתי בכלים שפיתחתי, יצאתי לאזרחות להגשים את חלומי בו כל אחד יכול לממש את הפוטנציאל האישי שלו על מנת לשנות את העולם.
               </p>
               <p className="text-text-muted leading-relaxed text-lg mb-2">מאמן מנטלי</p>
