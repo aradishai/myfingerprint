@@ -79,9 +79,9 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center gap-0 flex-shrink-0">
               <img
-                src="/about-5.jpg"
+                src="/about-3.jpg"
                 alt="ערד ישי"
-                className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover object-top shadow-lg"
+                className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover object-center shadow-lg"
               />
             </div>
           </div>
