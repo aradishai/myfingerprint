@@ -26,7 +26,7 @@ export default function Home() {
             className="text-white/70 text-base italic mt-20"
             style={{ WebkitBoxReflect: 'below 4px linear-gradient(transparent 40%, rgba(255,255,255,0.15))' }}
           >
-            "החלום שלי הוא שכל אדם יידע מה היא טביעת האצבע שלו בבניית העולם שלנו"
+            "החלום שלי הוא שכל אדם יגלה מהי טביעת האצבע שלו בבניית העולם שלנו"
           </p>
         </div>
       </section>
