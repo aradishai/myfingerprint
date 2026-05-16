@@ -11,7 +11,11 @@ const links = [
 ];
 
 async function handleShare() {
-  const data = { title: 'חותם בעולם | ערד ישי', url: window.location.href };
+  const data = {
+    title: 'חותם בעולם | ערד ישי',
+    text: 'סדנאות | הרצאות | ליווי אישי',
+    url: 'https://myfingerprint-production.up.railway.app',
+  };
   if (navigator.share) {
     await navigator.share(data);
   } else {
