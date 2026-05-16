@@ -111,7 +111,7 @@ export default function ServicesSection() {
                       const active = regions.find(r => r.id === hoveredRegion);
                       return active ? (
                         <>
-                          <p className="text-primary font-bold text-sm tracking-wide mb-1">{active.label}</p>
+                          <p className="text-primary font-bold text-lg tracking-wide mb-1">{active.label}</p>
                           <p className="text-text-main font-semibold text-2xl leading-snug">{active.question}</p>
                         </>
                       ) : null;
