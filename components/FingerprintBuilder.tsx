@@ -141,9 +141,7 @@ export default function FingerprintBuilder() {
                 className="w-full bg-white border-2 border-primary rounded-xl px-4 py-3 text-sm focus:outline-none resize-none text-right"
               />
             </div>
-          ) : (
-            <p className="text-text-muted text-sm">העבר את העכבר על כותרת או על הטביעה — לחץ כדי לענות</p>
-          )}
+          ) : null}
         </div>
       </div>
 
