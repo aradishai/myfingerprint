@@ -125,7 +125,7 @@ export default function ServicesSection() {
               {/* Fingerprint — right side */}
               <div className="flex-shrink-0 flex flex-col items-center justify-between w-full md:w-auto mt-16 self-stretch">
                 <FingerprintInteractive hovered={hoveredRegion} onHover={setHoveredRegion} />
-                <Link href="/about" className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm hover:opacity-90 transition-all mt-6 text-center">
+                <Link href="/builder" className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm hover:opacity-90 transition-all mt-6 text-center">
                   בנה בעצמך את טביעת האצבע שלך!
                 </Link>
               </div>
