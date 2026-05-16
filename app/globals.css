@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: 'Rubik', system-ui, sans-serif;
+  --font-sans: 'Varela Round', system-ui, sans-serif;
 }
 
 * {
@@ -39,7 +39,7 @@ body {
   }
   .section-title {
     @apply text-3xl md:text-4xl font-bold text-text-main mb-4;
-    font-family: 'Secular One', sans-serif;
+    font-family: 'Varela Round', sans-serif;
   }
   .section-subtitle {
     @apply text-lg text-text-muted mb-10 leading-relaxed;
