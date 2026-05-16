@@ -21,13 +21,13 @@ function Label({ id, title, answer, hovered, side, onEnter, onLeave }: {
 }) {
   const active = hovered === id;
   const line = (
-    <div className={`flex-1 h-px transition-all duration-200 ${active ? 'bg-primary' : 'bg-primary/30'}`} />
+    <div className={`w-10 flex-shrink-0 h-px transition-all duration-200 ${active ? 'bg-primary' : 'bg-primary/30'}`} />
   );
   const dot = (
     <div className={`w-4 h-4 rounded-full flex-shrink-0 transition-all duration-200 ${active ? 'bg-primary scale-125' : 'bg-primary/50'}`} />
   );
   const text = (
-    <div className={`transition-opacity duration-200 ${active ? 'opacity-100' : 'opacity-70'} ${side === 'right' ? 'text-right' : 'text-left'}`}>
+    <div className={`flex-1 min-w-0 transition-opacity duration-200 ${active ? 'opacity-100' : 'opacity-70'} ${side === 'right' ? 'text-right' : 'text-left'}`}>
       <p className="font-bold text-primary text-lg leading-tight">{title}</p>
       <p className="text-text-muted text-base leading-snug mt-1 whitespace-pre-line">{answer}</p>
     </div>
@@ -48,7 +48,7 @@ export default function FingerprintDiagram() {
       {/* Desktop */}
       <div className="hidden md:flex items-center gap-2">
         {/* Right labels */}
-        <div className="flex flex-col justify-around flex-[2] gap-12">
+        <div className="flex flex-col justify-around flex-1 gap-12">
           {rightItems.map(item => (
             <Label key={item.id} {...item} hovered={hovered} side="right"
               onEnter={() => setHovered(item.id)} onLeave={() => setHovered(null)} />
