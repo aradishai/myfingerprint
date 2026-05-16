@@ -61,8 +61,8 @@ export default function FingerprintBuilder() {
     const isActive = selected !== null ? selected === id : hovered === id;
     const answered = !!answers[id];
 
-    const dot  = <div className={`w-3 h-3 md:w-4 md:h-4 rounded-full flex-shrink-0 mt-[8px] md:mt-[8px] transition-all duration-200 ${isActive || answered ? 'bg-primary' : 'bg-primary/30'}`} />;
-    const line = <div className={`w-6 md:w-16 flex-shrink-0 h-0.5 mt-[13px] transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
+    const dot  = <div className={`w-3 h-3 md:w-4 md:h-4 rounded-full flex-shrink-0 transition-all duration-200 ${isActive || answered ? 'bg-primary' : 'bg-primary/30'}`} />;
+    const line = <div className={`w-6 md:w-16 flex-shrink-0 h-0.5 transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
     const text = (
       <div className={`cursor-pointer select-none transition-colors duration-200 ${side === 'right' ? 'text-right' : 'text-left'}`}>
         <p className={`font-bold text-sm md:text-xl leading-tight ${isActive ? 'text-primary' : answered ? 'text-text-main' : 'text-text-muted'}`}>
@@ -76,7 +76,7 @@ export default function FingerprintBuilder() {
 
     return (
       <div
-        className={`flex items-start gap-1 w-full ${side === 'right' ? 'justify-end' : ''}`}
+        className={`flex items-center gap-1 w-full ${side === 'right' ? 'justify-end' : ''}`}
         onMouseEnter={() => { if (selected === null) setHovered(id); }}
         onMouseLeave={() => { if (selected === null) setHovered(null); }}
         onClick={() => handleSelect(id)}
