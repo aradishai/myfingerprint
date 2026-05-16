@@ -97,7 +97,7 @@ export default function ServicesSection() {
                 <div className="border-r-4 border-primary bg-primary/5 rounded-lg px-6 py-4 mb-8">
                   <p className="font-extrabold text-text-main text-lg mb-2 underline decoration-primary decoration-2">ליווי אישי אחד על אחד</p>
                   <p className="text-text-main text-base font-medium leading-relaxed">
-                    כדי לגלות ולבנות מי אתה באמת, מהי טביעת האצבע שלך בעולם ואיך נוכל לעצב לך יחד חיים מלאי משמעות ועשייה תוך מימוש הייחודיות שלך
+                    במפגשים אישיים אחד על אחד נצא יחד לגילוי ובנייה של מי אתה באמת, נבין מהי טביעת האצבע הייחודית שלך בעולם, נחקור את השאלה &quot;מה תרצה להיות כשתהיה גדול?&quot; לא רק כמקצוע אלא כדרך חיים, ונעצב יחד כיוון לחיים מלאי משמעות, עשייה ומימוש כלל היכולות, הערכים והייחודיות שלך.
                   </p>
                 </div>
 
