@@ -15,8 +15,9 @@ export default function AboutPage() {
           <p className="text-text-muted leading-relaxed text-lg mb-6">
             אני מאמין שלכל אחד מאיתנו יש תפקיד ייחודי בתיקון העולם המופלא שלנו. לאחר 4 שנים של שירות קרבי ושנתיים נוספות בתפקידים בכירים בחיל החינוך בהן חקרתי, העמקתי והתנסתי בכלים שפיתחתי, יצאתי לאזרחות להגשים את חלומי בו כל אחד יכול לממש את הפוטנציאל האישי שלו על מנת לשנות את העולם.
           </p>
-          <p className="text-text-muted leading-relaxed text-lg mb-2">מאמן מנטלי</p>
-          <p className="text-text-muted leading-relaxed text-lg mb-8">מנחה בחברה לייעוץ ארגוני | "אדם ומחשבה"</p>
+          <p className="text-text-muted leading-relaxed text-lg mb-2">מאמן אישי</p>
+          <p className="text-text-muted leading-relaxed text-lg mb-2">מנחה בחברה לייעוץ ארגוני | "אדם ומחשבה"</p>
+          <p className="text-text-muted leading-relaxed text-lg mb-8">מרצה ומנחה בנושאים זהות אחריות ומשמעות</p>
           <p className="text-lg text-text-main font-semibold mb-20">
             אם גם אתה נמצא בצומת הזו, אני כאן, זה תפקידי בעולם.
           </p>
