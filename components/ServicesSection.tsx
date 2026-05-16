@@ -74,7 +74,7 @@ export default function ServicesSection() {
                 הרצאה / סדנה לקבוצה בה נעבור תהליך בן שישה שלבים בו נגלה את הסיפור האישי שלנו, הייחודיות והשינוי שנרצה להוביל בעולם.
               </p>
             </div>
-            <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם סדנה" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 mt-6 inline-block w-fit">לתיאום סדנה</a>
+            <button onClick={(e) => { e.stopPropagation(); setOpenLeft(true); }} className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 mt-6 inline-block w-fit">לפרטים נוספים</button>
           </div>
 
           {/* Expanded: fingerprint */}
@@ -210,8 +210,8 @@ export default function ServicesSection() {
             </div>
 
             <div className="text-center mt-10">
-              <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם סדנה ולשמוע פרטים" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                לתיאום סדנה ופרטים נוספים
+              <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם סדנה" target="_blank" rel="noopener noreferrer" className="btn-primary">
+                לתיאום סדנה
               </a>
             </div>
           </div>
