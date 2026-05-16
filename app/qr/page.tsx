@@ -15,22 +15,40 @@ export default function QRPage() {
       width: 800,
       margin: 3,
       color: { dark: '#52C47A', light: '#FFFEF5' },
-    }, () => {
+    }, async () => {
       const ctx = canvas.getContext('2d');
       if (!ctx) { setReady(true); return; }
-      const logo = new Image();
-      logo.src = '/logo.svg';
-      logo.onload = () => {
-        const size = canvas.width * 0.2;
-        const x = (canvas.width - size) / 2;
-        const y = (canvas.height - size) / 2;
-        ctx.fillStyle = '#FFFEF5';
-        ctx.beginPath();
-        ctx.roundRect(x - 10, y - 10, size + 20, size + 20, 12);
-        ctx.fill();
-        ctx.drawImage(logo, x, y, size, size);
+
+      try {
+        // Fetch the SVG and strip the broken translate transform so it renders
+        // correctly on canvas (browsers auto-fit SVG-as-img but canvas clips strictly)
+        const res = await fetch('/logo.svg');
+        let svgText = await res.text();
+        svgText = svgText
+          .replace(/overflow="hidden"/, 'viewBox="0 0 244 245"')
+          .replace(/transform="matrix\(1 0 0 1\.0041 911 329\)"/, '');
+
+        const blob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+
+        const logo = new Image();
+        logo.onload = () => {
+          const size = canvas.width * 0.2;
+          const x = (canvas.width - size) / 2;
+          const y = (canvas.height - size) / 2;
+          ctx.fillStyle = '#FFFEF5';
+          ctx.beginPath();
+          ctx.roundRect(x - 10, y - 10, size + 20, size + 20, 12);
+          ctx.fill();
+          ctx.drawImage(logo, x, y, size, size);
+          URL.revokeObjectURL(url);
+          setReady(true);
+        };
+        logo.onerror = () => { URL.revokeObjectURL(url); setReady(true); };
+        logo.src = url;
+      } catch {
         setReady(true);
-      };
+      }
     });
   }, []);
 
