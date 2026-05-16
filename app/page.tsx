@@ -81,7 +81,7 @@ export default function Home() {
               <img
                 src="/about-3.jpg"
                 alt="ערד ישי"
-                className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover shadow-lg" style={{ objectPosition: '20% center' }}
+                className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover shadow-lg" style={{ objectPosition: '10% center' }}
               />
             </div>
           </div>
