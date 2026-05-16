@@ -1,4 +1,4 @@
-import FingerprintSection from '@/components/FingerprintSection';
+import FingerprintDiagram from '@/components/FingerprintDiagram';
 
 export const metadata = {
   title: 'אודות | ערד ישי',
@@ -21,8 +21,8 @@ export default function AboutPage() {
             אם גם אתה נמצא בצומת הזו, אני כאן, זה תפקידי בעולם.
           </p>
 
-          <h2 className="text-2xl font-bold text-primary mb-6">טביעת האצבע שלי</h2>
-          <FingerprintSection />
+          <h2 className="text-2xl font-bold text-primary mb-10">טביעת האצבע שלי</h2>
+          <FingerprintDiagram />
         </div>
       </section>
     </div>
