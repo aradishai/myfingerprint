@@ -108,7 +108,7 @@ export default function ServicesSection() {
 
             {/* Fingerprint + question */}
             <div className="flex flex-col items-center gap-4 mb-6">
-              <FingerprintInteractive hovered={hoveredRegion} onHover={setHoveredRegion} />
+              <FingerprintInteractive hovered={displayRegion} onHover={setHoveredRegion} />
               <div className="min-h-14 text-center">
                 {(() => {
                   const active = regions.find(r => r.id === displayRegion);
