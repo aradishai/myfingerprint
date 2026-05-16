@@ -94,9 +94,17 @@ export default function ServicesSection() {
             <div className="flex flex-col md:flex-row gap-10 items-start">
               {/* Content — left side */}
               <div className="flex-1 flex flex-col">
-                <div className="bg-primary/10 rounded-2xl px-6 py-4 mb-8">
-                  <p className="text-text-main text-base font-bold leading-relaxed">
-                    ליווי אישי אחד על אחד כדי לגלות ולבנות מי אתה באמת, מהי טביעת האצבע שלך בעולם ואיך נוכל לעצב לך יחד חיים מלאי משמעות ועשייה תוך מימוש הייחודיות שלך
+                <div className="border-r-4 border-primary bg-primary/5 rounded-lg px-6 py-4 mb-8">
+                  <p className="text-text-main text-base leading-relaxed">
+                    <span className="font-extrabold text-primary">ליווי אישי אחד על אחד</span>{' '}
+                    כדי לגלות ולבנות{' '}
+                    <span className="font-extrabold underline decoration-primary decoration-2">מי אתה באמת</span>,
+                    {' '}מהי{' '}
+                    <span className="font-extrabold text-primary">טביעת האצבע שלך בעולם</span>{' '}
+                    ואיך נוכל לעצב לך יחד{' '}
+                    <span className="font-extrabold underline decoration-primary decoration-2">חיים מלאי משמעות ועשייה</span>{' '}
+                    תוך מימוש{' '}
+                    <span className="font-extrabold text-primary">הייחודיות שלך</span>
                   </p>
                 </div>
 
