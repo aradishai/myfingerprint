@@ -167,8 +167,7 @@ export default function FingerprintBuilder() {
       {showModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-6" onClick={() => setShowModal(false)}>
           <div className="bg-cream rounded-3xl p-10 max-w-md w-full text-center shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="text-5xl mb-4">🌿</div>
-            <h2 className="text-2xl font-extrabold text-primary mb-3">הטביעה שלך נשמרה!</h2>
+            <h2 className="text-2xl font-extrabold text-primary mb-3">טביעת האצבע שלך נשמרה!</h2>
             <p className="text-text-muted text-base leading-relaxed mb-8">
               עכשיו שאתה יודע מהי הטביעה שלך — הצעד הבא הוא לממש אותה. ערד יעזור לך לעשות בדיוק את זה.
             </p>
@@ -177,7 +176,7 @@ export default function FingerprintBuilder() {
               className="bg-primary text-white px-8 py-3 rounded-full font-bold text-base hover:opacity-90 transition-all inline-block"
               onClick={() => setShowModal(false)}
             >
-              להמשך התהליך עם ערד — לחץ כאן
+              להמשך התהליך לחץ כאן
             </Link>
             <button onClick={() => setShowModal(false)} className="block mx-auto mt-4 text-text-muted text-sm underline">
               סגור
