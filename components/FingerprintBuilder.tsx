@@ -77,7 +77,7 @@ export default function FingerprintBuilder() {
 
     return (
       <div
-        className="flex items-start gap-1 w-full"
+        className={`flex items-start gap-1 w-full ${side === 'right' ? 'justify-end' : ''}`}
         onMouseEnter={() => { if (selected === null) setHovered(id); }}
         onMouseLeave={() => { if (selected === null) setHovered(null); }}
         onClick={() => handleSelect(id)}
