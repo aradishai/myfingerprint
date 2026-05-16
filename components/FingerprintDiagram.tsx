@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import FingerprintInteractive from './FingerprintInteractive';
 
 const rightItems = [
@@ -16,11 +16,10 @@ const leftItems = [
 
 const allItems = [...rightItems, ...leftItems];
 
-function LabelRow({ id, title, hovered, side, onEnter, onLeave }: {
-  id: number; title: string; hovered: number | null;
+function LabelRow({ id, title, active, side, onEnter, onLeave }: {
+  id: number; title: string; active: boolean;
   side: 'right' | 'left'; onEnter: () => void; onLeave: () => void;
 }) {
-  const active = hovered === id;
   const line = <div className={`w-10 flex-shrink-0 h-px transition-all duration-200 ${active ? 'bg-primary' : 'bg-primary/30'}`} />;
   const dot = <div className={`w-3 h-3 rounded-full flex-shrink-0 transition-all duration-200 ${active ? 'bg-primary scale-125' : 'bg-primary/40'}`} />;
   const text = <p className={`font-bold text-lg transition-colors duration-200 whitespace-nowrap ${active ? 'text-primary' : 'text-text-main'}`}>{title}</p>;
@@ -33,50 +32,60 @@ function LabelRow({ id, title, hovered, side, onEnter, onLeave }: {
 }
 
 export default function FingerprintDiagram() {
-  const [hovered, setHovered] = useState<number | null>(null);
-  const active = allItems.find(i => i.id === hovered);
+  const [hoveredRegion, setHoveredRegion] = useState<number | null>(null);
+  const [autoRegion, setAutoRegion]       = useState<number | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    const pick = (prev: number | null) => {
+      let next: number;
+      do { next = Math.floor(Math.random() * 6) + 1; } while (next === prev);
+      return next;
+    };
+    setAutoRegion(pick(null));
+    intervalRef.current = setInterval(() => setAutoRegion(prev => pick(prev)), 4000);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, []);
+
+  const displayRegion = hoveredRegion ?? autoRegion;
+  const active = allItems.find(i => i.id === displayRegion);
 
   return (
     <div>
       {/* Desktop */}
       <div className="hidden md:flex items-center gap-4">
-        {/* Right labels */}
         <div className="flex flex-col gap-10 flex-1 items-end">
           {rightItems.map(item => (
-            <LabelRow key={item.id} {...item} hovered={hovered} side="right"
-              onEnter={() => setHovered(item.id)} onLeave={() => setHovered(null)} />
+            <LabelRow key={item.id} {...item} active={displayRegion === item.id} side="right"
+              onEnter={() => setHoveredRegion(item.id)} onLeave={() => setHoveredRegion(null)} />
           ))}
         </div>
 
-        {/* Fingerprint */}
         <div className="flex-shrink-0">
-          <FingerprintInteractive hovered={hovered} onHover={setHovered} />
+          <FingerprintInteractive hovered={displayRegion} onHover={setHoveredRegion} />
         </div>
 
-        {/* Left labels */}
         <div className="flex flex-col gap-10 flex-1 items-start">
           {leftItems.map(item => (
-            <LabelRow key={item.id} {...item} hovered={hovered} side="left"
-              onEnter={() => setHovered(item.id)} onLeave={() => setHovered(null)} />
+            <LabelRow key={item.id} {...item} active={displayRegion === item.id} side="left"
+              onEnter={() => setHoveredRegion(item.id)} onLeave={() => setHoveredRegion(null)} />
           ))}
         </div>
       </div>
 
       {/* Reveal area */}
       <div className="mt-8 text-center min-h-28 flex flex-col items-center justify-center">
-        {active ? (
-          <div className="transition-opacity duration-300 opacity-100">
+        {active && (
+          <div key={displayRegion} className="animate-fade-in">
             <p className="font-bold text-primary text-xl mb-2">{active.title}</p>
             <p className="text-text-main text-lg leading-relaxed whitespace-pre-line">{active.answer}</p>
           </div>
-        ) : (
-          <p className="text-text-muted text-sm">העבר את העכבר על כותרת או על הטביעה לגילוי</p>
         )}
       </div>
 
       {/* Mobile — list */}
       <div className="md:hidden flex flex-col items-center gap-8">
-        <FingerprintInteractive hovered={hovered} onHover={setHovered} />
+        <FingerprintInteractive hovered={displayRegion} onHover={setHoveredRegion} />
         <div className="flex flex-col gap-5 w-full">
           {allItems.map(item => (
             <div key={item.id} className="border-r-2 border-primary/50 pr-4">
