@@ -92,12 +92,7 @@ export default function ServicesSection() {
             </div>
 
             <div className="flex flex-col md:flex-row gap-10 items-start">
-              {/* Fingerprint — right side in RTL */}
-              <div className="flex-shrink-0 flex justify-center w-full md:w-auto">
-                <FingerprintInteractive hovered={hoveredRegion} onHover={setHoveredRegion} />
-              </div>
-
-              {/* Content — left side in RTL */}
+              {/* Content — left side */}
               <div className="flex-1 flex flex-col">
                 <div className="bg-primary/10 rounded-2xl px-6 py-4 mb-8">
                   <p className="text-text-main text-base font-bold leading-relaxed">
@@ -124,6 +119,11 @@ export default function ServicesSection() {
                 <Link href="#contact" className="btn-primary w-fit">
                   לתיאום פגישת היכרות
                 </Link>
+              </div>
+
+              {/* Fingerprint — right side */}
+              <div className="flex-shrink-0 flex justify-center w-full md:w-auto mt-16">
+                <FingerprintInteractive hovered={hoveredRegion} onHover={setHoveredRegion} />
               </div>
             </div>
           </div>
