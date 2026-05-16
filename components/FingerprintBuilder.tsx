@@ -128,19 +128,15 @@ export default function FingerprintBuilder() {
             <div className="w-full max-w-lg">
               <p className="font-bold text-primary text-lg mb-1">{activeQ.label}</p>
               <p className="text-text-muted text-sm mb-3">{activeQ.prompt}</p>
-              {selected === activeQ.id && (
-                <textarea
-                  autoFocus
-                  rows={3}
-                  placeholder="כתוב כאן..."
-                  value={answers[activeQ.id] || ''}
-                  onChange={e => setAnswers(prev => ({ ...prev, [activeQ.id]: e.target.value }))}
-                  className="w-full bg-white border-2 border-primary rounded-xl px-4 py-3 text-sm focus:outline-none resize-none text-right"
-                />
-              )}
-              {selected !== activeQ.id && (
-                <p className="text-text-muted text-sm italic">לחץ כדי לענות</p>
-              )}
+              <textarea
+                rows={3}
+                placeholder="כתוב כאן..."
+                value={answers[activeQ.id] || ''}
+                onChange={e => setAnswers(prev => ({ ...prev, [activeQ.id]: e.target.value }))}
+                onFocus={() => setSelected(activeQ.id)}
+                onBlur={() => setSelected(null)}
+                className="w-full bg-white border-2 border-primary rounded-xl px-4 py-3 text-sm focus:outline-none resize-none text-right"
+              />
             </div>
           ) : (
             <p className="text-text-muted text-sm">העבר את העכבר על כותרת או על הטביעה — לחץ כדי לענות</p>
