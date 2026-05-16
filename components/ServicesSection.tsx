@@ -58,7 +58,7 @@ export default function ServicesSection() {
                 תהליך אישי אחד על אחד בו נחקור מה נועדתם לעשות? מה היא הייחודיות האישית שלכם ואיך תוכלו לייצר שינוי בעולם ובכך להביא את עצמכם לחיים בעלי משמעות ועשייה.
               </p>
             </div>
-            <span className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 mt-6 inline-block w-fit">לתיאום פגישה</span>
+            <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם פגישת היכרות" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 mt-6 inline-block w-fit">לתיאום פגישה</a>
           </div>
 
           {/* Left card — workshops */}
@@ -74,7 +74,7 @@ export default function ServicesSection() {
                 הרצאה / סדנה לקבוצה בה נעבור תהליך בן שישה שלבים בו נגלה את הסיפור האישי שלנו, הייחודיות והשינוי שנרצה להוביל בעולם.
               </p>
             </div>
-            <span className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 mt-6 inline-block w-fit">לתיאום סדנה</span>
+            <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם סדנה" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 hover:opacity-90 mt-6 inline-block w-fit">לתיאום סדנה</a>
           </div>
 
           {/* Expanded: fingerprint */}
@@ -117,9 +117,9 @@ export default function ServicesSection() {
                   )}
                 </div>
 
-                <Link href="#contact" className="btn-primary w-fit">
+                <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם פגישת היכרות" target="_blank" rel="noopener noreferrer" className="btn-primary w-fit">
                   לתיאום פגישת היכרות
-                </Link>
+                </a>
               </div>
 
               {/* Fingerprint — right side */}
@@ -210,9 +210,9 @@ export default function ServicesSection() {
             </div>
 
             <div className="text-center mt-10">
-              <Link href="#contact" className="btn-primary">
+              <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם סדנה ולשמוע פרטים" target="_blank" rel="noopener noreferrer" className="btn-primary">
                 לתיאום סדנה ופרטים נוספים
-              </Link>
+              </a>
             </div>
           </div>
         </div>

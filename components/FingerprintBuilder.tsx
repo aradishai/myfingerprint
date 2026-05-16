@@ -158,9 +158,9 @@ export default function FingerprintBuilder() {
         >
           {saving ? 'מוריד...' : 'הורד את טביעת האצבע שלך לטלפון/למחשב ⬇'}
         </button>
-        <Link href="/#contact" className="text-primary font-semibold text-sm underline underline-offset-4 hover:opacity-80">
+        <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם פגישת היכרות" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold text-sm underline underline-offset-4 hover:opacity-80">
           לתיאום פגישת היכרות עם ערד
-        </Link>
+        </a>
       </div>
 
       {/* Modal */}
@@ -168,13 +168,15 @@ export default function FingerprintBuilder() {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-6" onClick={() => setShowModal(false)}>
           <div className="bg-cream rounded-3xl p-10 max-w-md w-full text-center shadow-2xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-2xl font-extrabold text-text-main mb-3">טביעת האצבע שלך נשמרה!</h2>
-            <Link
-              href="/#contact"
+            <a
+              href="https://wa.me/972542086591?text=היי ערד, סיימתי למלא את טביעת האצבע שלי ואשמח להמשיך את התהליך"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-primary text-white px-8 py-3 rounded-full font-bold text-base hover:opacity-90 transition-all inline-block"
               onClick={() => setShowModal(false)}
             >
               להמשך התהליך לחץ כאן
-            </Link>
+            </a>
             <button onClick={() => setShowModal(false)} className="block mx-auto mt-4 text-text-muted text-sm underline">
               סגור
             </button>
