@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import FingerprintInteractive, { regions } from './FingerprintInteractive';
 
@@ -22,9 +22,25 @@ const stations = [
 ];
 
 export default function ServicesSection() {
-  const [openRight, setOpenRight] = useState(false); // fingerprint card
-  const [openLeft, setOpenLeft]   = useState(false); // workshops timeline
+  const [openRight, setOpenRight] = useState(false);
+  const [openLeft, setOpenLeft]   = useState(false);
   const [hoveredRegion, setHoveredRegion] = useState<number | null>(null);
+  const [autoRegion, setAutoRegion] = useState<number | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (!openRight) { setAutoRegion(null); return; }
+    const pick = (prev: number | null) => {
+      let next: number;
+      do { next = Math.floor(Math.random() * 6) + 1; } while (next === prev);
+      return next;
+    };
+    setAutoRegion(pick(null));
+    intervalRef.current = setInterval(() => setAutoRegion(prev => pick(prev)), 10000);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [openRight]);
+
+  const displayRegion = hoveredRegion ?? autoRegion;
 
   const isOpen = openRight || openLeft;
 
@@ -91,44 +107,44 @@ export default function ServicesSection() {
               </button>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-10 items-start">
-              {/* Content — left side */}
-              <div className="flex-1 flex flex-col">
-                <div className="border-r-4 border-primary bg-primary/5 rounded-lg px-6 py-4 mb-8">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              {/* Content */}
+              <div className="flex-1">
+                <div className="border-r-4 border-primary bg-primary/5 rounded-lg px-6 py-4 mb-4">
                   <p className="font-extrabold text-text-main text-lg mb-2 underline decoration-primary decoration-2">ליווי אישי אחד על אחד</p>
                   <p className="text-text-main text-base font-medium leading-relaxed">
                     במפגשים אישיים אחד על אחד נצא יחד לגילוי ובנייה של מי אתה באמת, נבין מהי טביעת האצבע הייחודית שלך בעולם, נחקור את השאלה &quot;מה תרצה להיות כשתהיה גדול?&quot; לא רק כמקצוע אלא כדרך חיים, ונעצב יחד כיוון לחיים מלאי משמעות, עשייה ומימוש כלל היכולות, הערכים והייחודיות שלך.
                   </p>
                 </div>
 
-                <div className="min-h-32 mb-8 flex flex-col justify-center">
-                  {hoveredRegion ? (
-                    (() => {
-                      const active = regions.find(r => r.id === hoveredRegion);
-                      return active ? (
-                        <>
-                          <p className="text-primary font-bold text-lg tracking-wide mb-1">{active.label}</p>
-                          <p className="text-text-main font-semibold text-2xl leading-snug">{active.question}</p>
-                        </>
-                      ) : null;
-                    })()
-                  ) : (
-                    <p className="text-text-muted text-base">העבר את העכבר על הטביעה לגילוי</p>
-                  )}
+                {/* Floating question */}
+                <div className="min-h-16 mb-4">
+                  {(() => {
+                    const active = regions.find(r => r.id === displayRegion);
+                    return active ? (
+                      <div key={displayRegion} className="animate-fade-in">
+                        <p className="text-primary font-bold text-base mb-1">{active.label}</p>
+                        <p className="text-text-main font-semibold text-xl leading-snug">{active.question}</p>
+                      </div>
+                    ) : null;
+                  })()}
                 </div>
-
-                <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם פגישת היכרות" target="_blank" rel="noopener noreferrer" className="btn-primary w-fit">
-                  לתיאום פגישת היכרות
-                </a>
               </div>
 
-              {/* Fingerprint — right side */}
-              <div className="flex-shrink-0 flex flex-col items-center justify-between w-full md:w-auto mt-6 md:mt-16 self-stretch">
+              {/* Fingerprint */}
+              <div className="flex-shrink-0 w-full md:w-auto flex justify-center">
                 <FingerprintInteractive hovered={hoveredRegion} onHover={setHoveredRegion} />
-                <Link href="/builder" className="btn-primary mt-6 text-center">
-                  בנה בעצמך את טביעת האצבע שלך!
-                </Link>
               </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-3 flex-wrap mt-6">
+              <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם פגישת היכרות" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
+                לתיאום פגישת היכרות
+              </a>
+              <Link href="/builder" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
+                בנה בעצמך את טביעת האצבע שלך!
+              </Link>
             </div>
           </div>
 
