@@ -5,7 +5,7 @@ import { HiMenu, HiX } from 'react-icons/hi';
 
 const links = [
   { href: '/', label: 'בית' },
-  { href: '/about', label: 'אודות' },
+  { href: '/about', label: 'הסיפור שלי' },
   { href: '/builder', label: 'כלים' },
   { href: '/#contact', label: 'צור קשר' },
 ];
