@@ -11,8 +11,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="py-20 bg-gradient-to-bl from-surface to-bg">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <span className="text-accent font-semibold text-sm tracking-widest uppercase">אודות</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-primary mt-4 mb-6">הסיפור שלי</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-6">הסיפור שלי</h1>
           <p className="text-xl text-text-muted leading-relaxed max-w-2xl mx-auto">
             כל אחד מאיתנו הוא עולם ומלואו. אני כאן כדי לעזור לך לגלות את העולם שלך.
           </p>
