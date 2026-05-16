@@ -54,15 +54,16 @@ export default function Home() {
       {/* About — שמנת */}
       <section className="py-24 bg-cream">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="section-title mb-10">קצת עליי</h2>
+          <h2 className="section-title mb-10">הסיפור שלי</h2>
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
             <div>
-              <p className="text-text-muted leading-relaxed text-base md:text-lg mb-6">
+              <p className="text-text-muted leading-relaxed text-base md:text-lg mb-4 md:mb-6">
                 אני מאמין שלכל אחד מאיתנו יש תפקיד ייחודי בתיקון העולם המופלא שלנו. לאחר 4 שנים של שירות קרבי ושנתיים נוספות בתפקידים בכירים בחיל החינוך בהן חקרתי, העמקתי והתנסתי בכלים שפיתחתי, יצאתי לאזרחות להגשים את חלומי בו כל אחד יכול לממש את הפוטנציאל האישי שלו על מנת לשנות את העולם.
               </p>
-              <p className="text-text-muted leading-relaxed text-lg mb-2">מאמן מנטלי</p>
-              <p className="text-text-muted leading-relaxed text-lg mb-8">מנחה בחברה לייעוץ ארגוני | "אדם ומחשבה"</p>
-              <p className="text-lg text-text-main font-semibold">
+              <p className="text-text-muted leading-relaxed text-sm md:text-lg mb-1">מאמן אישי</p>
+              <p className="text-text-muted leading-relaxed text-sm md:text-lg mb-1">מנחה בחברה לייעוץ ארגוני | "אדם ומחשבה"</p>
+              <p className="text-text-muted leading-relaxed text-sm md:text-lg mb-6">מרצה ומנחה בנושאים זהות אחריות ומשמעות</p>
+              <p className="text-base md:text-lg text-text-main font-semibold">
                 אם גם אתה נמצא בצומת הזו, אני כאן, זה תפקידי בעולם.
               </p>
             </div>
