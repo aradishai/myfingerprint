@@ -22,6 +22,7 @@ export default function FingerprintBuilder() {
   const [selected, setSelected] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [saving, setSaving]     = useState(false);
+  const [showWatermark, setShowWatermark] = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
 
   const activeId = selected ?? hovered;
@@ -34,6 +35,11 @@ export default function FingerprintBuilder() {
   async function handleSave() {
     if (!printRef.current) return;
     setSaving(true);
+    setSelected(null);
+    setHovered(null);
+    setShowWatermark(true);
+    await new Promise(resolve => setTimeout(resolve, 100));
+
     const html2canvas = (await import('html2canvas')).default;
     const canvas = await html2canvas(printRef.current, {
       backgroundColor: '#FFFEF5',
@@ -41,16 +47,7 @@ export default function FingerprintBuilder() {
       useCORS: true,
     });
 
-    // Add watermark to top-right corner
-    const ctx = canvas.getContext('2d');
-    if (ctx) {
-      const pad = 24;
-      ctx.font = 'bold 28px Arial';
-      ctx.fillStyle = 'rgba(82, 196, 122, 0.55)';
-      ctx.textAlign = 'right';
-      ctx.direction = 'rtl';
-      ctx.fillText('חותם בעולם | ערד ישי', canvas.width - pad, pad + 20);
-    }
+    setShowWatermark(false);
 
     const link = document.createElement('a');
     link.download = 'טביעת-האצבע-שלי.png';
@@ -92,7 +89,12 @@ export default function FingerprintBuilder() {
 
   return (
     <>
-      <div ref={printRef} className="bg-cream rounded-3xl p-8">
+      <div ref={printRef} className="relative bg-cream rounded-3xl p-8">
+        {showWatermark && (
+          <div className="absolute top-4 left-4 text-primary/50 font-bold text-base" dir="rtl">
+            חותם בעולם | ערד ישי
+          </div>
+        )}
         <div className="flex items-baseline justify-center gap-2 mb-10">
           <h2 className="text-2xl font-extrabold text-text-main">טביעת האצבע של</h2>
           <input
