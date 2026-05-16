@@ -12,14 +12,23 @@ const questions = [
   { id: 6, label: 'המומחיות שלי',   prompt: 'אם מישהו צריך עצה, על מה הם פונים אליך?' },
 ];
 
+const rightIds = [1, 2, 3];
+const leftIds  = [4, 5, 6];
+
 export default function FingerprintBuilder() {
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [hovered, setHovered] = useState<number | null>(null);
+  const [answers, setAnswers]   = useState<Record<number, string>>({});
+  const [hovered, setHovered]   = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [saving, setSaving] = useState(false);
+  const [saving, setSaving]     = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
 
-  const active = questions.find(q => q.id === hovered);
+  const activeId = selected ?? hovered;
+  const activeQ  = questions.find(q => q.id === activeId);
+
+  function handleSelect(id: number) {
+    setSelected(prev => prev === id ? null : id);
+  }
 
   async function handleSave() {
     if (!printRef.current) return;
@@ -38,141 +47,122 @@ export default function FingerprintBuilder() {
     setShowModal(true);
   }
 
+  function LabelRow({ id, side }: { id: number; side: 'right' | 'left' }) {
+    const q       = questions.find(q => q.id === id)!;
+    const isActive = hovered === id || selected === id;
+    const answered = !!answers[id];
+
+    const dot  = <div className={`w-3 h-3 rounded-full flex-shrink-0 transition-all duration-200 ${isActive || answered ? 'bg-primary scale-110' : 'bg-primary/30'}`} />;
+    const line = <div className={`w-10 flex-shrink-0 h-px transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
+    const text = (
+      <p
+        className={`font-bold text-lg leading-tight whitespace-nowrap transition-colors duration-200 cursor-pointer select-none
+          ${isActive ? 'text-primary' : answered ? 'text-text-main' : 'text-text-muted'}`}
+      >
+        {q.label}
+        {answered && <span className="text-primary text-sm mr-1">✓</span>}
+      </p>
+    );
+
+    return (
+      <div
+        className="flex items-center gap-1"
+        onMouseEnter={() => setHovered(id)}
+        onMouseLeave={() => setHovered(null)}
+        onClick={() => handleSelect(id)}
+      >
+        {side === 'right' ? <>{text}{line}{dot}</> : <>{dot}{line}{text}</>}
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="flex flex-col lg:flex-row gap-12 items-start">
-
-        {/* Questions panel */}
-        <div className="flex-1 flex flex-col gap-6">
-          {questions.map(q => (
-            <div
-              key={q.id}
-              className={`rounded-2xl border-2 p-5 transition-all duration-200 cursor-default ${hovered === q.id ? 'border-primary bg-primary/5' : 'border-border bg-white'}`}
-              onMouseEnter={() => setHovered(q.id)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <p className="font-bold text-primary text-base mb-1">{q.label}</p>
-              <p className="text-text-muted text-sm mb-3">{q.prompt}</p>
-              <textarea
-                rows={2}
-                placeholder="כתוב כאן..."
-                value={answers[q.id] || ''}
-                onChange={e => setAnswers(prev => ({ ...prev, [q.id]: e.target.value }))}
-                className="w-full bg-surface border border-border rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors resize-none"
-              />
-            </div>
-          ))}
+      <div ref={printRef} className="bg-cream rounded-3xl p-8">
+        {/* Header */}
+        <div className="flex items-center gap-3 justify-center mb-8">
+          <img src="/logo.svg" alt="לוגו" className="h-8 w-8" />
+          <div className="text-center">
+            <p className="font-extrabold text-primary text-lg leading-tight">חותם בעולם</p>
+            <p className="text-xs text-text-muted">ערד ישי</p>
+          </div>
         </div>
 
-        {/* Fingerprint + preview */}
-        <div className="flex-1 flex flex-col items-center gap-6 sticky top-28">
+        <h2 className="text-2xl font-extrabold text-text-main text-center mb-10">טביעת האצבע שלי</h2>
 
-          {/* Capturable area */}
-          <div ref={printRef} className="bg-cream rounded-3xl p-8 w-full flex flex-col items-center gap-6">
-            {/* Header */}
-            <div className="flex items-center gap-3 w-full justify-center">
-              <img src="/logo.svg" alt="לוגו" className="h-8 w-8" />
-              <div className="text-center">
-                <p className="font-extrabold text-primary text-lg leading-tight">חותם בעולם</p>
-                <p className="text-xs text-text-muted">ערד ישי</p>
-              </div>
-            </div>
-
-            <h2 className="font-extrabold text-2xl text-text-main">טביעת האצבע שלי</h2>
-
-            {/* Diagram */}
-            <div className="flex items-center gap-4 w-full">
-              {/* Right labels */}
-              <div className="flex flex-col gap-6 flex-1 items-end">
-                {[1, 2, 3].map(id => {
-                  const q = questions.find(q => q.id === id)!;
-                  const answered = answers[id];
-                  return (
-                    <div
-                      key={id}
-                      className="flex items-center gap-1 cursor-default"
-                      onMouseEnter={() => setHovered(id)}
-                      onMouseLeave={() => setHovered(null)}
-                    >
-                      <div className="text-right">
-                        <p className={`font-bold text-sm leading-tight ${hovered === id ? 'text-primary' : 'text-text-main'}`}>{q.label}</p>
-                        {answered && <p className="text-text-muted text-xs mt-0.5 max-w-[130px]">{answered}</p>}
-                      </div>
-                      <div className={`w-8 flex-shrink-0 h-px ${hovered === id ? 'bg-primary' : 'bg-primary/30'}`} />
-                      <div className={`w-3 h-3 rounded-full flex-shrink-0 ${hovered === id || answered ? 'bg-primary' : 'bg-primary/30'}`} />
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Fingerprint SVG */}
-              <svg viewBox="40 15 170 220" className="w-44 h-44 flex-shrink-0" xmlns="http://www.w3.org/2000/svg">
-                {regions.map(region =>
-                  region.paths.map((d, i) => (
-                    <path
-                      key={`${region.id}-${i}`}
-                      d={d}
-                      fill={hovered === region.id || answers[region.id] ? '#52C47A' : '#1A1A1A'}
-                      className="cursor-pointer transition-colors duration-300"
-                      onMouseEnter={() => setHovered(region.id)}
-                      onMouseLeave={() => setHovered(null)}
-                    />
-                  ))
-                )}
-              </svg>
-
-              {/* Left labels */}
-              <div className="flex flex-col gap-6 flex-1 items-start">
-                {[4, 5, 6].map(id => {
-                  const q = questions.find(q => q.id === id)!;
-                  const answered = answers[id];
-                  return (
-                    <div
-                      key={id}
-                      className="flex items-center gap-1 cursor-default"
-                      onMouseEnter={() => setHovered(id)}
-                      onMouseLeave={() => setHovered(null)}
-                    >
-                      <div className={`w-3 h-3 rounded-full flex-shrink-0 ${hovered === id || answered ? 'bg-primary' : 'bg-primary/30'}`} />
-                      <div className={`w-8 flex-shrink-0 h-px ${hovered === id ? 'bg-primary' : 'bg-primary/30'}`} />
-                      <div className="text-left">
-                        <p className={`font-bold text-sm leading-tight ${hovered === id ? 'text-primary' : 'text-text-main'}`}>{q.label}</p>
-                        {answered && <p className="text-text-muted text-xs mt-0.5 max-w-[130px]">{answered}</p>}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Hint or active answer */}
-            <div className="min-h-12 text-center">
-              {active && answers[active.id] ? (
-                <p className="text-text-main text-base font-medium">{answers[active.id]}</p>
-              ) : active ? (
-                <p className="text-text-muted text-sm italic">{active.prompt}</p>
-              ) : (
-                <p className="text-text-muted text-xs">ענה על השאלות משמאל כדי לבנות את הטביעה שלך</p>
-              )}
-            </div>
+        {/* Diagram */}
+        <div className="flex items-center gap-4">
+          {/* Right labels */}
+          <div className="flex flex-col gap-10 flex-1 items-end">
+            {rightIds.map(id => <LabelRow key={id} id={id} side="right" />)}
           </div>
 
-          {/* Save button */}
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="bg-primary text-white px-8 py-3 rounded-full font-bold text-base hover:opacity-90 transition-all disabled:opacity-60 shadow-md"
-          >
-            {saving ? 'שומר...' : '📥 שמור את הטביעה שלך כתמונה'}
-          </button>
+          {/* Fingerprint */}
+          <div className="flex-shrink-0">
+            <svg viewBox="40 15 170 220" className="w-52 h-52 md:w-64 md:h-64" xmlns="http://www.w3.org/2000/svg">
+              {regions.map(region =>
+                region.paths.map((d, i) => (
+                  <path
+                    key={`${region.id}-${i}`}
+                    d={d}
+                    fill={hovered === region.id || selected === region.id || answers[region.id] ? '#52C47A' : '#1A1A1A'}
+                    className="cursor-pointer transition-colors duration-300"
+                    onMouseEnter={() => setHovered(region.id)}
+                    onMouseLeave={() => setHovered(null)}
+                    onClick={() => handleSelect(region.id)}
+                  />
+                ))
+              )}
+            </svg>
+          </div>
 
-          <Link href="/#contact" className="text-primary font-semibold text-sm underline underline-offset-4 hover:opacity-80">
-            לתיאום פגישת היכרות עם ערד ←
-          </Link>
+          {/* Left labels */}
+          <div className="flex flex-col gap-10 flex-1 items-start">
+            {leftIds.map(id => <LabelRow key={id} id={id} side="left" />)}
+          </div>
+        </div>
+
+        {/* Reveal / input area */}
+        <div className="mt-8 min-h-36 flex flex-col items-center justify-start text-center">
+          {activeQ ? (
+            <div className="w-full max-w-lg">
+              <p className="font-bold text-primary text-lg mb-1">{activeQ.label}</p>
+              <p className="text-text-muted text-sm mb-3">{activeQ.prompt}</p>
+              {selected === activeQ.id && (
+                <textarea
+                  autoFocus
+                  rows={3}
+                  placeholder="כתוב כאן..."
+                  value={answers[activeQ.id] || ''}
+                  onChange={e => setAnswers(prev => ({ ...prev, [activeQ.id]: e.target.value }))}
+                  className="w-full bg-white border-2 border-primary rounded-xl px-4 py-3 text-sm focus:outline-none resize-none text-right"
+                />
+              )}
+              {selected !== activeQ.id && (
+                <p className="text-text-muted text-sm italic">לחץ כדי לענות</p>
+              )}
+            </div>
+          ) : (
+            <p className="text-text-muted text-sm">העבר את העכבר על כותרת או על הטביעה — לחץ כדי לענות</p>
+          )}
         </div>
       </div>
 
-      {/* Success modal */}
+      {/* Buttons */}
+      <div className="flex flex-col items-center gap-4 mt-8">
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="bg-primary text-white px-10 py-3 rounded-full font-bold text-base hover:opacity-90 transition-all disabled:opacity-60 shadow-md"
+        >
+          {saving ? 'שומר...' : 'שמור את הטביעה שלך כתמונה'}
+        </button>
+        <Link href="/#contact" className="text-primary font-semibold text-sm underline underline-offset-4 hover:opacity-80">
+          לתיאום פגישת היכרות עם ערד ←
+        </Link>
+      </div>
+
+      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-6" onClick={() => setShowModal(false)}>
           <div className="bg-cream rounded-3xl p-10 max-w-md w-full text-center shadow-2xl" onClick={e => e.stopPropagation()}>
@@ -188,10 +178,7 @@ export default function FingerprintBuilder() {
             >
               להמשך התהליך עם ערד — לחץ כאן
             </Link>
-            <button
-              onClick={() => setShowModal(false)}
-              className="block mx-auto mt-4 text-text-muted text-sm underline"
-            >
+            <button onClick={() => setShowModal(false)} className="block mx-auto mt-4 text-text-muted text-sm underline">
               סגור
             </button>
           </div>
