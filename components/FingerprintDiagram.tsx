@@ -10,7 +10,7 @@ const rightItems = [
 
 const leftItems = [
   { id: 6, title: 'במה אני מומחה?', answer: '"אני לא מוצא את הלמה שלי, לא מצליח להיות מי שאני במערכת הזאת, ואתה הבן אדם הראשון שעולה לי לראש כשאני חושב על זה"' },
-  { id: 3, title: 'המטרות שלי', answer: 'לעזור לכמה שיותר אנשים לגלות את טביעת האצבע שלהם | להקים מוסד שמחבר ייחודיות לשינוי | להיות מרצה במכינות קדם צבאיות' },
+  { id: 3, title: 'המטרות שלי', answer: '1. לעזור לכמה שיותר אנשים לגלות את טביעת האצבע שלהם\n2. להקים מוסד שמחבר ייחודיות לשינוי\n3. להיות מרצה במכינות קדם צבאיות' },
   { id: 4, title: 'מי צריך אותי?', answer: 'אנשים שרוצים לצאת לאור, אנשים שרוצים חיים מלאי משמעות' },
 ];
 
@@ -29,7 +29,7 @@ function Label({ id, title, answer, hovered, side, onEnter, onLeave }: {
   const text = (
     <div className={`transition-opacity duration-200 ${active ? 'opacity-100' : 'opacity-70'} ${side === 'right' ? 'text-right' : 'text-left'}`}>
       <p className="font-bold text-primary text-base leading-tight">{title}</p>
-      <p className="text-text-muted text-sm leading-snug mt-0.5 max-w-[180px]">{answer}</p>
+      <p className="text-text-muted text-sm leading-snug mt-0.5 max-w-[180px] whitespace-pre-line">{answer}</p>
     </div>
   );
 
