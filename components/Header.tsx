@@ -10,6 +10,16 @@ const links = [
   { href: '/#contact', label: 'צור קשר' },
 ];
 
+async function handleShare() {
+  const data = { title: 'חותם בעולם | ערד ישי', url: window.location.href };
+  if (navigator.share) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard.writeText(data.url);
+    alert('הקישור הועתק!');
+  }
+}
+
 export default function Header() {
   const [open, setOpen] = useState(false);
 
@@ -33,6 +43,12 @@ export default function Header() {
               {l.label}
             </Link>
           ))}
+          <button onClick={handleShare} className="text-primary hover:opacity-70 transition-opacity" title="שתף">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </button>
           <Link href="#contact" className="bg-primary text-white px-5 py-2 rounded-full font-semibold text-sm hover:opacity-90 transition-all">
             קביעת פגישה
           </Link>
