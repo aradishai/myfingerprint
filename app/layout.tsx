@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   description: 'סדנאות | הרצאות | ליווי אישי. אני מאמין שלכל אדם יש ייחודיות, ערכים וייעוד שהוא יכול וצריך לממש — בואו נגלה יחד את טביעת האצבע שלכם.',
   keywords: 'ערד ישי, אימון אישי, סדנאות, הרצאות, חותם בעולם, זהות, משמעות, פיתוח אישי, מאמן אישי',
   icons: {
-    icon: '/logo.svg',
-    apple: '/logo-small.png',
+    icon: '/pwa-icon.svg',
+    apple: '/pwa-icon.svg',
   },
   manifest: '/manifest.webmanifest',
   themeColor: '#52C47A',
