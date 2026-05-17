@@ -93,13 +93,13 @@ export default function FingerprintBuilder() {
           <h2 className="text-3xl md:text-4xl font-extrabold text-text-main">טביעת האצבע שלי</h2>
         </div>
 
-        {/* Desktop diagram */}
-        <div className="hidden md:grid w-full items-center gap-6" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
-          <div className="flex flex-col gap-12 items-start">
+        {/* Diagram */}
+        <div className="w-full grid items-center gap-2 md:gap-6" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
+          <div className="flex flex-col gap-6 md:gap-12 items-start">
             {rightIds.map(id => <LabelRow key={id} id={id} side="right" />)}
           </div>
           <div className="flex-shrink-0">
-            <svg viewBox="40 15 170 220" className="w-64 h-64 lg:w-80 lg:h-80" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="40 15 170 220" className="w-28 h-28 sm:w-44 sm:h-44 md:w-64 md:h-64 lg:w-80 lg:h-80" xmlns="http://www.w3.org/2000/svg">
               {regions.map(region =>
                 region.paths.map((d, i) => (
                   <path
@@ -115,13 +115,13 @@ export default function FingerprintBuilder() {
               )}
             </svg>
           </div>
-          <div className="flex flex-col gap-12 items-start">
+          <div className="flex flex-col gap-6 md:gap-12 items-start">
             {leftIds.map(id => <LabelRow key={id} id={id} side="left" />)}
           </div>
         </div>
 
-        {/* Desktop input area */}
-        <div className="hidden md:flex mt-8 flex-col items-center justify-start text-center">
+        {/* Reveal / input area */}
+        <div className="mt-8 flex flex-col items-center justify-start text-center">
           {showWatermark ? (
             <div className="py-4">
               <p className="font-bold text-primary text-base">ערד ישי | חותם בעולם</p>
@@ -141,47 +141,6 @@ export default function FingerprintBuilder() {
               />
             </div>
           ) : null}
-        </div>
-
-        {/* Mobile layout */}
-        <div className="md:hidden flex flex-col gap-4">
-          {showWatermark && (
-            <div className="py-4 text-center">
-              <p className="font-bold text-primary text-base">ערד ישי | חותם בעולם</p>
-            </div>
-          )}
-          {questions.map(q => {
-            const isActive = selected === q.id;
-            const answered = !!answers[q.id];
-            return (
-              <div
-                key={q.id}
-                className={`rounded-2xl border-2 transition-all duration-200 ${isActive ? 'border-primary bg-primary/5' : answered ? 'border-primary/40 bg-white' : 'border-border bg-white'}`}
-                onClick={() => handleSelect(q.id)}
-              >
-                <div className="flex items-center justify-between px-4 py-3">
-                  <p className={`font-bold text-base ${isActive || answered ? 'text-primary' : 'text-text-muted'}`}>{q.label}</p>
-                  <div className={`w-3 h-3 rounded-full flex-shrink-0 ${answered ? 'bg-primary' : 'bg-primary/20'}`} />
-                </div>
-                {isActive && (
-                  <div className="px-4 pb-4" onClick={e => e.stopPropagation()}>
-                    <p className="text-text-muted text-sm mb-2">{q.prompt}</p>
-                    <textarea
-                      rows={3}
-                      placeholder="כתוב כאן..."
-                      value={answers[q.id] || ''}
-                      onChange={e => setAnswers(prev => ({ ...prev, [q.id]: e.target.value }))}
-                      autoFocus
-                      className="w-full bg-white border-2 border-primary rounded-xl px-4 py-3 text-sm focus:outline-none resize-none text-right"
-                    />
-                  </div>
-                )}
-                {!isActive && answered && (
-                  <p className="px-4 pb-3 text-text-muted text-sm leading-snug">{answers[q.id]}</p>
-                )}
-              </div>
-            );
-          })}
         </div>
       </div>
 
