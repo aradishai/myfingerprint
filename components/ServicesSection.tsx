@@ -124,7 +124,7 @@ export default function ServicesSection() {
 
             {/* Buttons */}
             <div className="flex gap-3 flex-wrap justify-center">
-              <a href="whatsapp://send?phone=972542086591&text=היי ערד, אשמח לתאם פגישת היכרות" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
+              <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם פגישת היכרות" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
                 לתיאום פגישת היכרות
               </a>
               <Link href="/builder" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
@@ -214,7 +214,7 @@ export default function ServicesSection() {
             </div>
 
             <div className="text-center mt-10">
-              <a href="whatsapp://send?phone=972542086591&text=היי ערד, אשמח לתאם סדנה" className="btn-primary">
+              <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם סדנה" className="btn-primary">
                 לתיאום סדנה
               </a>
             </div>

@@ -53,7 +53,7 @@ export default function Header() {
               <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
             </svg>
           </button>
-          <a href="whatsapp://send?phone=972542086591&text=היי ערד, אשמח לקבוע פגישה" className="bg-primary text-white px-5 py-2 rounded-full font-normal text-sm hover:opacity-90 transition-all">
+          <a href="https://wa.me/972542086591?text=היי ערד, אשמח לקבוע פגישה" className="bg-primary text-white px-5 py-2 rounded-full font-normal text-sm hover:opacity-90 transition-all">
             קביעת פגישה
           </a>
         </nav>
@@ -72,7 +72,7 @@ export default function Header() {
               {l.label}
             </Link>
           ))}
-          <a href="whatsapp://send?phone=972542086591&text=היי ערד, אשמח לקבוע פגישה" className="btn-primary text-center mt-2" onClick={() => setOpen(false)}>
+          <a href="https://wa.me/972542086591?text=היי ערד, אשמח לקבוע פגישה" className="btn-primary text-center mt-2" onClick={() => setOpen(false)}>
             קביעת פגישה
           </a>
           <button onClick={() => { handleShare(); setOpen(false); }} className="flex items-center gap-2 text-primary font-medium py-1">

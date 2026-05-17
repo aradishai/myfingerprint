@@ -153,7 +153,7 @@ export default function FingerprintBuilder() {
         >
           {saving ? 'מוריד...' : 'הורד את טביעת האצבע שלך לטלפון/למחשב ⬇'}
         </button>
-        <a href="whatsapp://send?phone=972542086591&text=היי ערד, אשמח לתאם פגישת היכרות" className="text-primary font-semibold text-sm underline underline-offset-4 hover:opacity-80">
+        <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם פגישת היכרות" className="text-primary font-semibold text-sm underline underline-offset-4 hover:opacity-80">
           לתיאום פגישת היכרות עם ערד
         </a>
       </div>
@@ -164,7 +164,7 @@ export default function FingerprintBuilder() {
           <div className="bg-cream rounded-3xl p-10 max-w-md w-full text-center shadow-2xl" onClick={e => e.stopPropagation()}>
             <h2 className="text-2xl font-extrabold text-text-main mb-3">טביעת האצבע שלך נשמרה!</h2>
             <a
-              href="whatsapp://send?phone=972542086591&text=היי ערד, סיימתי למלא את טביעת האצבע שלי ואשמח להמשיך את התהליך"
+              href="https://wa.me/972542086591?text=היי ערד, סיימתי למלא את טביעת האצבע שלי ואשמח להמשיך את התהליך"
               className="bg-primary text-white px-8 py-3 rounded-full font-bold text-base hover:opacity-90 transition-all inline-block"
               onClick={() => setShowModal(false)}
             >
