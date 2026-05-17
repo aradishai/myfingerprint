@@ -62,14 +62,14 @@ export default function FingerprintBuilder() {
     const answered = !!answers[id];
 
     const dot  = <div className={`w-3 h-3 md:w-4 md:h-4 rounded-full flex-shrink-0 transition-all duration-200 ${isActive || answered ? 'bg-primary' : 'bg-primary/30'}`} />;
-    const line = <div className={`w-6 md:w-16 flex-shrink-0 h-0.5 transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
+    const line = <div className={`w-3 sm:w-6 md:w-16 flex-shrink-0 h-0.5 transition-all duration-200 ${isActive ? 'bg-primary' : 'bg-primary/30'}`} />;
     const text = (
-      <div className={`cursor-pointer select-none transition-colors duration-200 ${side === 'right' ? 'text-right' : 'text-left'}`}>
-        <p className={`font-bold text-sm md:text-xl leading-tight ${isActive ? 'text-primary' : answered ? 'text-text-main' : 'text-text-muted'}`}>
+      <div className={`min-w-0 cursor-pointer select-none transition-colors duration-200 ${side === 'right' ? 'text-right' : 'text-left'}`}>
+        <p className={`font-bold text-xs sm:text-sm md:text-xl leading-tight break-words ${isActive ? 'text-primary' : answered ? 'text-text-main' : 'text-text-muted'}`}>
           {q.label}
         </p>
         {answers[id] && (
-          <p className="text-text-muted text-xs md:text-sm leading-snug mt-0.5 max-w-[90px] md:max-w-[180px] whitespace-pre-line">{answers[id]}</p>
+          <p className="text-text-muted text-xs md:text-sm leading-snug mt-0.5 max-w-[80px] md:max-w-[180px] whitespace-pre-line">{answers[id]}</p>
         )}
       </div>
     );
