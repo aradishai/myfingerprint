@@ -8,13 +8,16 @@ import ScrollFade from '@/components/ScrollFade';
 export const metadata: Metadata = {
   verification: { google: 'AWW5Ta_W2Mwpy7_q8V_63MgHO0l8HPSv52yuxrRXfo4' },
   title: 'חותם בעולם | ערד ישי',
-  description: 'ערד ישי — מאמן אישי, מרצה ומנחה סדנאות בנושאי זהות, אחריות ומשמעות. תהליכים אישיים וסדנאות קבוצתיות לגילוי הייחודיות שלך.',
+  description: 'סדנאות | הרצאות | ליווי אישי. אני מאמין שלכל אדם יש ייחודיות, ערכים וייעוד שהוא יכול וצריך לממש — בואו נגלה יחד את טביעת האצבע שלכם.',
   keywords: 'ערד ישי, אימון אישי, סדנאות, הרצאות, חותם בעולם, זהות, משמעות, פיתוח אישי, מאמן אישי',
+  icons: {
+    icon: '/logo.svg',
+  },
   openGraph: {
     title: 'חותם בעולם | ערד ישי',
     description: 'סדנאות | הרצאות | ליווי אישי',
     url: 'https://myfingerprint-production.up.railway.app',
-    siteName: 'חותם בעולם',
+    siteName: 'חותם בעולם | ערד ישי',
     locale: 'he_IL',
     type: 'website',
   },
@@ -22,11 +25,13 @@ export const metadata: Metadata = {
 
 const schemaOrg = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'חותם בעולם',
+  '@type': 'Person',
+  name: 'ערד ישי',
   url: 'https://myfingerprint-production.up.railway.app',
-  logo: 'https://myfingerprint-production.up.railway.app/logo.svg',
-  founder: { '@type': 'Person', name: 'ערד ישי' },
+  image: 'https://myfingerprint-production.up.railway.app/profile.jpg',
+  jobTitle: 'מאמן אישי, מרצה ומנחה סדנאות',
+  description: 'סדנאות | הרצאות | ליווי אישי',
+  sameAs: [],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
