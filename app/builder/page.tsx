@@ -7,12 +7,9 @@ export const metadata = {
 
 export default function BuildPage() {
   return (
-    <div className="pt-24 min-h-screen bg-cream">
-      <section className="py-16 scroll-fade">
+    <div className="pt-20 min-h-screen bg-cream">
+      <section className="py-6 scroll-fade">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-4">בנה את טביעת האצבע שלך</h1>
-          </div>
           <FingerprintBuilder />
         </div>
       </section>
