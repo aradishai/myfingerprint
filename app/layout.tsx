@@ -12,6 +12,14 @@ export const metadata: Metadata = {
   keywords: 'ערד ישי, אימון אישי, סדנאות, הרצאות, חותם בעולם, זהות, משמעות, פיתוח אישי, מאמן אישי',
   icons: {
     icon: '/logo.svg',
+    apple: '/logo-small.png',
+  },
+  manifest: '/manifest.webmanifest',
+  themeColor: '#52C47A',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'חותם בעולם',
   },
   openGraph: {
     title: 'חותם בעולם | ערד ישי',

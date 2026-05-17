@@ -14,14 +14,14 @@ const items = [
 const rightIds = [1, 2, 3];
 const leftIds  = [4, 5, 6];
 
-function LabelRow({ id, label, active, side, onEnter, onLeave }: {
-  id: number; label: string; active: boolean;
+function LabelRow({ label, active, side, onEnter, onLeave }: {
+  label: string; active: boolean;
   side: 'right' | 'left'; onEnter: () => void; onLeave: () => void;
 }) {
-  const dot  = <div className={`w-3 h-3 md:w-4 md:h-4 rounded-full flex-shrink-0 transition-all duration-200 ${active ? 'bg-primary scale-125' : 'bg-primary/30'}`} />;
-  const line = <div className={`w-6 md:w-16 flex-shrink-0 h-0.5 transition-all duration-200 ${active ? 'bg-primary' : 'bg-primary/30'}`} />;
+  const dot  = <div className={`w-3 h-3 lg:w-4 lg:h-4 rounded-full flex-shrink-0 transition-all duration-200 ${active ? 'bg-primary scale-125' : 'bg-primary/30'}`} />;
+  const line = <div className={`w-8 lg:w-16 flex-shrink-0 h-0.5 transition-all duration-200 ${active ? 'bg-primary' : 'bg-primary/30'}`} />;
   const text = (
-    <p className={`font-bold text-sm md:text-xl leading-tight whitespace-nowrap transition-colors duration-200 ${active ? 'text-primary' : 'text-text-main'}`}>
+    <p className={`min-w-0 font-bold text-sm lg:text-xl leading-tight transition-colors duration-200 ${active ? 'text-primary' : 'text-text-main'}`}>
       {label}
     </p>
   );
@@ -58,9 +58,22 @@ export default function FingerprintDiagram() {
 
   return (
     <div>
-      <div className="w-full grid items-center gap-2 md:gap-6" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
-        {/* Right labels */}
-        <div className="flex flex-col gap-6 md:gap-12 items-start">
+      {/* Mobile: fingerprint centered + cycling answer */}
+      <div className="md:hidden flex flex-col items-center gap-4">
+        <FingerprintInteractive hovered={displayRegion} onHover={setHoveredRegion} />
+        <div className="min-h-20 text-center px-2 w-full">
+          {active && (
+            <div key={displayRegion} className="animate-fade-in">
+              <p className="text-primary font-bold text-base mb-1">{active.label}</p>
+              <p className="text-text-main text-sm leading-relaxed">{active.answer}</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Desktop: anatomy with side labels */}
+      <div className="hidden md:grid w-full items-center gap-6" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
+        <div className="flex flex-col gap-12 items-start">
           {rightIds.map(id => {
             const item = items.find(i => i.id === id)!;
             return (
@@ -69,14 +82,10 @@ export default function FingerprintDiagram() {
             );
           })}
         </div>
-
-        {/* Fingerprint */}
         <div className="flex-shrink-0">
           <FingerprintInteractive hovered={displayRegion} onHover={setHoveredRegion} />
         </div>
-
-        {/* Left labels */}
-        <div className="flex flex-col gap-6 md:gap-12 items-start">
+        <div className="flex flex-col gap-12 items-start">
           {leftIds.map(id => {
             const item = items.find(i => i.id === id)!;
             return (
@@ -87,8 +96,8 @@ export default function FingerprintDiagram() {
         </div>
       </div>
 
-      {/* Answer */}
-      <div className="mt-8 text-center min-h-16 px-4">
+      {/* Desktop answer */}
+      <div className="hidden md:block mt-8 text-center min-h-16 px-4">
         {active && (
           <div key={displayRegion} className="animate-fade-in">
             <p className="text-primary font-bold text-lg mb-1">{active.label}</p>
