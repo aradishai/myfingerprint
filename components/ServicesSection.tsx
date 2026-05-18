@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import FingerprintInteractive, { regions } from './FingerprintInteractive';
+import SmartContactLink from './SmartContactLink';
 
 const fingerprintItems = [
   { id: 1, label: 'אני הכי טוב ואוהב...', question: 'מה התחומים שאתה סקרן לגבייהם?' },
@@ -124,9 +125,9 @@ export default function ServicesSection() {
 
             {/* Buttons */}
             <div className="flex gap-3 flex-wrap justify-center">
-              <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם פגישת היכרות" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
+              <SmartContactLink waText="היי ערד, אשמח לתאם פגישת היכרות" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
                 לתיאום פגישת היכרות
-              </a>
+              </SmartContactLink>
               <Link href="/builder" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-all">
                 בנה בעצמך את טביעת האצבע שלך!
               </Link>
@@ -214,9 +215,9 @@ export default function ServicesSection() {
             </div>
 
             <div className="text-center mt-10">
-              <a href="https://wa.me/972542086591?text=היי ערד, אשמח לתאם סדנה" className="btn-primary">
+              <SmartContactLink waText="היי ערד, אשמח לתאם סדנה" className="btn-primary">
                 לתיאום סדנה
-              </a>
+              </SmartContactLink>
             </div>
           </div>
         </div>

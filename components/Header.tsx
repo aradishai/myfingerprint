@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { HiMenu, HiX } from 'react-icons/hi';
+import SmartContactLink from './SmartContactLink';
 
 const links = [
   { href: '/', label: 'בית' },
@@ -53,9 +54,9 @@ export default function Header() {
               <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
             </svg>
           </button>
-          <a href="https://wa.me/972542086591?text=היי ערד, אשמח לקבוע פגישה" className="bg-primary text-white px-5 py-2 rounded-full font-normal text-sm hover:opacity-90 transition-all">
+          <SmartContactLink waText="היי ערד, אשמח לקבוע פגישה" className="bg-primary text-white px-5 py-2 rounded-full font-normal text-sm hover:opacity-90 transition-all">
             קביעת פגישה
-          </a>
+          </SmartContactLink>
         </nav>
 
         {/* Mobile menu button */}
@@ -72,9 +73,9 @@ export default function Header() {
               {l.label}
             </Link>
           ))}
-          <a href="https://wa.me/972542086591?text=היי ערד, אשמח לקבוע פגישה" className="btn-primary text-center mt-2" onClick={() => setOpen(false)}>
+          <SmartContactLink waText="היי ערד, אשמח לקבוע פגישה" className="btn-primary text-center mt-2" onClick={() => setOpen(false)}>
             קביעת פגישה
-          </a>
+          </SmartContactLink>
           <button onClick={() => { handleShare(); setOpen(false); }} className="flex items-center gap-2 text-primary font-medium py-1">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>

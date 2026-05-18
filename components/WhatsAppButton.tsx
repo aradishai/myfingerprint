@@ -1,4 +1,10 @@
+'use client';
+import { useIsMobile } from '@/hooks/useIsMobile';
+
 export default function WhatsAppButton() {
+  const isMobile = useIsMobile();
+  if (!isMobile) return null;
+
   return (
     <a
       href="https://wa.me/972542086591"
