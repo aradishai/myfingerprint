@@ -1,27 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { createClient } from '@supabase/supabase-js';
 
-const FILE = path.join(process.cwd(), 'data', 'feedback.json');
-
-async function readAll(): Promise<object[]> {
-  try {
-    const raw = await fs.readFile(FILE, 'utf-8');
-    return JSON.parse(raw);
-  } catch { return []; }
-}
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_KEY!
+);
 
 export async function GET() {
-  const items = await readAll();
-  return NextResponse.json(items);
+  const { data, error } = await supabase
+    .from('feedback')
+    .select('*')
+    .order('timestamp', { ascending: false });
+
+  if (error) return NextResponse.json([], { status: 500 });
+  return NextResponse.json(data);
 }
 
 export async function POST(req: NextRequest) {
-  const data = await req.json();
-  console.log('FEEDBACK:', JSON.stringify(data));
-  const items = await readAll();
-  items.push({ ...data, id: Date.now() });
-  await fs.mkdir(path.dirname(FILE), { recursive: true });
-  await fs.writeFile(FILE, JSON.stringify(items, null, 2));
-  return NextResponse.json({ ok: true });
+  const body = await req.json();
+  const { error } = await supabase.from('feedback').insert({
+    rating_enjoy:   body.rating_enjoy   ?? null,
+    rating_clarity: body.rating_clarity ?? null,
+    rating_tools:   body.rating_tools   ?? null,
+    open_text:      body.open_text      ?? null,
+    name:           body.name           ?? null,
+    org:            body.org            ?? null,
+  });
+
+  if (error) console.error('FEEDBACK ERROR:', error);
+  return NextResponse.json({ ok: !error });
 }
