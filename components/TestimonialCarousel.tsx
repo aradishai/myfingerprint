@@ -1,7 +1,9 @@
 'use client';
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-const testimonials = [
+type Testimonial = { quote: string; name: string; role: string };
+
+const staticTestimonials: Testimonial[] = [
   {
     quote: 'היה ממש ממש טוב. המדריך היה תיאטרלי וגרם לאנשים להקשיב. במיוחד שזה היה אחרי יום שלם. קיבל פידבקים ממש חיוביים מהחיילים.',
     name: 'עידן',
@@ -40,25 +42,42 @@ const testimonials = [
 ];
 
 export default function TestimonialCarousel() {
+  const [all, setAll]         = useState<Testimonial[]>(staticTestimonials);
   const [current, setCurrent] = useState(0);
   const [visible, setVisible] = useState(true);
 
-  const goTo = useCallback((index: number) => {
+  useEffect(() => {
+    fetch('/api/feedback')
+      .then(r => r.json())
+      .then((data: { open_text?: string; name?: string; org?: string }[]) => {
+        const dynamic: Testimonial[] = data
+          .filter(d => d.open_text?.trim())
+          .map(d => ({
+            quote: d.open_text!.trim(),
+            name:  d.name?.trim() || '',
+            role:  d.org?.trim()  || '',
+          }));
+        if (dynamic.length > 0) setAll([...staticTestimonials, ...dynamic]);
+      })
+      .catch(() => {/* keep static */});
+  }, []);
+
+  const goTo = useCallback((index: number, total: number) => {
     setVisible(false);
     setTimeout(() => {
-      setCurrent((index + testimonials.length) % testimonials.length);
+      setCurrent((index + total) % total);
       setVisible(true);
     }, 400);
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      goTo(current + 1);
+      goTo(current + 1, all.length);
     }, 25000);
     return () => clearInterval(interval);
-  }, [current, goTo]);
+  }, [current, goTo, all.length]);
 
-  const t = testimonials[current];
+  const t = all[current];
   const innerRef = useRef<HTMLDivElement>(null);
   const [ratio, setRatio] = useState(0.6);
 
@@ -88,16 +107,16 @@ export default function TestimonialCarousel() {
       {/* Quote */}
       <div className="transition-opacity duration-400" style={{ opacity: visible ? 1 : 0, minHeight: '120px' }}>
         <blockquote className="text-base md:text-xl text-white leading-relaxed font-medium mb-6 italic">
-          "{t.quote}"
+          &ldquo;{t.quote}&rdquo;
         </blockquote>
-        <p className="text-white/90 font-bold text-lg">{t.name}</p>
+        {t.name && <p className="text-white/90 font-bold text-lg">{t.name}</p>}
         {t.role && <p className="text-white/60 text-sm mt-1">{t.role}</p>}
       </div>
 
       {/* Controls */}
       <div className="flex items-center justify-center gap-6 mt-8">
         <button
-          onClick={() => goTo(current - 1)}
+          onClick={() => goTo(current - 1, all.length)}
           className="w-10 h-10 rounded-full border-2 border-white/50 text-white hover:border-white hover:bg-white/10 transition-all flex items-center justify-center text-lg"
           aria-label="הקודם"
         >
@@ -105,17 +124,17 @@ export default function TestimonialCarousel() {
         </button>
 
         <div className="flex gap-2">
-          {testimonials.map((_, i) => (
+          {all.map((_, i) => (
             <button
               key={i}
-              onClick={() => goTo(i)}
+              onClick={() => goTo(i, all.length)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${i === current ? 'bg-white scale-125' : 'bg-white/40'}`}
             />
           ))}
         </div>
 
         <button
-          onClick={() => goTo(current + 1)}
+          onClick={() => goTo(current + 1, all.length)}
           className="w-10 h-10 rounded-full border-2 border-white/50 text-white hover:border-white hover:bg-white/10 transition-all flex items-center justify-center text-lg"
           aria-label="הבא"
         >
