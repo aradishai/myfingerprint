@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import QRCode from 'qrcode';
 
-const SITE_URL = 'https://myfingerprint-production.up.railway.app';
+const SITE_URL = 'https://myfingerprint-production.up.railway.app/?feedback=1';
 
 export default function QRPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -63,8 +63,8 @@ export default function QRPage() {
 
   return (
     <div className="min-h-screen bg-cream flex flex-col items-center justify-center pt-24 pb-16 px-6">
-      <h1 className="text-3xl font-extrabold text-primary mb-2 text-center">QR לאתר</h1>
-      <p className="text-text-muted mb-8 text-center">הורד ברזולוציה גבוהה להדפסה על חולצה</p>
+      <h1 className="text-3xl font-extrabold text-primary mb-2 text-center">QR לסדנה</h1>
+      <p className="text-text-muted mb-8 text-center">הורד ברזולוציה גבוהה להדפסה</p>
 
       <div className="bg-cream rounded-3xl p-6 shadow-lg border border-border mb-8">
         <canvas ref={canvasRef} className="rounded-xl" style={{ maxWidth: '100%', height: 'auto' }} />
