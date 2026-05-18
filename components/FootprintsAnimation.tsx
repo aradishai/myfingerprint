@@ -1,22 +1,16 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-type Foot = { id: number; x: number; y: number; rot: number; side: 'l' | 'r'; delay: number };
+type Print = { id: number; x: number; y: number; size: number; rotation: number; delay: number };
 
-function FootSVG({ side }: { side: 'l' | 'r' }) {
+function FingerprintSVG({ size }: { size: number }) {
   return (
-    <svg
-      width="20" height="28"
-      viewBox="0 0 22 30"
-      style={{ transform: side === 'l' ? 'scaleX(-1)' : 'none' }}
-      fill="white"
-    >
-      <ellipse cx="11" cy="22" rx="9"   ry="8"   />
-      <ellipse cx="3"  cy="10" rx="2.5" ry="3.5" />
-      <ellipse cx="7"  cy="6"  rx="2.5" ry="3.5" />
-      <ellipse cx="11" cy="4"  rx="2.5" ry="3.5" />
-      <ellipse cx="15" cy="6"  rx="2"   ry="3"   />
-      <ellipse cx="19" cy="9"  rx="1.5" ry="2.5" />
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="8"  stroke="white" strokeWidth="3" fill="none" opacity="0.9"/>
+      <path d="M 50 34 A 16 16 0 0 1 66 50 A 16 16 0 0 1 50 66 A 16 16 0 0 1 34 50 A 16 16 0 0 1 50 34" stroke="white" strokeWidth="3" fill="none" opacity="0.9"/>
+      <path d="M 50 22 A 28 28 0 0 1 78 50 A 28 28 0 0 1 50 78 A 28 28 0 0 1 22 50 A 28 28 0 0 1 50 22" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round" strokeDasharray="60 28" opacity="0.8"/>
+      <path d="M 50 10 A 40 40 0 0 1 90 50 A 40 40 0 0 1 50 90 A 40 40 0 0 1 10 50 A 40 40 0 0 1 50 10" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeDasharray="80 46" opacity="0.7"/>
+      <path d="M 50 2 A 48 48 0 0 1 98 50 A 48 48 0 0 1 50 98 A 48 48 0 0 1 2 50 A 48 48 0 0 1 50 2" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeDasharray="90 62" opacity="0.5"/>
     </svg>
   );
 }
@@ -24,60 +18,43 @@ function FootSVG({ side }: { side: 'l' | 'r' }) {
 let uid = 0;
 
 export default function FootprintsAnimation() {
-  const [feet, setFeet] = useState<Foot[]>([]);
+  const [prints, setPrints] = useState<Print[]>([]);
 
   useEffect(() => {
-    function spawnTrail() {
-      const steps   = 5 + Math.floor(Math.random() * 5);
-      const startX  = 5  + Math.random() * 80;
-      const startY  = 10 + Math.random() * 75;
-      const angle   = -40 + Math.random() * 80;
-      const rad     = (angle * Math.PI) / 180;
-      const strideX = Math.sin(rad) * 5;
-      const strideY = -Math.cos(rad) * 6;
-
-      const trail: Foot[] = Array.from({ length: steps }, (_, i) => {
-        const side: 'l' | 'r' = i % 2 === 0 ? 'r' : 'l';
-        const lateral = (side === 'r' ? 2 : -2);
-        return {
-          id:    uid++,
-          x:     startX + i * strideX + lateral * Math.cos(rad),
-          y:     startY + i * strideY + lateral * Math.sin(rad),
-          rot:   angle + (side === 'l' ? -12 : 12),
-          side,
-          delay: i * 0.28,
-        };
-      });
-
-      setFeet(prev => [...prev, ...trail]);
-
-      const lifespan = steps * 280 + 3200;
+    function spawn() {
+      const print: Print = {
+        id:       uid++,
+        x:        5 + Math.random() * 88,
+        y:        5 + Math.random() * 88,
+        size:     32 + Math.floor(Math.random() * 40),
+        rotation: Math.random() * 360,
+        delay:    0,
+      };
+      setPrints(prev => [...prev, print]);
       setTimeout(() => {
-        const ids = new Set(trail.map(f => f.id));
-        setFeet(prev => prev.filter(f => !ids.has(f.id)));
-      }, lifespan);
+        setPrints(prev => prev.filter(p => p.id !== print.id));
+      }, 4000);
     }
 
-    spawnTrail();
-    const interval = setInterval(spawnTrail, 3500);
+    spawn();
+    const interval = setInterval(spawn, 1800);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {feet.map(f => (
+      {prints.map(p => (
         <div
-          key={f.id}
+          key={p.id}
           className="absolute footprint-step"
           style={{
-            left:              `${f.x}%`,
-            top:               `${f.y}%`,
-            transform:         `rotate(${f.rot}deg)`,
-            animationDelay:    `${f.delay}s`,
-            opacity:           0,
+            left:      `${p.x}%`,
+            top:       `${p.y}%`,
+            transform: `translate(-50%, -50%) rotate(${p.rotation}deg)`,
+            opacity:   0,
           }}
         >
-          <FootSVG side={f.side} />
+          <FingerprintSVG size={p.size} />
         </div>
       ))}
     </div>
