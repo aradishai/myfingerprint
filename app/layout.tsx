@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollFade from '@/components/ScrollFade';
+import FeedbackModal from '@/components/FeedbackModal';
 
 export const metadata: Metadata = {
   verification: { google: 'AWW5Ta_W2Mwpy7_q8V_63MgHO0l8HPSv52yuxrRXfo4' },
@@ -60,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <WhatsAppButton />
         <ScrollFade />
+        <Suspense fallback={null}><FeedbackModal /></Suspense>
       </body>
     </html>
   );
