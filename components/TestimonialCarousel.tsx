@@ -82,7 +82,7 @@ export default function TestimonialCarousel() {
         {/* Content */}
         <div key={animKey} className={`px-14 md:px-20 py-10 md:py-12 text-center ${slideClass}`}>
           <blockquote className="text-lg md:text-2xl text-text-main leading-relaxed font-bold mb-6 italic">
-            &ldquo;{t.quote}&rdquo;
+            &#x201D;{t.quote}&#x201C;
           </blockquote>
 
           {(t.name || t.role) && (
