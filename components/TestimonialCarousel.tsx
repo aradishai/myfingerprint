@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 type Testimonial = { quote: string; name: string; role: string; date?: string; ratings?: { enjoy?: number; clarity?: number; tools?: number } };
 
@@ -61,7 +61,7 @@ export default function TestimonialCarousel() {
           }));
         if (dynamic.length > 0) setAll([...staticTestimonials, ...dynamic]);
       })
-      .catch(() => {/* keep static */});
+      .catch(() => {});
   }, []);
 
   const goTo = useCallback((index: number, total: number) => {
@@ -73,65 +73,51 @@ export default function TestimonialCarousel() {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      goTo(current + 1, all.length);
-    }, 25000);
+    const interval = setInterval(() => goTo(current + 1, all.length), 25000);
     return () => clearInterval(interval);
   }, [current, goTo, all.length]);
 
   const t = all[current];
-  const innerRef = useRef<HTMLDivElement>(null);
-  const [ratio, setRatio] = useState(0.6);
-
-  useEffect(() => {
-    const el = innerRef.current;
-    if (!el) return;
-    const obs = new ResizeObserver(([entry]) => {
-      const { width, height } = entry.contentRect;
-      if (width > 0) setRatio(height / width);
-    });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  const blob =
-    ratio < 0.45 ? '45% 55% 50% 50% / 40% 50% 50% 45%' :
-    ratio < 0.65 ? '38% 62% 44% 56% / 42% 38% 58% 50%' :
-    ratio < 0.85 ? '30% 70% 38% 62% / 38% 30% 65% 55%' :
-                   '25% 75% 32% 68% / 35% 25% 60% 55%';
 
   return (
-    <div
-      ref={innerRef}
-      className="text-center bg-primary/65 backdrop-blur-sm px-5 md:px-14 pt-10 md:pt-24 pb-8 md:pb-12"
-      style={{ borderRadius: blob, transition: 'border-radius 0.8s ease' }}
-    >
-      {/* Quote */}
-      <div className="transition-opacity duration-400" style={{ opacity: visible ? 1 : 0, minHeight: '120px' }}>
-        <blockquote className="text-lg md:text-2xl text-white leading-relaxed font-bold mb-6 italic">
-          &ldquo;{t.quote}&rdquo;
+    <div className="w-full">
+      {/* Card */}
+      <div
+        className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl px-8 md:px-14 py-10 md:py-12 text-center transition-opacity duration-400"
+        style={{ opacity: visible ? 1 : 0 }}
+      >
+        {/* Big quote mark */}
+        <p className="text-7xl text-primary/20 font-serif leading-none mb-2 select-none">"</p>
+
+        <blockquote className="text-lg md:text-2xl text-text-main leading-relaxed font-bold mb-6 italic">
+          {t.quote}
         </blockquote>
-        {t.name && <p className="text-white/90 font-bold text-lg">{t.name}</p>}
-        {t.role && <p className="text-white/60 text-sm mt-1">{t.role}</p>}
-        {t.ratings && (t.ratings.enjoy || t.ratings.clarity || t.ratings.tools) && (
-          <div className="flex flex-col items-center gap-1 mt-4 text-white/80 text-sm">
-            {t.ratings.enjoy   && <span>נהניתי מהסדנה: <strong>{t.ratings.enjoy}/5</strong></span>}
-            {t.ratings.clarity && <span>הסדנה עזרה לי לדייק את עצמי: <strong>{t.ratings.clarity}/5</strong></span>}
-            {t.ratings.tools   && <span>קיבלתי כלים להמשך: <strong>{t.ratings.tools}/5</strong></span>}
+
+        {(t.name || t.role) && (
+          <div className="mb-4">
+            {t.name && <p className="text-primary font-bold text-base">{t.name}</p>}
+            {t.role && <p className="text-text-muted text-sm mt-0.5">{t.role}</p>}
           </div>
         )}
-        {t.date && <p className="text-white/50 text-xs mt-3">{t.date}</p>}
+
+        {t.ratings && (t.ratings.enjoy || t.ratings.clarity || t.ratings.tools) && (
+          <div className="flex flex-col items-center gap-1 mt-3 text-text-muted text-sm border-t border-border pt-4">
+            {t.ratings.enjoy   && <span>נהניתי מהסדנה: <strong className="text-primary">{t.ratings.enjoy}/5</strong></span>}
+            {t.ratings.clarity && <span>הסדנה עזרה לי לדייק את עצמי: <strong className="text-primary">{t.ratings.clarity}/5</strong></span>}
+            {t.ratings.tools   && <span>קיבלתי כלים להמשך: <strong className="text-primary">{t.ratings.tools}/5</strong></span>}
+          </div>
+        )}
+
+        {t.date && <p className="text-text-muted/60 text-xs mt-3">{t.date}</p>}
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-center gap-6 mt-8">
+      <div className="flex items-center justify-center gap-6 mt-6">
         <button
           onClick={() => goTo(current - 1, all.length)}
           className="w-10 h-10 rounded-full border-2 border-white/50 text-white hover:border-white hover:bg-white/10 transition-all flex items-center justify-center text-lg"
           aria-label="הקודם"
-        >
-          ‹
-        </button>
+        >‹</button>
 
         <div className="flex gap-2">
           {all.map((_, i) => (
@@ -147,9 +133,7 @@ export default function TestimonialCarousel() {
           onClick={() => goTo(current + 1, all.length)}
           className="w-10 h-10 rounded-full border-2 border-white/50 text-white hover:border-white hover:bg-white/10 transition-all flex items-center justify-center text-lg"
           aria-label="הבא"
-        >
-          ›
-        </button>
+        >›</button>
       </div>
     </div>
   );
