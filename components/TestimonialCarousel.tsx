@@ -108,19 +108,19 @@ export default function TestimonialCarousel() {
     >
       {/* Quote */}
       <div className="transition-opacity duration-400" style={{ opacity: visible ? 1 : 0, minHeight: '120px' }}>
-        <blockquote className="text-base md:text-xl text-white leading-relaxed font-medium mb-6 italic">
+        <blockquote className="text-lg md:text-2xl text-white leading-relaxed font-bold mb-6 italic">
           &ldquo;{t.quote}&rdquo;
         </blockquote>
         {t.name && <p className="text-white/90 font-bold text-lg">{t.name}</p>}
         {t.role && <p className="text-white/60 text-sm mt-1">{t.role}</p>}
         {t.ratings && (t.ratings.enjoy || t.ratings.clarity || t.ratings.tools) && (
-          <div className="flex justify-center gap-4 mt-3 text-white/70 text-xs">
-            {t.ratings.enjoy    && <span>הנאה {t.ratings.enjoy}/5</span>}
-            {t.ratings.clarity  && <span>דיוק {t.ratings.clarity}/5</span>}
-            {t.ratings.tools    && <span>כלים {t.ratings.tools}/5</span>}
+          <div className="flex flex-col items-center gap-1 mt-4 text-white/80 text-sm">
+            {t.ratings.enjoy   && <span>נהניתי מהסדנה: <strong>{t.ratings.enjoy}/5</strong></span>}
+            {t.ratings.clarity && <span>הסדנה עזרה לי לדייק את עצמי: <strong>{t.ratings.clarity}/5</strong></span>}
+            {t.ratings.tools   && <span>קיבלתי כלים להמשך: <strong>{t.ratings.tools}/5</strong></span>}
           </div>
         )}
-        {t.date && <p className="text-white/50 text-xs mt-2">{t.date}</p>}
+        {t.date && <p className="text-white/50 text-xs mt-3">{t.date}</p>}
       </div>
 
       {/* Controls */}

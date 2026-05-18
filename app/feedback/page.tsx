@@ -1,5 +1,7 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 type FeedbackItem = {
   id: number;
@@ -12,44 +14,28 @@ type FeedbackItem = {
   timestamp: string;
 };
 
-function StarRow({ label, value }: { label: string; value?: number }) {
-  if (!value) return null;
-  return (
-    <div className="flex items-center gap-2 text-sm">
-      <span className="text-text-muted">{label}:</span>
-      <span className="font-bold text-primary">{value}/5</span>
-    </div>
-  );
-}
+function FeedbackPage() {
+  const searchParams = useSearchParams();
+  const isAdmin = searchParams.get('admin') === 'hotam2026';
 
-export default function FeedbackPage() {
-  const [items, setItems]   = useState<FeedbackItem[]>([]);
-  const [index, setIndex]   = useState(0);
+  const [items, setItems]     = useState<FeedbackItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     fetch('/api/feedback')
       .then(r => r.json())
-      .then((data: FeedbackItem[]) => {
-        const withText = data.filter(d => d.open_text?.trim());
-        setItems(withText.reverse());
-        setLoading(false);
-      })
+      .then((data: FeedbackItem[]) => { setItems(data); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    if (items.length < 2) return;
-    intervalRef.current = setInterval(() => {
-      setIndex(i => (i + 1) % items.length);
-    }, 5000);
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, [items]);
-
-  function go(next: number) {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    setIndex((next + items.length) % items.length);
+  async function deleteFeedback(id: number) {
+    if (!confirm('למחוק את המשוב הזה?')) return;
+    await fetch('/api/feedback', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, secret: 'hotam2026' }),
+    });
+    setItems(prev => prev.filter(i => i.id !== id));
   }
 
   const avg = (key: keyof FeedbackItem) => {
@@ -61,89 +47,55 @@ export default function FeedbackPage() {
   return (
     <div className="min-h-screen bg-bg pt-24 pb-16 px-4">
       <div className="max-w-2xl mx-auto">
-
         <h1 className="text-3xl font-extrabold text-text-main mb-2 text-center">משובי הסדנה</h1>
 
         {loading && <p className="text-center text-text-muted mt-12">טוען...</p>}
-
-        {!loading && items.length === 0 && (
-          <p className="text-center text-text-muted mt-12">אין משובים עדיין.</p>
-        )}
+        {!loading && items.length === 0 && <p className="text-center text-text-muted mt-12">אין משובים עדיין.</p>}
 
         {!loading && items.length > 0 && (
           <>
             {/* Averages */}
             <div className="flex justify-center gap-6 mt-6 mb-10 flex-wrap">
-              {avg('rating_enjoy') && (
-                <div className="text-center">
-                  <p className="text-2xl font-extrabold text-primary">{avg('rating_enjoy')}</p>
-                  <p className="text-xs text-text-muted">הנאה</p>
-                </div>
-              )}
-              {avg('rating_clarity') && (
-                <div className="text-center">
-                  <p className="text-2xl font-extrabold text-primary">{avg('rating_clarity')}</p>
-                  <p className="text-xs text-text-muted">דיוק עצמי</p>
-                </div>
-              )}
-              {avg('rating_tools') && (
-                <div className="text-center">
-                  <p className="text-2xl font-extrabold text-primary">{avg('rating_tools')}</p>
-                  <p className="text-xs text-text-muted">כלים להמשך</p>
-                </div>
-              )}
-              <div className="text-center">
-                <p className="text-2xl font-extrabold text-primary">{items.length}</p>
-                <p className="text-xs text-text-muted">משיבים</p>
-              </div>
+              {avg('rating_enjoy') && <div className="text-center"><p className="text-2xl font-extrabold text-primary">{avg('rating_enjoy')}</p><p className="text-xs text-text-muted">הנאה</p></div>}
+              {avg('rating_clarity') && <div className="text-center"><p className="text-2xl font-extrabold text-primary">{avg('rating_clarity')}</p><p className="text-xs text-text-muted">דיוק עצמי</p></div>}
+              {avg('rating_tools') && <div className="text-center"><p className="text-2xl font-extrabold text-primary">{avg('rating_tools')}</p><p className="text-xs text-text-muted">כלים להמשך</p></div>}
+              <div className="text-center"><p className="text-2xl font-extrabold text-primary">{items.length}</p><p className="text-xs text-text-muted">משיבים</p></div>
             </div>
 
-            {/* Carousel */}
-            <div className="relative bg-cream rounded-3xl shadow-lg p-8 min-h-[200px] flex flex-col justify-between">
-              <div key={index} className="animate-fade-in">
-                <p className="text-text-main text-lg leading-relaxed mb-6">
-                  &ldquo;{items[index].open_text}&rdquo;
-                </p>
-                <div className="flex flex-col gap-1">
-                  {(items[index].name || items[index].org) && (
-                    <p className="font-bold text-text-main text-sm">
-                      {items[index].name}{items[index].name && items[index].org ? ' · ' : ''}{items[index].org}
-                    </p>
-                  )}
-                  <StarRow label="הנאה"       value={items[index].rating_enjoy} />
-                  <StarRow label="דיוק עצמי"  value={items[index].rating_clarity} />
-                  <StarRow label="כלים"       value={items[index].rating_tools} />
-                </div>
-              </div>
-
-              {/* Nav dots */}
-              {items.length > 1 && (
-                <div className="flex justify-center gap-2 mt-6">
-                  {items.map((_, i) => (
+            {/* List */}
+            <div className="flex flex-col gap-4">
+              {items.map(item => (
+                <div key={item.id} className="bg-cream rounded-2xl p-6 shadow-sm border border-border relative">
+                  {isAdmin && (
                     <button
-                      key={i}
-                      onClick={() => go(i)}
-                      className={`w-2 h-2 rounded-full transition-all ${i === index ? 'bg-primary w-4' : 'bg-primary/30'}`}
-                    />
-                  ))}
+                      onClick={() => deleteFeedback(item.id)}
+                      className="absolute top-3 left-3 text-red-400 hover:text-red-600 text-xs font-bold transition-colors"
+                    >
+                      מחק
+                    </button>
+                  )}
+                  {item.open_text && (
+                    <p className="text-text-main font-bold text-base leading-relaxed mb-3">&ldquo;{item.open_text}&rdquo;</p>
+                  )}
+                  {(item.name || item.org) && (
+                    <p className="text-primary font-bold text-sm mb-2">{item.name}{item.name && item.org ? ' · ' : ''}{item.org}</p>
+                  )}
+                  <div className="flex flex-col gap-0.5 text-text-muted text-xs">
+                    {item.rating_enjoy   && <span>נהניתי מהסדנה: <strong>{item.rating_enjoy}/5</strong></span>}
+                    {item.rating_clarity && <span>הסדנה עזרה לי לדייק: <strong>{item.rating_clarity}/5</strong></span>}
+                    {item.rating_tools   && <span>קיבלתי כלים להמשך: <strong>{item.rating_tools}/5</strong></span>}
+                    <span className="mt-1">{new Date(item.timestamp).toLocaleDateString('en-GB')}</span>
+                  </div>
                 </div>
-              )}
+              ))}
             </div>
-
-            {/* Prev / Next */}
-            {items.length > 1 && (
-              <div className="flex justify-center gap-4 mt-6">
-                <button onClick={() => go(index - 1)} className="text-primary font-bold px-4 py-2 rounded-full border-2 border-primary/30 hover:border-primary transition-all">
-                  הקודם
-                </button>
-                <button onClick={() => go(index + 1)} className="text-primary font-bold px-4 py-2 rounded-full border-2 border-primary/30 hover:border-primary transition-all">
-                  הבא
-                </button>
-              </div>
-            )}
           </>
         )}
       </div>
     </div>
   );
+}
+
+export default function Page() {
+  return <Suspense fallback={null}><FeedbackPage /></Suspense>;
 }
