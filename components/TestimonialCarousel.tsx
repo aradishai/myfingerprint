@@ -101,18 +101,18 @@ export default function TestimonialCarousel() {
           )}
 
           {t.date && <p className="text-text-muted/60 text-xs mt-3">{t.date}</p>}
-        </div>
-      </div>
 
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-5">
-        {all.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i, all.length, i > current ? 'next' : 'prev')}
-            className={`rounded-full transition-all duration-300 ${i === current ? 'bg-white w-4 h-2' : 'bg-white/40 w-2 h-2'}`}
-          />
-        ))}
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {all.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i, all.length, i > current ? 'next' : 'prev')}
+                className={`rounded-full transition-all duration-300 ${i === current ? 'bg-primary w-4 h-2' : 'bg-primary/25 w-2 h-2'}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
