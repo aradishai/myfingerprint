@@ -75,7 +75,7 @@ function FeedbackPage() {
                     </button>
                   )}
                   {item.open_text && (
-                    <p className=”text-text-main font-bold text-base leading-relaxed mb-3”>&#x201D;{item.open_text}&#x201C;</p>
+                    <p className=”text-text-main font-bold text-base leading-relaxed mb-3”>{'”'}{item.open_text}{'“'}</p>
                   )}
                   {(item.name || item.org) && (
                     <p className="text-primary font-bold text-sm mb-2">{item.name}{item.name && item.org ? ' · ' : ''}{item.org}</p>
