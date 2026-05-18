@@ -178,6 +178,12 @@ export default function FeedbackModal() {
                 >
                   לבניית טביעת האצבע האישית שלי
                 </Link>
+                <button
+                  onClick={() => setShow(false)}
+                  className="block mx-auto mt-4 text-sm text-text-muted hover:text-text-main transition-colors"
+                >
+                  אולי אחר כך
+                </button>
               </div>
             )}
 
@@ -200,7 +206,7 @@ export default function FeedbackModal() {
               disabled={submitting}
               className="flex-1 bg-primary text-white py-3 rounded-full font-semibold text-base hover:opacity-90 transition-all disabled:opacity-60"
             >
-              {slide === 5 ? 'סיום' : 'הבא'}
+              {slide === 5 ? 'שלח!' : 'הבא'}
             </button>
           </div>
         )}
