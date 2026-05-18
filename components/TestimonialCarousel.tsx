@@ -60,7 +60,7 @@ export default function TestimonialCarousel() {
   }, [all.length]);
 
   const t = all[current];
-  const slideClass = dir === 'next' ? 'animate-slide-in-right' : 'animate-slide-in-left';
+  const slideClass = dir === 'next' ? 'animate-slide-in-left' : 'animate-slide-in-right';
 
   return (
     <div className="w-full">
