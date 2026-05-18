@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-type Testimonial = { quote: string; name: string; role: string; ratings?: { enjoy?: number; clarity?: number; tools?: number } };
+type Testimonial = { quote: string; name: string; role: string; date?: string; ratings?: { enjoy?: number; clarity?: number; tools?: number } };
 
 const staticTestimonials: Testimonial[] = [
   {
@@ -49,13 +49,14 @@ export default function TestimonialCarousel() {
   useEffect(() => {
     fetch('/api/feedback')
       .then(r => r.json())
-      .then((data: { open_text?: string; name?: string; org?: string; rating_enjoy?: number; rating_clarity?: number; rating_tools?: number }[]) => {
+      .then((data: { open_text?: string; name?: string; org?: string; rating_enjoy?: number; rating_clarity?: number; rating_tools?: number; timestamp?: string }[]) => {
         const dynamic: Testimonial[] = data
           .filter(d => d.open_text?.trim())
           .map(d => ({
             quote:   d.open_text!.trim(),
             name:    d.name?.trim() || '',
             role:    d.org?.trim()  || '',
+            date:    d.timestamp ? new Date(d.timestamp).toLocaleDateString('en-GB') : undefined,
             ratings: { enjoy: d.rating_enjoy, clarity: d.rating_clarity, tools: d.rating_tools },
           }));
         if (dynamic.length > 0) setAll([...staticTestimonials, ...dynamic]);
@@ -119,6 +120,7 @@ export default function TestimonialCarousel() {
             {t.ratings.tools    && <span>כלים {t.ratings.tools}/5</span>}
           </div>
         )}
+        {t.date && <p className="text-white/50 text-xs mt-2">{t.date}</p>}
       </div>
 
       {/* Controls */}
