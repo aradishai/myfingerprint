@@ -3,13 +3,15 @@ import ContactForm from '@/components/ContactForm';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import ServicesSection from '@/components/ServicesSection';
 import BookCarousel from '@/components/BookCarousel';
+import FootprintsAnimation from '@/components/FootprintsAnimation';
 
 export default function Home() {
   return (
     <>
       {/* Hero — ירוק */}
-      <section className="min-h-screen flex items-center justify-center pt-16 bg-primary">
-        <div className="max-w-5xl mx-auto px-6 py-24">
+      <section className="relative min-h-screen flex items-center justify-center pt-16 bg-primary overflow-hidden">
+        <FootprintsAnimation />
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-24">
           <div className="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16">
             {/* Profile image */}
             <div className="flex-shrink-0 hero-fade-1">
