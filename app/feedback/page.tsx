@@ -1,7 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
 
 type FeedbackItem = {
   id: number;
@@ -47,22 +46,20 @@ function FeedbackPage() {
   return (
     <div className="min-h-screen bg-bg pt-24 pb-16 px-4">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-text-main mb-2 text-center">משובי הסדנה</h1>
+        <h1 className="text-3xl font-extrabold text-text-main mb-2 text-center">{'משובי הסדנה'}</h1>
 
-        {loading && <p className="text-center text-text-muted mt-12">טוען...</p>}
-        {!loading && items.length === 0 && <p className="text-center text-text-muted mt-12">אין משובים עדיין.</p>}
+        {loading && <p className="text-center text-text-muted mt-12">{'טוען...'}</p>}
+        {!loading && items.length === 0 && <p className="text-center text-text-muted mt-12">{'אין משובים עדיין.'}</p>}
 
         {!loading && items.length > 0 && (
           <>
-            {/* Averages */}
             <div className="flex justify-center gap-6 mt-6 mb-10 flex-wrap">
-              {avg('rating_enjoy') && <div className="text-center"><p className="text-2xl font-extrabold text-primary">{avg('rating_enjoy')}</p><p className="text-xs text-text-muted">הנאה</p></div>}
-              {avg('rating_clarity') && <div className="text-center"><p className="text-2xl font-extrabold text-primary">{avg('rating_clarity')}</p><p className="text-xs text-text-muted">דיוק עצמי</p></div>}
-              {avg('rating_tools') && <div className="text-center"><p className="text-2xl font-extrabold text-primary">{avg('rating_tools')}</p><p className="text-xs text-text-muted">כלים להמשך</p></div>}
-              <div className="text-center"><p className="text-2xl font-extrabold text-primary">{items.length}</p><p className="text-xs text-text-muted">משיבים</p></div>
+              {avg('rating_enjoy') && <div className="text-center"><p className="text-2xl font-extrabold text-primary">{avg('rating_enjoy')}</p><p className="text-xs text-text-muted">{'הנאה'}</p></div>}
+              {avg('rating_clarity') && <div className="text-center"><p className="text-2xl font-extrabold text-primary">{avg('rating_clarity')}</p><p className="text-xs text-text-muted">{'דיוק עצמי'}</p></div>}
+              {avg('rating_tools') && <div className="text-center"><p className="text-2xl font-extrabold text-primary">{avg('rating_tools')}</p><p className="text-xs text-text-muted">{'כלים להמשך'}</p></div>}
+              <div className="text-center"><p className="text-2xl font-extrabold text-primary">{items.length}</p><p className="text-xs text-text-muted">{'משיבים'}</p></div>
             </div>
 
-            {/* List */}
             <div className="flex flex-col gap-4">
               {items.map(item => (
                 <div key={item.id} className="bg-cream rounded-2xl p-6 shadow-sm border border-border relative">
@@ -71,19 +68,23 @@ function FeedbackPage() {
                       onClick={() => deleteFeedback(item.id)}
                       className="absolute top-3 left-3 text-red-400 hover:text-red-600 text-xs font-bold transition-colors"
                     >
-                      מחק
+                      {'מחק'}
                     </button>
                   )}
                   {item.open_text && (
-                    <p className=”text-text-main font-bold text-base leading-relaxed mb-3”>{'”'}{item.open_text}{'“'}</p>
+                    <p className="text-text-main font-bold text-base leading-relaxed mb-3">
+                      {'”'}{item.open_text}{'“'}
+                    </p>
                   )}
                   {(item.name || item.org) && (
-                    <p className="text-primary font-bold text-sm mb-2">{item.name}{item.name && item.org ? ' · ' : ''}{item.org}</p>
+                    <p className="text-primary font-bold text-sm mb-2">
+                      {item.name}{item.name && item.org ? ' · ' : ''}{item.org}
+                    </p>
                   )}
                   <div className="flex flex-col gap-0.5 text-text-muted text-xs">
-                    {item.rating_enjoy   && <span>נהניתי מהסדנה: <strong>{item.rating_enjoy}/5</strong></span>}
-                    {item.rating_clarity && <span>הסדנה עזרה לי לדייק: <strong>{item.rating_clarity}/5</strong></span>}
-                    {item.rating_tools   && <span>קיבלתי כלים להמשך: <strong>{item.rating_tools}/5</strong></span>}
+                    {item.rating_enjoy && <span>{'נהניתי מהסדנה'}: <strong>{item.rating_enjoy}/5</strong></span>}
+                    {item.rating_clarity && <span>{'הסדנה עזרה לי לדייק'}: <strong>{item.rating_clarity}/5</strong></span>}
+                    {item.rating_tools && <span>{'קיבלתי כלים להמשך'}: <strong>{item.rating_tools}/5</strong></span>}
                     <span className="mt-1">{new Date(item.timestamp).toLocaleDateString('en-GB')}</span>
                   </div>
                 </div>
