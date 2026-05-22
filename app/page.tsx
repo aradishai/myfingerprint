@@ -23,7 +23,7 @@ export default function Home() {
             </div>
             {/* Text */}
             <div className="text-center md:text-right">
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-cream leading-tight mb-4 tracking-wide hero-fade-2" style={{fontFamily:"'Varela Round', sans-serif"}}>
+              <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-cream leading-tight mb-4 tracking-wide hero-fade-2" style={{fontFamily:"'Varela Round', sans-serif"}}>
                 מה החלום שלך?
               </h1>
               <p className="text-base md:text-xl text-white/90 leading-loose mb-8 mt-6 hero-fade-3">
