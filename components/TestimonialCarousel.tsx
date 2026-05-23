@@ -11,6 +11,7 @@ const staticTestimonials: Testimonial[] = [
   { quote: 'היה ממש טוב, התרשמות מהסדנה גבוהה באופן טוב, היו פידבקים ממש טובים — הכל חמש. העברת המסר ממש גבוה! הדבר היחידי שאמרו זה שהשעה לא מספיקה. אשת הקשר אמרה שזה טוב כי המטרה היא לפתוח להם את הערב!', name: 'טרייד מוביל', role: '' },
   { quote: 'שמע זה מטורף אחי, שבכל כך קצת זמן אני אישית עברתי שינוי משמעותי מאוד שרק עכשיו אני מתחיל להבין אותו לגבי המשך החיים ובכללי לצבא. באמת אחי עשית משהו מטורף שתדע. חייב להגיד לך שגם היום שינית לי את החשיבה בטירוף ואת כל הגישה הפיקודית שלי.', name: 'בה"ד 1, קורס קצינים', role: '' },
   { quote: 'הייתה סדנה מעולה, אנשי הקבע ממש עפו על הסדנה — גם על איך שהעבירו וגם על התכנים. הכל היה מעולה, לא הפסיקו לדבר על הסדנה.', name: 'לינוי מבסיס רמון, קורס כניסה נגדים', role: '' },
+  { quote: 'קודם כל, אני חושב שזה חשוב להיות באיזשהו תהליך אימון אישי, ואני לגמרי ממליץ על ערד! הוא עשה לי המון סדר במחשבות, עזר לי להתמקד בעיקר והאיר את ההזדמנויות. הוא עזר לי להבין ולהרגיש את החוזקות שלי, איפה אני יכול לתת הכי הרבה בעקבות הערכים שאני מאמין בהם. אז אם אתם מרגישים שאתם רוצים קצת לחדד את הערכים שלכם, ולפעול מתוך מניעים פנימיים שאתם מאמינים בהם - שלחו לו הודעה - אני ממליץ בחום!', name: 'גל', role: 'מתאמן אישי' },
 ];
 
 export default function TestimonialCarousel() {
@@ -92,15 +93,7 @@ export default function TestimonialCarousel() {
             </div>
           )}
 
-          {t.ratings && (t.ratings.enjoy || t.ratings.clarity || t.ratings.tools) && (
-            <div className="flex flex-col items-center gap-1 mt-3 text-text-muted text-sm border-t border-border pt-4">
-              {t.ratings.enjoy   && <span>נהניתי מהסדנה: <strong className="text-primary">{t.ratings.enjoy}/5</strong></span>}
-              {t.ratings.clarity && <span>הסדנה עזרה לי לדייק את עצמי: <strong className="text-primary">{t.ratings.clarity}/5</strong></span>}
-              {t.ratings.tools   && <span>קיבלתי כלים להמשך: <strong className="text-primary">{t.ratings.tools}/5</strong></span>}
-            </div>
-          )}
-
-          {t.date && <p className="text-text-muted/60 text-xs mt-3">{t.date}</p>}
+{t.date && <p className="text-text-muted/60 text-xs mt-3">{t.date}</p>}
 
           {/* Dots */}
           <div className="flex justify-center gap-2 mt-6">
