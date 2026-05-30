@@ -70,7 +70,7 @@ export default function ServicesSection() {
           >
             <div>
               <p className="text-primary font-bold text-sm uppercase tracking-widest mb-3">ליווי אישי</p>
-              <h3 className="text-xl font-bold text-text-main mb-4">מה היא טביעת האצבע שלך בעולם?</h3>
+              <h3 className="text-xl font-bold text-text-main mb-4">מהי טביעת האצבע שלך בעולם?</h3>
               <p className="text-text-muted leading-relaxed">
                 תהליך אישי אחד על אחד בו נחקור מה נועדתם לעשות? מה היא הייחודיות האישית שלכם ואיך תוכלו לייצר שינוי בעולם ובכך להביא את עצמכם לחיים בעלי משמעות ועשייה.
               </p>
