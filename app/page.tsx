@@ -25,7 +25,7 @@ export default function Home() {
                 מה החלום שלך?
               </h1>
               <p className="text-base md:text-xl text-white/90 leading-loose mb-8 mt-6 hero-fade-3">
-                אני מאמין שלכל אדם יש ייחודיות משלו, ערכים משלו וסט חוזקות איתם הוא צועד במסלול חייו. לכל אדם יש ייעוד אותו הוא יכול וצריך לממש. לאורך שנים של חקר מעמיק ועבודת שטח, פיתחתי כלים פרקטיים שייסעו לכל אחד ואחת להצליח למצוא את הדרך הייחודיות שלו להפוך את העולם שלנו לטוב יותר.
+                אני מאמין שלכל אדם יש ייחודיות משלו, ערכים משלו וסט חוזקות איתם הוא צועד במסלול חייו. לכל אדם יש ייעוד אותו הוא יכול וצריך לממש. לאורך שנים של חקר מעמיק ועבודת שטח, פיתחתי כלים פרקטיים שייסעו לכל אחד ואחת להצליח למצוא את הדרך הייחודיות שלו להגשים את חלומו ובכך להפוך את העולם שלנו לטוב יותר.
               </p>
               <div className="flex hero-fade-4 justify-center md:justify-start mt-6">
                 <Link href="#contact" className="bg-cream text-primary px-6 py-3 md:px-10 md:py-4 rounded-full font-extrabold text-base md:text-lg hover:opacity-90 transition-all shadow-lg">
